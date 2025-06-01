@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import {FeatureItemComponent} from './components/feature-item/feature-item.component';
 import {MatButton} from '@angular/material/button';
+import {MatDivider} from '@angular/material/divider';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
   imports: [
     FeatureItemComponent,
-    MatButton
+    MatButton,
+    MatDivider,
+    NgOptimizedImage
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

@@ -1,10 +1,10 @@
-<div>
-  <section>
+<main>
+  <section aria-label="hero-introduction">
     <div class="background spacing">
-      <div class="half-width">
-        <p class="strong-text">
+      <div class="width-40">
+        <h1 class="strong-text">
           Perfect for commuters, weekend travelers, and spontaneous road trips. Start your journey with us<span class="primary-text">—fast, flexible, and friendly.</span>
-        </p>
+        </h1>
         <p class="description-text">
           Welcome to YoYoCar, the smart way to travel. Whether you're looking for a ride or offering one, our platform connects drivers and passengers heading in the same direction.
         </p>
@@ -24,6 +24,52 @@
         >
           </app-feature-item>
         }
+    </div>
+    <mat-divider></mat-divider>
+    <section class="spacing">
+      <div class="about">
+        <h2>🌟 Why Use YoYo Car?</h2>
+        <p class="description-text">Our app provides numerous benefit for making your journey the safest and most comfortable possible! </p>
       </div>
+      <div class="showcase-container">
+        <div class="half-width">
+          <h3 class="subsection-title">🧭 How It Works</h3>
+
+          <div class="steps-list">
+            <div class="step">
+              <p class="description-text">
+                1. Search for a Ride <br>
+                Enter your departure and destination points, select your date, and browse available rides posted by other users.
+              </p>
+            </div>
+            <div class="step">
+              <p class="description-text">
+                2. Book with Ease <br>
+                Choose the ride that suits your schedule and budget. Message the driver directly to confirm your seat.
+              </p>
+            </div>
+            <div class="step">
+              <p class="description-text">
+                3. Post Your Own Ride <br>
+                Driving somewhere? Post your trip details in seconds and pick up fellow travelers along the way. Set your own price and travel preferences.
+              </p>
+            </div>
+          </div>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="half-width">
+          <img
+            class="rounded-img"
+            alt="Drive panoramic"
+            ngSrc="assets/images/drive-panoramic.png"
+            height="500"
+            width="700"
+          >
+        </div>
+        <div class="purple-ellipse"></div>
+      </div>
+      <div class="showcase-container"></div>
+      <div class="showcase-container"></div>
+    </section>
   </section>
-</div>
+</main>

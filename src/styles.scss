@@ -9,5 +9,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   filled-container-color: $primary-color,
   filled-disabled-container-color: red,
   outlined-label-text-color: $primary-color,
-  outlined-outline-color: $border-primary
+  outlined-outline-color: $outline-primary
+));
+
+@include mat.divider-overrides((
+  color: $border-primary,
 ));
