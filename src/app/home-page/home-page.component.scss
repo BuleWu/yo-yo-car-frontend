@@ -23,7 +23,7 @@
 
 
 .spacing {
-  padding: pixel-to-rem(55);
+  padding: pixel-to-rem(95);
 }
 
 .width-40 {
@@ -60,11 +60,11 @@
 .subsection-title {
   color: $primary-text;
   font-size: pixel-to-rem(30);
+  margin-bottom: 3.2rem;
 }
 
 .steps-list {
   width: 80%;
-  margin-top: 3.2rem;
 
   .step {
     margin-bottom: 2rem;
@@ -92,11 +92,66 @@
   width: 497px;
   height: 505px;
   border-radius: 505px;
-  z-index: 1;
+  z-index: 0;
   background: radial-gradient(74.36% 74.47% at 50% 50%, #F3FFD9 0%, rgba(255, 255, 255, 0.00) 100%);
   pointer-events: none;
 }
 
 main {
   overflow-x: hidden;
+}
+
+.steps-background-svg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95vw;
+  height: auto;
+  max-width: none;
+  z-index: 1;
+  top: pixel-to-rem(1250);
+  pointer-events: none;
+}
+
+.app-store-section {
+  display: flex;
+  justify-content: center;
+  padding-top: pixel-to-rem(150);
+}
+
+.app-store-container {
+  position: relative;
+  display: flex;
+  font-size: pixel-to-rem(30);
+  flex-direction: column;
+  text-align: center;
+  width: 52%;
+  color: white;
+  border-radius: pixel-to-rem(20);
+  background-color: $primary-color;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    margin-top: pixel-to-rem(64);
+  }
+
+  .description-text {
+
+  }
+
+  .button-container {
+    display: flex;
+    gap: pixel-to-rem(10);
+    margin-bottom: pixel-to-rem(50);
+  }
+}
+
+.bell-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+  z-index: 2;
+  pointer-events: none;
 }

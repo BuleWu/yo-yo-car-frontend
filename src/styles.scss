@@ -6,10 +6,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @include mat.button-overrides((
+  text-label-text-color: $primary-text,
   filled-container-color: $primary-color,
-  filled-disabled-container-color: red,
   outlined-label-text-color: $primary-color,
-  outlined-outline-color: $outline-primary
+  outlined-outline-color: $outline-primary,
+  protected-label-text-color: $primary-text,
+  tonal-label-text-color: $primary-color
 ));
 
 @include mat.divider-overrides((
