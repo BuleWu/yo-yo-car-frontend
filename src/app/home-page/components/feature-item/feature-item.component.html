@@ -1,10 +1,9 @@
 <div class="feature-item-container">
   <div class="image" [style.background-color]="backgroundColor">
-    <!--<mat-icon>{{ icon }}</mat-icon>-->
-    <img src="../../../../../assets/images/empty-workspace.svg" alt="" />
+    <img src="{{ imgPath }}" alt="{{ name }}" height="41" width="41"/>
   </div>
   <div class="text">
-    <p class="title">{{ name }}</p>
-    {{ description }}
+    <h3 class="title">{{ name }}</h3>
+    <p>{{ description }}</p>
   </div>
 </div>

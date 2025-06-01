@@ -1,5 +1,21 @@
 <div>
-  <p class="strong-text">
-    Perfect for commuters, weekend travelers, and spontaneous road trips. Start your journey with us—fast, flexible, and friendly.
-  </p>
+  <section>
+    <p class="strong-text">
+      Perfect for commuters, weekend travelers, and spontaneous road trips. Start your journey with us<span class="primary-text">—fast, flexible, and friendly.</span>
+    </p>
+    <p class="description-text">
+      Welcome to YoYoCar, the smart way to travel. Whether you're looking for a ride or offering one, our platform connects drivers and passengers heading in the same direction.
+    </p>
+    <div class="features-container">
+      @for (item of featureItems; track item.name) {
+        <app-feature-item
+          [name]="'Search for rides'"
+          [description]="'You can look for rides from an to any location'"
+          [imgPath]="'../../assets/images/search-rides.svg'"
+          [backgroundColor]="'#EFEAFF'"
+        >
+        </app-feature-item>
+      }
+    </div>
+  </section>
 </div>

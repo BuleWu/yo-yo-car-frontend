@@ -1,13 +1,25 @@
+@import "helpers";
+@import "main_palette";
+
 .feature-item-container {
   display: flex;
+  align-items: center;
+  gap: pixel-to-rem(16);
+  margin-right: pixel-to-rem(6);
 
   .image {
-
+    width: pixel-to-rem(83);
+    height: pixel-to-rem(83);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: pixel-to-rem(20);
+    flex-shrink: 0;
   }
 
   .text {
-    .title {
-
+    p {
+      color: $light-secondary-text;
     }
   }
 }

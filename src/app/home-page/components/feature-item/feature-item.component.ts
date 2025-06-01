@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {MatIcon} from '@angular/material/icon';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-feature-item',
   imports: [
-    MatIcon,
+    NgOptimizedImage
   ],
   templateUrl: './feature-item.component.html',
   styleUrl: './feature-item.component.scss'
@@ -13,5 +13,5 @@ export class FeatureItemComponent {
   @Input() name: string = '';
   @Input() description: string = '';
   @Input() backgroundColor: string = '';
-  @Input() icon: string = '';
+  @Input() imgPath: string = '';
 }

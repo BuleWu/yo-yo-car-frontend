@@ -1,5 +1,15 @@
 @import 'helpers';
+@import 'main_palette';
 
 .strong-text {
   font-size: pixel-to-rem(40);
+}
+
+.description-text {
+  color: $light-primary-text;
+}
+
+
+.primary-text {
+  color: $primary-text;
 }
