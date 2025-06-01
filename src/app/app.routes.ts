@@ -4,8 +4,8 @@ import {ROUTES} from './shared/enums/router.enum';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: ROUTES.LANDING_PAGE,
+    path: 'welcome',
+    /*redirectTo: ROUTES.LANDING_PAGE,*/
     component: HomePageComponent
   }
 ];
