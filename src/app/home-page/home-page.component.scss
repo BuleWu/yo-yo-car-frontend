@@ -84,6 +84,19 @@
   pointer-events: none;
 }
 
+.yellow-ellipse {
+  position: absolute;
+  bottom: pixel-to-rem(120);
+  transform: translateX(-50%);
+  left: 0;
+  width: 497px;
+  height: 505px;
+  border-radius: 505px;
+  z-index: 1;
+  background: radial-gradient(74.36% 74.47% at 50% 50%, #F3FFD9 0%, rgba(255, 255, 255, 0.00) 100%);
+  pointer-events: none;
+}
+
 main {
   overflow-x: hidden;
 }
