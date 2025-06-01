@@ -1,1 +1,9 @@
-<p>feature-item works!</p>
+<div class="feature-item-container">
+  <div class="image" [style.background-color]="backgroundColor">
+    <img alt="Feature Image" src="{{ imageUrl }}" height="20" width="20">
+  </div>
+  <div class="text">
+    <p class="title">{{ name }}</p>
+    {{ description }}
+  </div>
+</div>

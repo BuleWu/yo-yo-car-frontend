@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-feature-item',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './feature-item.component.scss'
 })
 export class FeatureItemComponent {
-
+  @Input() name: string = '';
+  @Input() description: string = '';
+  @Input() backgroundColor: string = '';
+  @Input() imageUrl: string = '';
 }
