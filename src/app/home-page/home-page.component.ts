@@ -3,6 +3,8 @@ import {FeatureItemComponent} from './components/feature-item/feature-item.compo
 import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {NgOptimizedImage} from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import {MatFormField, MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +12,10 @@ import {NgOptimizedImage} from '@angular/common';
     FeatureItemComponent,
     MatButton,
     MatDivider,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatIcon,
+    MatFormField,
+    MatInput
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

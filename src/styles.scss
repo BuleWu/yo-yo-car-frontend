@@ -17,3 +17,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @include mat.divider-overrides((
   color: $border-primary,
 ));
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: lightblue !important;
+}
