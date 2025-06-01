@@ -34,7 +34,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "src/styles/mixins",
+                "src/styles/material-design",
+                "node_modules"
+              ]
+            }
           },
           "configurations": {
             "production": {
