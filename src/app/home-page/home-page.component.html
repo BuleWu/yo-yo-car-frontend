@@ -1,17 +1,20 @@
 <div>
   <section>
-    <div class="background">
-      <p class="strong-text">
-        Perfect for commuters, weekend travelers, and spontaneous road trips. Start your journey with us<span class="primary-text">—fast, flexible, and friendly.</span>
-      </p>
-      <p class="description-text">
-        Welcome to YoYoCar, the smart way to travel. Whether you're looking for a ride or offering one, our platform connects drivers and passengers heading in the same direction.
-      </p>
-      <div>
-        <a matButton="filled" href="/" target="_blank">Sign in →</a>
+    <div class="background spacing">
+      <div class="half-width">
+        <p class="strong-text">
+          Perfect for commuters, weekend travelers, and spontaneous road trips. Start your journey with us<span class="primary-text">—fast, flexible, and friendly.</span>
+        </p>
+        <p class="description-text">
+          Welcome to YoYoCar, the smart way to travel. Whether you're looking for a ride or offering one, our platform connects drivers and passengers heading in the same direction.
+        </p>
+        <div class="link-container">
+          <a matButton="filled" href="/" target="_blank">Sign in →</a>
+          <a matButton="outlined" href="/" target="_blank">Find your ride!</a>
+        </div>
       </div>
     </div>
-    <div class="features-container">
+    <div class="features-container spacing">
       @for (item of featureItems; track item.name) {
         <app-feature-item
           [name]="item.name"
@@ -19,8 +22,8 @@
           [imgPath]="item.imgPath"
           [backgroundColor]="item.backgroundColor"
         >
-        </app-feature-item>
-      }
-    </div>
+          </app-feature-item>
+        }
+      </div>
   </section>
 </div>

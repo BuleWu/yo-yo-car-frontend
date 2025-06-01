@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import 'main_palette';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@include mat.button-overrides((
+  filled-container-color: $primary-color,
+  filled-disabled-container-color: red,
+  outlined-label-text-color: $primary-color,
+  outlined-outline-color: $border-primary
+));

@@ -15,9 +15,23 @@
 
 .features-container {
   display: flex;
-  padding: pixel-to-rem(50);
 }
 
 .background {
   background-color: #1090CB1A;
+}
+
+
+.spacing {
+  padding: pixel-to-rem(55);
+}
+
+.half-width {
+  width: 40%;
+}
+
+.link-container {
+  display: flex;
+  margin-top: pixel-to-rem(40);
+  gap: pixel-to-rem(15);
 }
