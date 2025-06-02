@@ -11,6 +11,17 @@
   min-height: pixel-to-rem(180);
   box-sizing: border-box;
 
+  .logo-name-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .website-name {
+    margin: 0;
+    color: $primary-text;
+  }
+
   .info {
     display: flex;
     gap: pixel-to-rem(78);
