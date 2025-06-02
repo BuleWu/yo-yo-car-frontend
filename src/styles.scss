@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import 'main_palette';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@include mat.button-overrides((
+  text-label-text-color: $primary-text,
+  filled-container-color: $primary-color,
+  outlined-label-text-color: $primary-color,
+  outlined-outline-color: $outline-primary,
+  protected-label-text-color: $primary-text,
+  tonal-label-text-color: $primary-color
+));
+
+@include mat.divider-overrides((
+  color: $border-primary,
+));
+
+@include mat.form-field-overrides((
+  outlined-container-shape: var(--mat-sys-corner-medium),
+  filled-container-shape: var(--mat-sys-corner-medium),
+  filled-caret-color: $primary-color,
+  outlined-caret-color: $primary-color,
+  filled-focus-label-text-color: $primary-text
+));
+
+// Manipulate initial background color
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
+}
+
+// Manipulate background color on hover and focus
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+
+.mdc-line-ripple {
+  display: none
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  caret-color: $primary-color !important;
+}
+
+
+/*input::-webkit-input-placeholder{
+  color: $primary-color;  // change [placeholder color] by this
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
+}*/

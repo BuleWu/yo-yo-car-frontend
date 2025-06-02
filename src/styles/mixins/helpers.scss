@@ -1,0 +1,39 @@
+@use 'sass:math';
+
+$base-font-size: 16;
+
+/**
+  Strips units
+  @Props Number
+  @Returns Number
+ */
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+/**
+  Converts css properties sizes in pixels to rem.
+  @Props $value, e.g. 14 - means size 14px;
+  @Returns value in rem
+*/
+@function pixel-to-rem($value, $base: $base-font-size) {
+  @return math.div($value, strip-unit($base)) * 1rem;
+}
+
+@mixin backdrop {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 1;
+  background: rgb(0 0 0 / 0.32);
+  pointer-events: auto;
+  inset: 0;
+  -webkit-tap-highlight-color: transparent;
+}
