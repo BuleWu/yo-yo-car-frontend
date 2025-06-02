@@ -18,6 +18,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: $border-primary,
 ));
 
+@include mat.form-field-overrides((
+  outlined-container-shape: var(--mat-sys-corner-medium),
+  filled-container-shape: var(--mat-sys-corner-medium)
+));
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
@@ -35,6 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
   caret-color: $primary-color !important;
 }
+
 
 /*input::-webkit-input-placeholder{
   color: $primary-color;  !* change [placeholder color] by this*!
