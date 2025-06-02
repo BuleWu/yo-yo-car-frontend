@@ -26,6 +26,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   filled-focus-label-text-color: $primary-text
 ));
 
+@include mat.toolbar-overrides((
+  container-background-color: white,
+  container-text-color: black,
+));
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
