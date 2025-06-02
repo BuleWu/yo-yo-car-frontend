@@ -1,0 +1,34 @@
+@import "main_palette";
+@import "helpers";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: pixel-to-rem(100);
+  min-height: pixel-to-rem(180);
+
+  .info {
+    display: flex;
+    gap: pixel-to-rem(78);
+  }
+
+  .info-subsection {
+
+    .info-subsection-title {
+
+    }
+  }
+
+  .divider {
+    margin-top: pixel-to-rem(50);
+    margin-bottom: pixel-to-rem(30);
+  }
+
+  .paragraph-text {
+    color: $text-tertiary;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}

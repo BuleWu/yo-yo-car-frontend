@@ -6,6 +6,7 @@ import {NgOptimizedImage} from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {FooterComponent} from "../shared/components/footer/footer.component";
 
 
 @Component({
@@ -17,7 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NgOptimizedImage,
     MatIcon,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FooterComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
