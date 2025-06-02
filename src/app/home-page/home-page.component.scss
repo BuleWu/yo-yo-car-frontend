@@ -20,6 +20,8 @@
 
 .features-container {
   display: flex;
+  justify-content: center;
+  gap: pixel-to-rem(20);
 }
 
 .background {
@@ -199,6 +201,7 @@ main {
 }
 
 .ride-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -209,6 +212,7 @@ main {
   .section-title {
     color: black;
     font-size: pixel-to-rem(30);
+    padding-bottom: pixel-to-rem(80);
   }
 }
 
@@ -233,4 +237,17 @@ main {
     padding-left: pixel-to-rem(24);
     padding-right: pixel-to-rem(24);
   }
+}
+
+.find-ride-section {
+  margin-top: pixel-to-rem(550);
+}
+
+.ride-search-svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(10%, -40%);
+  z-index: 2;
+  pointer-events: none;
 }
