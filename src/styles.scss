@@ -20,7 +20,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @include mat.form-field-overrides((
   outlined-container-shape: var(--mat-sys-corner-medium),
-  filled-container-shape: var(--mat-sys-corner-medium)
+  filled-container-shape: var(--mat-sys-corner-medium),
+  filled-caret-color: $primary-color,
+  outlined-caret-color: $primary-color,
+  filled-focus-label-text-color: $primary-text
 ));
 
 // Manipulate initial background color
@@ -43,7 +46,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /*input::-webkit-input-placeholder{
-  color: $primary-color;  !* change [placeholder color] by this*!
+  color: $primary-color;  // change [placeholder color] by this
   text-shadow: none;
   -webkit-text-fill-color: initial;
 }*/

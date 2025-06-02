@@ -4,7 +4,9 @@ import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {NgOptimizedImage} from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import {MatFormField, MatInput} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @Component({
   selector: 'app-home-page',
@@ -14,8 +16,8 @@ import {MatFormField, MatInput} from '@angular/material/input';
     MatDivider,
     NgOptimizedImage,
     MatIcon,
-    MatFormField,
-    MatInput
+    MatInputModule,
+    MatFormFieldModule
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
