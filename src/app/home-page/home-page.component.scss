@@ -10,7 +10,7 @@
 }
 
 .description-text {
-  color: $light-primary-text;
+  color: $text-primary;
   font-size: pixel-to-rem(18);
 }
 
@@ -132,6 +132,9 @@
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
 }
