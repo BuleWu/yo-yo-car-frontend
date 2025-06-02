@@ -1,0 +1,35 @@
+@import "main_palette";
+@import "helpers";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+
+  .home-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .text {
+      color: $primary-text;
+      font-size: pixel-to-rem(29);
+      font-weight: 700;
+    }
+  }
+
+  .start {
+
+  }
+
+  .end {
+    display: flex;
+    align-items: center;
+    gap: pixel-to-rem(12);
+
+    .about-us {
+      text-decoration: none;
+      color: black;
+      margin-right: pixel-to-rem(4);
+    }
+  }
+}
