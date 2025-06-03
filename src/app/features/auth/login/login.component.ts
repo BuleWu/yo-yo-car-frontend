@@ -1,8 +1,16 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {MatFormField, MatInput} from '@angular/material/input';
+import {MatLabel} from '@angular/material/form-field';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatButton
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
