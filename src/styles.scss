@@ -23,7 +23,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   filled-container-shape: var(--mat-sys-corner-medium),
   filled-caret-color: $primary-color,
   outlined-caret-color: $primary-color,
-  filled-focus-label-text-color: $primary-text
+  filled-focus-label-text-color: $primary-text,
+  outlined-focus-outline-color: $primary-text
+));
+
+@include mat.toolbar-overrides((
+  container-background-color: white,
+  container-text-color: black,
 ));
 
 // Manipulate initial background color

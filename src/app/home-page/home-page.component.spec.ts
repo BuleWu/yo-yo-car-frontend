@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
+import {MatDivider} from '@angular/material/divider';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -8,7 +9,7 @@ describe('HomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomePageComponent]
+      imports: [HomePageComponent, MatDivider]
     })
     .compileComponents();
 

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import {FeatureItemComponent} from './components/feature-item/feature-item.component';
 import {MatButton} from '@angular/material/button';
-import {MatDivider} from '@angular/material/divider';
+import {MatDividerModule} from '@angular/material/divider';
 import {NgOptimizedImage} from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FooterComponent} from "../shared/components/footer/footer.component";
+import {NavbarComponent} from "../shared/components/navbar/navbar.component";
 
 
 @Component({
@@ -14,12 +15,13 @@ import {FooterComponent} from "../shared/components/footer/footer.component";
   imports: [
     FeatureItemComponent,
     MatButton,
-    MatDivider,
+    MatDividerModule,
     NgOptimizedImage,
     MatIcon,
     MatInputModule,
     MatFormFieldModule,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
