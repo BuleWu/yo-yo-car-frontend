@@ -13,6 +13,7 @@ $ellipse-size: pixel-to-rem(379);
     position: relative;
     background-color: #050A24;
     width: 50%;
+    user-select: none;
   }
 
   .register-container {
