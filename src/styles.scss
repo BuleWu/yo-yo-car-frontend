@@ -19,12 +19,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ));
 
 @include mat.form-field-overrides((
-  outlined-container-shape: var(--mat-sys-corner-medium),
+  outlined-container-shape: var(--mat-sys-corner-extra-large),
   filled-container-shape: var(--mat-sys-corner-medium),
   filled-caret-color: $primary-color,
   outlined-caret-color: $primary-color,
   filled-focus-label-text-color: $primary-text,
-  outlined-focus-outline-color: $primary-text
+  outlined-focus-outline-color: $primary-text,
+  outlined-outline-color: $outline-secondary
 ));
 
 @include mat.toolbar-overrides((
@@ -60,6 +61,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @font-face {
   font-family: 'Poppins ThinItalic';
   src: url("assets/fonts/Poppins-ThinItalic.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins LightItalic';
+  src: url("assets/fonts/Poppins-LightItalic.ttf");
   font-weight: normal;
   font-style: normal;
 }

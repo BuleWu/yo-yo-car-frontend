@@ -16,6 +16,9 @@ $ellipse-size: pixel-to-rem(379);
   }
 
   .register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
     background-color: white;
     width: 50%;
@@ -54,8 +57,57 @@ $ellipse-size: pixel-to-rem(379);
   }
 
   .welcome {
+    position: absolute;
     color: white;
-    font-family: Poppins ThinItalic, sans-serif;
+    bottom: 0;
+    padding: pixel-to-rem(50);
+    font-family: Poppins LightItalic, sans-serif;
     font-size: pixel-to-rem(56);
+  }
+
+  .form-wrapper {
+    width: 60%;
+
+    .title {
+      font-size: pixel-to-rem(28);
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        display: flex;
+        justify-content: space-between;
+
+        mat-form-field {
+          width: 48%;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: pixel-to-rem(12);
+
+        button {
+          height: pixel-to-rem(50);
+        }
+      }
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    color: $text-secondary;
+    margin-top: pixel-to-rem(14);
+    text-decoration: none;
+    cursor: default;
+
+    .highlight-text {
+      font-weight: 600;
+      color: $primary-text;
+      text-decoration: none;
+    }
   }
 }

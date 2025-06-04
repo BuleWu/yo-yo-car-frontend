@@ -52,7 +52,7 @@ $ellipse-size: pixel-to-rem(379);
 
     .login-btn {
       margin-top: pixel-to-rem(6);
-      height: pixel-to-rem(60);
+      height: pixel-to-rem(50);
     }
 
     .form-fields {
@@ -69,12 +69,16 @@ $ellipse-size: pixel-to-rem(379);
     }
 
     .register-link {
+      cursor: default;
       color: $text-secondary;
       margin-top: pixel-to-rem(18);
       text-decoration: none;
 
       .highlight-text {
+        font-weight: 600;
         color: $primary-text;
+        padding-left: pixel-to-rem(4);
+        text-decoration: none;
       }
     }
   }
