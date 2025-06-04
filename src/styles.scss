@@ -50,6 +50,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   caret-color: $primary-color !important;
 }
 
+@font-face {
+  font-family: 'Poppins Italic';
+  src: url("assets/fonts/Poppins-Italic.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins ThinItalic';
+  src: url("assets/fonts/Poppins-ThinItalic.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*input::-webkit-input-placeholder{
   color: $primary-color;  // change [placeholder color] by this

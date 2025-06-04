@@ -1,0 +1,61 @@
+@import "main_palette";
+@import "helpers";
+
+$ellipse-size: pixel-to-rem(379);
+
+.register {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  .background {
+    position: relative;
+    background-color: #050A24;
+    width: 50%;
+  }
+
+  .register-container {
+    z-index: 1;
+    background-color: white;
+    width: 50%;
+  }
+
+  .right-ellipse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(50%);
+    height: $ellipse-size;
+    width: $ellipse-size;
+    z-index: 0;
+    border-radius: pixel-to-rem(379);
+    background: #2D55FB;
+    filter: blur(275px);
+  }
+
+  .left-ellipse {
+    position: absolute;
+    bottom: 0;
+    height: $ellipse-size;
+    width: $ellipse-size;
+    z-index: 0;
+    border-radius: pixel-to-rem(379);
+    transform: translate(-10%, 70%);
+    background: #2D55FB;
+    filter: blur(275px);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: pixel-to-rem(28);
+    color: $primary-text;
+  }
+
+  .welcome {
+    color: white;
+    font-family: Poppins ThinItalic, sans-serif;
+    font-size: pixel-to-rem(56);
+  }
+}
