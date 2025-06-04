@@ -8,7 +8,6 @@ import {MatButton} from '@angular/material/button';
     MatFormField,
     MatInput,
     MatLabel,
-    MatFormField,
     MatButton
   ],
   templateUrl: './register.component.html',
