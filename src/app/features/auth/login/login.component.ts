@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,16 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements AfterViewInit {
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private _elementRef: ElementRef,
+    private _authenticationService: AuthenticationService,
+  ) {}
 
   ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
+    this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
+  }
+
+  public loginHandler(): void {
+    this._authenticationService.loginUser();
   }
 }
