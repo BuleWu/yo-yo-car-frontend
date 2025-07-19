@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   constructor(
     private _httpClient: HttpClient,
-    private _router: Router
+    private _router: Router,
   ) { }
 
   baseUrl = "http://localhost:8080";
@@ -42,6 +42,7 @@ export class AuthenticationService {
   }
 
   public authenticateWithGoogle(): void {
-    this._router.navigateByUrl(`${this.baseUrl}/auth/google/login`);
+    /*this._router.navigateByUrl(`${this.baseUrl}/auth/google/login`);*/
+    window.location.href = `${this.baseUrl}/auth/google/login`
   }
 }
