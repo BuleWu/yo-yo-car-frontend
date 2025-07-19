@@ -17,6 +17,7 @@ export class AuthenticationService {
     email: string,
     password: string,
   ): Observable<any> { // TODO: change the type to token
+    console.log('In login user...');
     return this._httpClient.post(`${this.baseUrl}/auth/login`, // TODO: add getBaseUrl which pull URL from config json
       {
         email: email,

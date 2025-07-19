@@ -76,6 +76,7 @@ $ellipse-size: pixel-to-rem(379);
     .register-form {
       display: flex;
       flex-direction: column;
+      text-align: center;
 
       .name {
         display: flex;
@@ -90,6 +91,7 @@ $ellipse-size: pixel-to-rem(379);
         display: flex;
         flex-direction: column;
         gap: pixel-to-rem(12);
+        margin-top: pixel-to-rem(14);
 
         button {
           height: pixel-to-rem(50);

@@ -3,6 +3,7 @@ import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ import {AuthenticationService} from '../services/authentication.service';
 export class LoginComponent implements AfterViewInit {
   constructor(
     private _elementRef: ElementRef,
-    private _authenticationService: AuthenticationService,
+    private _authenticationService: AuthenticationService
   ) {}
 
   ngAfterViewInit() {
@@ -26,6 +27,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   public loginHandler(): void {
-    this._authenticationService.loginUser();
+    this._authenticationService.loginUser("email@mail.com", "12345678")
+      .subscribe((res) => console.log("Response: ", res));
   }
 }
