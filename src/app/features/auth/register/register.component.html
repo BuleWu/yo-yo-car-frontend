@@ -18,37 +18,73 @@
   <div class="register-container">
     <div class="form-wrapper">
       <h3 class="title">Create an account</h3>
-      <form class="register-form">
+      <form [formGroup]="registerForm" class="register-form">
         <div class="name">
           <mat-form-field appearance="outline">
             <mat-label>First name</mat-label>
-            <input matInput placeholder="Enter your first name">
+            <input
+              matInput
+              placeholder="Enter your first name"
+              formControlName="firstName"
+              name="firstName"
+              required
+            >
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Last name</mat-label>
-            <input matInput placeholder="Enter your last name">
+            <input
+              matInput
+              placeholder="Enter your last name"
+              formControlName="lastName"
+              name="lastName"
+              required
+            >
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Enter your email">
+          <input
+            type="email"
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+            name="email"
+            required
+          >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="Enter your password">
+          <input
+            type="password"
+            matInput
+            placeholder="Enter your password"
+            formControlName="password"
+            name="password"
+            required
+          >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Confirm password</mat-label>
-          <input type="password" matInput placeholder="Confirm password">
+          <input
+            type="password"
+            matInput
+            placeholder="Confirm password"
+            formControlName="confirmPassword"
+            required
+            name="confirmPassword"
+          >
         </mat-form-field>
+        @if (registerForm.hasError('passwordMismatch')) {
+            <mat-error>Passwords do not match</mat-error>
+        }
 
         <div class="buttons">
-          <button matButton="filled">Create Your Account</button>
-          <button matButton>Continue with Google</button>
+          <button matButton="filled" type="submit" [disabled]="!registerForm.valid" (click)="registerHandler()">Create Your Account</button>
+          <button matButton (click)="registerWithGoogle()">Continue with Google</button>
         </div>
       </form>
       <p class="login-link">Already have an account? <a class="highlight-text" href="/auth/login">Sign in</a></p>

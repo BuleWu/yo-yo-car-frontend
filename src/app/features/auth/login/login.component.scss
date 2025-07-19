@@ -68,6 +68,17 @@ $ellipse-size: pixel-to-rem(379);
       }
     }
 
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: pixel-to-rem(12);
+      margin-top: pixel-to-rem(14);
+
+      button {
+        height: pixel-to-rem(50);
+      }
+    }
+
     .register-link {
       cursor: default;
       color: $text-secondary;
