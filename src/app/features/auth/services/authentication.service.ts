@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import {HttpClient} from '@angular/common/http';
 export class AuthenticationService {
 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _router: Router
   ) { }
 
   baseUrl = "http://localhost:8080";
@@ -39,7 +41,7 @@ export class AuthenticationService {
       });
   }
 
-  public authenticateWithGoogle(): void { // TODO: change the type to token
-    window.location.href = `${this.baseUrl}/auth/google/login`;
+  public authenticateWithGoogle(): void {
+    this._router.navigateByUrl(`${this.baseUrl}/auth/google/login`);
   }
 }

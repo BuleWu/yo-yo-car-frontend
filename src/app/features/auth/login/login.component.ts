@@ -3,7 +3,6 @@ import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
-import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
