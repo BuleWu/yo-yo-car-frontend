@@ -4,6 +4,7 @@ import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
 import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,45 @@ import {HttpClient} from '@angular/common/http';
     MatFormField,
     MatInput,
     MatLabel,
-    MatButton
+    MatButton,
+    ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements AfterViewInit {
+  loginForm: FormGroup;
+
   constructor(
     private _elementRef: ElementRef,
-    private _authenticationService: AuthenticationService
-  ) {}
+    private _authenticationService: AuthenticationService,
+    private fb: FormBuilder
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    })
+  }
 
   ngAfterViewInit() {
     this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
   }
 
   public loginHandler(): void {
-    this._authenticationService.loginUser("email@mail.com", "12345678")
-      .subscribe((res) => console.log("Response: ", res));
+    const { email, password } = this.loginForm.value;
+
+    this._authenticationService.loginUser(email, password)
+      .subscribe({
+        next: (res) => console.log('Response: ', res),
+        error: (err) => {
+          if(err.status === 401) {
+            console.log('Invalid credentials');
+          }
+        }
+      })
+  }
+
+  public loginWithGoogle(): void {
+    this._authenticationService.authenticateWithGoogle();
   }
 }
