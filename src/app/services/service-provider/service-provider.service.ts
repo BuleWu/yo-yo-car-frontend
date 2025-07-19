@@ -1,3 +1,4 @@
+/*
 import {Injectable, Injector} from '@angular/core';
 
 @Injectable({
@@ -31,3 +32,4 @@ export abstract class ServiceProviderService {
     return this.config.getServiceEntity(msServiceName);
   }
 }
+*/
