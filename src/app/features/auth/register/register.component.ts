@@ -51,8 +51,12 @@ export class RegisterComponent {
 
   public registerHandler(): void {
     const { firstName, lastName, email, password } = this.registerForm.value;
-    console.log('First name: ', firstName);
+    this._authenticationService.registerUser(firstName, lastName, email, password).subscribe((response) => {
+      console.log('Response: ', response);
+    });
+  }
 
-    //this._authenticationService.registerUser(this.firstName, this.lastName, this.email, this.password);
+  public registerWithGoogle(): void {
+    this._authenticationService.authenticateWithGoogle();
   }
 }

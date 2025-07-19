@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -33,10 +33,14 @@ export class AuthenticationService {
   ): Observable<any> { // TODO: change the type to token
     return this._httpClient.post(`${this.baseUrl}/auth/register`,
       {
-        firstName: firstName,
-        lastName: lastName,
+        first_name: firstName,
+        last_name: lastName,
         email: email,
         password: password
       });
+  }
+
+  public authenticateWithGoogle(): void { // TODO: change the type to token
+    window.location.href = `${this.baseUrl}/auth/google/login`;
   }
 }

@@ -83,8 +83,8 @@
         }
 
         <div class="buttons">
-          <button matButton="filled" type="submit" [disabled]="!registerForm.valid">Create Your Account</button>
-          <button matButton>Continue with Google</button>
+          <button matButton="filled" type="submit" [disabled]="!registerForm.valid" (click)="registerHandler()">Create Your Account</button>
+          <button matButton (click)="registerWithGoogle()">Continue with Google</button>
         </div>
       </form>
       <p class="login-link">Already have an account? <a class="highlight-text" href="/auth/login">Sign in</a></p>
