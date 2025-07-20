@@ -48,7 +48,7 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(): boolean {
-      const parsedToken = this._localStorageService.getItem('token_parsed')
+      const parsedToken = this._localStorageService.getItem('token_parsed');
       if(parsedToken) {
           try {
             const accessToken = JSON.parse(parsedToken);

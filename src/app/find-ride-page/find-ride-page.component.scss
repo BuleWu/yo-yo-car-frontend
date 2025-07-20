@@ -1,0 +1,92 @@
+@import "main_palette";
+@import "helpers";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  .description-wrapper {
+    display: flex;
+  }
+
+  .description {
+    padding: pixel-to-rem(95);
+    width: 50%;
+  }
+
+  .description-text {
+    color: $text-primary;
+    font-size: pixel-to-rem(18);
+  }
+
+  .ride-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E8F4FA;
+    padding-top: pixel-to-rem(148);
+    padding-bottom: pixel-to-rem(148);
+
+  }
+
+  .title-text {
+    color: black;
+    font-size: pixel-to-rem(30);
+  }
+
+  .ride-search-form {
+    padding-top: pixel-to-rem(80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    gap: pixel-to-rem(32);
+
+    mat-form-field {
+      width: 30%;
+    }
+
+    button[mat-flat-button] {
+      display: flex;
+      height: pixel-to-rem(56);
+      width: pixel-to-rem(170);
+      margin-bottom: 1.34375rem;
+      align-items: center;
+      justify-content: center;
+      padding-left: pixel-to-rem(24);
+      padding-right: pixel-to-rem(24);
+    }
+  }
+
+  .ride-search-svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(10%, -40%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .post-ride {
+    display: flex;
+
+    .post-ride-btn {
+      padding: pixel-to-rem(22);
+      margin-top: pixel-to-rem(30);
+      font-size: pixel-to-rem(18);
+
+      .flex-btn-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+.strong-text {
+  font-size: pixel-to-rem(40);
+}

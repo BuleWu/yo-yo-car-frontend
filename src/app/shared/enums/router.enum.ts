@@ -4,8 +4,11 @@
 
 export enum ROUTES {
   LANDING_PAGE = 'welcome',
-  FIND_RIDE_PAGE = 'find-ride',
+  FIND = 'find',
   LOGIN_PAGE = 'login',
   REGISTER_PAGE = 'register',
-  AUTH_CALLBACK = 'callback'
+  AUTH_CALLBACK = 'callback',
+  RIDE = 'ride',
+  POST = 'post',
+  AUTH = 'auth'
 }

@@ -1,1 +1,66 @@
-<app-navbar>
+<app-navbar></app-navbar>
+<div class="wrapper">
+  <section>
+    <div class="description-wrapper">
+      <div class="description">
+        <h1 class="strong-text">Find your ideal ride!</h1>
+        <p class="description-text">Just a few clicks away from choosing the ideal path to your destination! Enter your starting point and destination below to get started!</p>
+      </div>
+      <div class="description">
+        <img
+          src="assets/images/choose-destination.svg"
+          height="400"
+          width="300"
+          alt="Image of a person search for a ride destination"
+        >
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="ride-container">
+      <img
+        class="ride-search-svg"
+        src="assets/images/find_ride.svg"
+        alt="Searching for a ride"
+        height="300"
+        width="300"
+      >
+      <h3 class="title-text">Find your ride!</h3>
+      <form class="ride-search-form">
+        <mat-form-field>
+          <mat-label>Staring point</mat-label>
+          <input id="starting_point" matInput placeholder="Where is your starting point?">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Destination</mat-label>
+          <input id="destination" matInput placeholder="Where do you want to go?">
+        </mat-form-field>
+        <button mat-flat-button>
+          SEARCH <mat-icon>search</mat-icon>
+        </button>
+      </form>
+    </div>
+  </section>
+  <section>
+    <div class="post-ride">
+      <div class="description">
+        <h3 class="title-text">Save up money while driving!</h3>
+        <p class="description-text">By signing up as a driver you can save money by splitting costs with other passengers. Posting a ride only takes a few minutes. Are you ready for a trip?</p>
+        <a href="ride/post" class="post-ride-btn" matButton="filled">
+          <span class="flex-btn-content">
+            <span>Post a ride</span>
+            <mat-icon>add</mat-icon>
+          </span>
+        </a>
+      </div>
+      <div class="description">
+        <img
+          src="assets/images/trip.svg"
+          alt="Image of people taking a trip"
+          height="500"
+          width="500"
+        >
+      </div>
+    </div>
+  </section>
+</div>
