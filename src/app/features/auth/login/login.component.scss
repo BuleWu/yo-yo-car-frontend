@@ -131,3 +131,8 @@ $ellipse-size: pixel-to-rem(379);
   background: #2D55FB;
   filter: blur(275px);
 }
+
+.error-message {
+  color: #d32f2f;
+  font-weight: 500;
+}

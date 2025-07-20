@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
@@ -7,7 +7,9 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {LocalStorageService} from '../../../services/local-storage/local-storage.service';
 import {jwtDecode} from 'jwt-decode';
 import {Router} from '@angular/router';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-login',
   imports: [
@@ -20,8 +22,9 @@ import {Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private _elementRef: ElementRef,
@@ -36,6 +39,12 @@ export class LoginComponent implements AfterViewInit {
     })
   }
 
+  ngOnInit() {
+    this.loginForm.valueChanges
+      .pipe(untilDestroyed(this))
+      .subscribe(() => this.errorMessage = null);
+  }
+
   ngAfterViewInit() {
     this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
   }
@@ -48,12 +57,10 @@ export class LoginComponent implements AfterViewInit {
         next: (res) => {
           this._localStorageService.setItem('access_token', res);
           this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(res)));
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/find-ride');
         },
         error: (err) => {
-          if(err.status === 401) {
-            console.log('Invalid credentials');
-          }
+          this.errorMessage = err.error.message;
         }
       })
   }

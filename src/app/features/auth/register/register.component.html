@@ -82,6 +82,12 @@
             <mat-error>Passwords do not match</mat-error>
         }
 
+        @if (errorMessage && registerForm.valid) {
+          <div class="error-message">
+            {{ errorMessage }}
+          </div>
+        }
+
         <div class="buttons">
           <button matButton="filled" type="submit" [disabled]="!registerForm.valid" (click)="registerHandler()">Create Your Account</button>
           <button matButton="outlined" (click)="registerWithGoogle()">

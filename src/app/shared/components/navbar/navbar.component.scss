@@ -4,6 +4,8 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: pixel-to-rem(40);
+  border-bottom: pixel-to-rem(1) solid $border-primary;
 
   .home-link {
     display: flex;

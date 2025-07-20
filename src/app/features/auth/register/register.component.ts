@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
@@ -11,7 +11,9 @@ import {
 } from '@angular/forms';
 import {LocalStorageService} from '../../../services/local-storage/local-storage.service';
 import {jwtDecode} from 'jwt-decode';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-register',
   imports: [
@@ -25,7 +27,8 @@ import {jwtDecode} from 'jwt-decode';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  errorMessage: string | null = null;
   registerForm: FormGroup;
 
   constructor(
@@ -44,6 +47,12 @@ export class RegisterComponent {
     })
   }
 
+  ngOnInit() {
+    this.registerForm.valueChanges
+      .pipe(untilDestroyed(this))
+      .subscribe(() => this.errorMessage = null);
+  }
+
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
@@ -52,9 +61,14 @@ export class RegisterComponent {
 
   public registerHandler(): void {
     const { firstName, lastName, email, password } = this.registerForm.value;
-    this._authenticationService.registerUser(firstName, lastName, email, password).subscribe((token) => {
-      this._localStorageService.setItem('access_token', token);
-      this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(token)));
+    this._authenticationService.registerUser(firstName, lastName, email, password).subscribe({
+      next:  (token) => {
+        this._localStorageService.setItem('access_token', token);
+        this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(token)));
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+      }
     });
   }
 

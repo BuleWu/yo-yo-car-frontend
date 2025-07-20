@@ -261,3 +261,27 @@ main {
   z-index: 2;
   pointer-events: none;
 }
+
+.sign-in-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    background-color: darken(#1090CB, 5%);
+  }
+
+  .arrow {
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .arrow {
+    transform: translateX(6px);
+  }
+}
