@@ -28,8 +28,12 @@
 
     .about-us {
       text-decoration: none;
-      color: black;
+      color: $text-primary;
       margin-right: pixel-to-rem(4);
+    }
+
+    .paragraph-text {
+      font-size: pixel-to-rem(18);
     }
   }
 }

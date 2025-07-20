@@ -9,6 +9,11 @@
   font-size: pixel-to-rem(40);
 }
 
+.description-title {
+  font-weight: bold;
+  font-size: pixel-to-rem(18);
+}
+
 .description-text {
   color: $text-primary;
   font-size: pixel-to-rem(18);
@@ -45,6 +50,12 @@
   display: flex;
   margin-top: pixel-to-rem(40);
   gap: pixel-to-rem(15);
+
+  a {
+    font-size: pixel-to-rem(18);
+    height: pixel-to-rem(50);
+    width: pixel-to-rem(250);
+  }
 }
 
 .about {
@@ -181,10 +192,6 @@ main {
 
   .title {
     margin-top: pixel-to-rem(64);
-  }
-
-  .description-text {
-
   }
 
   .button-container {

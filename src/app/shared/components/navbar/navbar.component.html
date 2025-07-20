@@ -1,13 +1,18 @@
 <mat-toolbar class="navbar">
   <div class="start">
     <a href="/" class="home-link">
-      <img src="assets/images/website_logo.png" alt="Website logo" height="60" width="60">
+      <img src="assets/images/website_logo.svg" alt="Website logo" height="50" width="50">
       <h3 class="text">YoYo Car</h3>
     </a>
   </div>
   <div class="end">
     <a href="/" class="about-us">About us</a>
-    <a matButton="filled" href="/">Post a ride +</a>
-    <a matButton="filled" href="/">Contact us</a>
+    <a matButton="filled" href="/">
+      <p class="paragraph-text">Post a ride</p>
+      <mat-icon>add</mat-icon>
+    </a>
+    <a matButton="filled" href="/">
+      <p class="paragraph-text">Contact us</p>
+    </a>
   </div>
 </mat-toolbar>

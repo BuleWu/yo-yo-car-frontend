@@ -55,6 +55,7 @@ $ellipse-size: pixel-to-rem(379);
     align-items: center;
     font-size: pixel-to-rem(28);
     color: $primary-text;
+    padding: pixel-to-rem(50);
   }
 
   .welcome {
@@ -95,7 +96,18 @@ $ellipse-size: pixel-to-rem(379);
 
         button {
           height: pixel-to-rem(50);
+
+          .google-btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+          }
         }
+      }
+
+      .google-icon {
+        padding-right: pixel-to-rem(10);
       }
     }
   }

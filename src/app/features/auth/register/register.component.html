@@ -2,10 +2,10 @@
   <div class="background">
     <div class="logo">
       <img
-        src="/assets/images/website_logo.png"
+        src="/assets/images/website_logo.svg"
         alt="Website logo"
-        height="100"
-        width="100"
+        height="90"
+        width="90"
       >
       <h3>YoYo Car</h3>
     </div>
@@ -84,7 +84,12 @@
 
         <div class="buttons">
           <button matButton="filled" type="submit" [disabled]="!registerForm.valid" (click)="registerHandler()">Create Your Account</button>
-          <button matButton (click)="registerWithGoogle()">Continue with Google</button>
+          <button matButton="outlined" (click)="registerWithGoogle()">
+            <div class="google-btn-content">
+              <img src="assets/icons/google-logo.svg" height="20" width="20" alt="Google icon" class="google-icon">
+              <span>Continue with Google</span>
+            </div>
+          </button>
         </div>
       </form>
       <p class="login-link">Already have an account? <a class="highlight-text" href="/auth/login">Sign in</a></p>
