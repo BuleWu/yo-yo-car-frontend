@@ -12,7 +12,6 @@ import {MatIcon} from '@angular/material/icon';
     MatFormField,
     MatInput,
     MatLabel,
-    MatFormField,
     MatIcon
   ],
   templateUrl: './find-ride-page.component.html',
