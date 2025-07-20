@@ -1,15 +1,18 @@
 <div class="page-container">
   <div class="right-ellipse"></div>
   <div class="login">
-    <div class="logo">
+    <a
+      href="/welcome"
+      class="logo"
+    >
       <img
-        src="assets/images/website_logo.png"
+        src="assets/images/website_logo.svg"
         alt="Website logo"
-        height="100"
-        width="100"
+        height="90"
+        width="90"
       >
       <h2>YoYo Car</h2>
-    </div>
+    </a>
     <div class="form-wrapper">
       <div class="form-container">
         <form [formGroup]="loginForm" class="login-form">
@@ -28,7 +31,12 @@
 
           <div class="buttons">
             <button type="submit" class="login-btn" matButton="filled" (click)="loginHandler()" [disabled]="!loginForm.valid">Login now</button>
-            <button matButton (click)="loginWithGoogle()">Continue with Google</button>
+            <button type="button" matButton="outlined" (click)="loginWithGoogle()" aria-label="Continue with Google">
+              <div class="google-btn-content">
+                <img src="assets/icons/google-logo.svg" height="20" width="20" alt="Google icon" class="google-icon">
+                <span>Continue with Google</span>
+              </div>
+            </button>
           </div>
         </form>
         <p class="register-link">Don't Have An Account?<a href="/auth/register" class="highlight-text">Sign Up</a></p>
