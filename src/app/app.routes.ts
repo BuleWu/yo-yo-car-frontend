@@ -15,11 +15,6 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path:'**',
-    redirectTo: ROUTES.LANDING_PAGE,
-    pathMatch: 'full'
-  },
-  {
     path: ROUTES.LANDING_PAGE,
     component: HomePageComponent,
     canActivate: [blockAuthGuard]
@@ -48,5 +43,10 @@ export const routes: Routes = [
         canActivate: [blockAuthGuard]
       }
     ]
-  }
+  },
+  {
+    path:'**',
+    redirectTo: ROUTES.LANDING_PAGE,
+    pathMatch: 'full'
+  },
 ];
