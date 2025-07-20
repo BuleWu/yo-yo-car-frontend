@@ -20,12 +20,7 @@ export const routes: Routes = [
     canActivate: [blockAuthGuard]
   },
   {
-    path: ROUTES.FIND_RIDE_PAGE,
-    component: FindRidePageComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'auth',
+    path: ROUTES.AUTH,
     children: [
       {
         path: ROUTES.LOGIN_PAGE,
@@ -42,6 +37,21 @@ export const routes: Routes = [
         component: AuthCallbackComponent,
         canActivate: [blockAuthGuard]
       }
+    ]
+  },
+  {
+    path: ROUTES.RIDE,
+    children: [
+      {
+        path: ROUTES.FIND,
+        component: FindRidePageComponent,
+        canActivate: [authGuard]
+      },
+     /* {
+        path: ROUTES.POST,
+        /!*component:*!/
+        canActivate: [authGuard]
+      }*/
     ]
   },
   {

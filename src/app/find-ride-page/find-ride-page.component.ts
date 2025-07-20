@@ -1,10 +1,18 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {NavbarComponent} from '../shared/components/navbar/navbar.component';
+import {MatButton} from '@angular/material/button';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-find-ride-page',
   imports: [
-    NavbarComponent
+    NavbarComponent,
+    MatButton,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatIcon
   ],
   templateUrl: './find-ride-page.component.html',
   styleUrl: './find-ride-page.component.scss'

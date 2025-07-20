@@ -28,6 +28,10 @@
     align-items: center;
     gap: pixel-to-rem(12);
 
+    a {
+      padding: pixel-to-rem(22);
+    }
+
     .about-us {
       text-decoration: none;
       color: $text-primary;
@@ -36,6 +40,12 @@
 
     .paragraph-text {
       font-size: pixel-to-rem(18);
+    }
+
+    .flex-btn-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
   }
 }

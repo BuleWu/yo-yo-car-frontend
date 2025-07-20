@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
@@ -8,6 +8,7 @@ import {LocalStorageService} from '../../../services/local-storage/local-storage
 import {jwtDecode} from 'jwt-decode';
 import {Router} from '@angular/router';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import {ROUTES} from '../../../shared/enums/router.enum';
 
 @UntilDestroy()
 @Component({
@@ -22,7 +23,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
@@ -49,6 +50,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
   }
 
+  ngOnDestroy() {
+  }
+
   public loginHandler(): void {
     const { email, password } = this.loginForm.value;
 
@@ -57,7 +61,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         next: (res) => {
           this._localStorageService.setItem('access_token', res);
           this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(res)));
-          this.router.navigateByUrl('/find-ride');
+          this.router.navigateByUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
         },
         error: (err) => {
           this.errorMessage = err.error.message;

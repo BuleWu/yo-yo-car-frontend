@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
@@ -27,7 +27,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   errorMessage: string | null = null;
   registerForm: FormGroup;
 
@@ -51,6 +51,9 @@ export class RegisterComponent implements OnInit {
     this.registerForm.valueChanges
       .pipe(untilDestroyed(this))
       .subscribe(() => this.errorMessage = null);
+  }
+
+  ngOnDestroy() {
   }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
