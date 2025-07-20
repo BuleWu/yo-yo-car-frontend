@@ -5,6 +5,8 @@ import {MatButton} from '@angular/material/button';
 import {AuthenticationService} from '../services/authentication.service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {LocalStorageService} from '../../../services/local-storage/local-storage.service';
+import {jwtDecode} from 'jwt-decode';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,8 @@ export class LoginComponent implements AfterViewInit {
     private _elementRef: ElementRef,
     private _authenticationService: AuthenticationService,
     private fb: FormBuilder,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,6 +47,8 @@ export class LoginComponent implements AfterViewInit {
       .subscribe({
         next: (res) => {
           this._localStorageService.setItem('access_token', res);
+          this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(res)));
+          this.router.navigateByUrl('/dashboard');
         },
         error: (err) => {
           if(err.status === 401) {

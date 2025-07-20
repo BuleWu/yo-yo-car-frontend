@@ -48,6 +48,20 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(): boolean {
-      return !!this._localStorageService.getItem('access_token'); // TODO: may need to adjust method
+      const parsedToken = this._localStorageService.getItem('token_parsed')
+      if(parsedToken) {
+          try {
+            const accessToken = JSON.parse(parsedToken);
+
+            const now = Date.now();
+            const exp = accessToken.exp * 1000;
+
+            return exp > now;
+          } catch (e) {
+              return false;
+          }
+      }
+
+      return false;
   }
 }

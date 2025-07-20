@@ -5,12 +5,12 @@ import {AuthenticationService} from '../services/authentication.service';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule, ValidationErrors,
   Validators
 } from '@angular/forms';
+import {LocalStorageService} from '../../../services/local-storage/local-storage.service';
+import {jwtDecode} from 'jwt-decode';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +30,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private _authenticationService: AuthenticationService
+    private _authenticationService: AuthenticationService,
+    private _localStorageService: LocalStorageService
   ) {
     this.registerForm = this.fb.group({
       firstName:  ['', Validators.required],
@@ -51,8 +52,9 @@ export class RegisterComponent {
 
   public registerHandler(): void {
     const { firstName, lastName, email, password } = this.registerForm.value;
-    this._authenticationService.registerUser(firstName, lastName, email, password).subscribe((response) => {
-      console.log('Response: ', response);
+    this._authenticationService.registerUser(firstName, lastName, email, password).subscribe((token) => {
+      this._localStorageService.setItem('access_token', token);
+      this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(token)));
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +6,17 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, AfterViewInit {
+  constructor(
+    private _elementRef: ElementRef
+  ) {
+  }
 
+  ngOnInit() {
+    console.log('Dashboard loaded...');
+  }
+
+  ngAfterViewInit() {
+    this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#ffffff';
+  }
 }
