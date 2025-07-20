@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {LocalStorageService} from "../../../services/local-storage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthenticationService {
   constructor(
     private _httpClient: HttpClient,
     private _router: Router,
+    private _localStorageService: LocalStorageService
   ) { }
 
   baseUrl = "http://localhost:8080";
@@ -42,7 +44,10 @@ export class AuthenticationService {
   }
 
   public authenticateWithGoogle(): void {
-    /*this._router.navigateByUrl(`${this.baseUrl}/auth/google/login`);*/
-    window.location.href = `${this.baseUrl}/auth/google/login`
+    window.location.href = `${this.baseUrl}/auth/google/login`;
+  }
+
+  public isAuthenticated(): boolean {
+      return !!this._localStorageService.getItem('access_token'); // TODO: may need to adjust method
   }
 }
