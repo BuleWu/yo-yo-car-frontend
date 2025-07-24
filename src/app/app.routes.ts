@@ -47,6 +47,11 @@ export const routes: Routes = [
         component: FindRidePageComponent,
         canActivate: [authGuard]
       },
+    /*  {
+        path: "/:starting_point",
+        component: ,
+        canActivate: [authGuard]
+      }*/
      /* {
         path: ROUTES.POST,
         /!*component:*!/
