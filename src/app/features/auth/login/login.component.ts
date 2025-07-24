@@ -30,11 +30,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private _elementRef: ElementRef,
     private _authenticationService: AuthenticationService,
-    private fb: FormBuilder,
+    private _fb: FormBuilder,
     private _localStorageService: LocalStorageService,
-    private router: Router
+    private _router: Router
   ) {
-    this.loginForm = this.fb.group({
+    this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     })
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         next: (res) => {
           this._localStorageService.setItem('access_token', res);
           this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(res)));
-          this.router.navigateByUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
+          this._router.navigateByUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
         },
         error: (err) => {
           this.errorMessage = err.error.message;

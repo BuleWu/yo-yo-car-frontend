@@ -12,6 +12,8 @@ import {
 import {LocalStorageService} from '../../../services/local-storage/local-storage.service';
 import {jwtDecode} from 'jwt-decode';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import {Router} from '@angular/router';
+import {ROUTES} from '../../../shared/enums/router.enum';
 
 @UntilDestroy()
 @Component({
@@ -34,7 +36,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private _authenticationService: AuthenticationService,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _router: Router
   ) {
     this.registerForm = this.fb.group({
       firstName:  ['', Validators.required],
@@ -68,6 +71,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       next:  (token) => {
         this._localStorageService.setItem('access_token', token);
         this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(token)));
+        this._router.navigateByUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
       },
       error: (err) => {
         this.errorMessage = err.error.message;
