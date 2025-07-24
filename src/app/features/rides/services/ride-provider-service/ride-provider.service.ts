@@ -2,10 +2,23 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Ride} from '../../../../shared/models/ride/ride-models';
+import {AuthenticationService} from '../../../auth/services/authentication.service';
 
-export interface SearchQuery {
+export interface SearchQuery { // TODO: move somewhere else
   filter: string;
   value: string;
+}
+
+export interface createRideData {
+  startingPoint: string;
+  destination: string;
+  maxPassengers: number;
+}
+
+export interface updateRideData {
+  startingPoint?: string;
+  destination?: string;
+  maxPassengers?: number;
 }
 
 @Injectable({
@@ -14,11 +27,20 @@ export interface SearchQuery {
 export class RideProviderService {
 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _authenticationService: AuthenticationService
   ) { }
 
 
   baseUrl = "http://localhost:8080";
+
+  public getAllRides(): Observable<Ride[]> {
+    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides`);
+  }
+
+  public getRideById(id: string): Observable<Ride> {
+    return this._httpClient.get<Ride>(`${this.baseUrl}/api/rides/${id}`);
+  }
 
   public searchRides(query: SearchQuery[]): Observable<Ride[]> {
     let searchQuery = '';
@@ -30,6 +52,30 @@ export class RideProviderService {
       }
     })
 
-    return this._httpClient.get(`${this.baseUrl}/api/rides/search?${searchQuery}`);
+    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides/search?${searchQuery}`);
+  }
+
+  public createRide(formData: createRideData): Observable<Ride> {
+    const { startingPoint, destination, maxPassengers } = formData;
+    const userId = this._authenticationService.getUserId();
+
+    return this._httpClient.post<Ride>(`${this.baseUrl}/api/rides`, {
+      starting_point: startingPoint,
+      destination: destination,
+      driver_id: userId,
+      max_passengers: maxPassengers
+    });
+  }
+
+  public updateRide(id: string, updatedData: Partial<updateRideData>): Observable<Ride> {
+    return this._httpClient.put<Ride>(`${this.baseUrl}/api/rides/${id}`, {
+      starting_point: updatedData.startingPoint,
+      destination: updatedData.destination,
+      max_passengers: updatedData.maxPassengers
+    });
+  }
+
+  public deleteRide(id: string): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/api/rides/${id}`);
   }
 }

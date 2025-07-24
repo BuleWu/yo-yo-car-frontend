@@ -68,4 +68,8 @@ export class AuthenticationService {
 
       return false;
   }
+
+  public getUserId(): string {
+    return JSON.parse(this._localStorageService.getItem('token_parsed') as string).user_id;
+  }
 }
