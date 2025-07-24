@@ -5,7 +5,7 @@ import {AuthenticationService} from '../features/auth/services/authentication.se
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = inject(AuthenticationService);
   const authToken = auth.getAuthorizationToken();
-  const authReq = req.clone({ setHeaders: {Authorization: authToken} });
+  const authReq = req.clone({ setHeaders: {Authorization: `Bearer ${authToken}`} });
 
   return next(authReq);
 };
