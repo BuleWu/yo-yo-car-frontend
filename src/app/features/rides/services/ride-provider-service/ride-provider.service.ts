@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Ride} from '../../../../shared/models/ride/ride-models';
 
 export interface SearchQuery {
   filter: string;
@@ -19,8 +20,7 @@ export class RideProviderService {
 
   baseUrl = "http://localhost:8080";
 
-  /*TODO: add ride model*/
-  public searchRides(query: SearchQuery[]): Observable<any> {
+  public searchRides(query: SearchQuery[]): Observable<Ride[]> {
     let searchQuery = '';
     query.forEach((search, index) => {
       if (index === 0) {
