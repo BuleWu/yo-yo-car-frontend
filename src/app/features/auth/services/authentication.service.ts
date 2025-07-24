@@ -47,6 +47,10 @@ export class AuthenticationService {
     window.location.href = `${this.baseUrl}/auth/google/login`;
   }
 
+  public getAuthorizationToken(): string {
+      return this._localStorageService.getItem('access_token') as string
+  }
+
   public isAuthenticated(): boolean {
       const parsedToken = this._localStorageService.getItem('token_parsed');
       if(parsedToken) {

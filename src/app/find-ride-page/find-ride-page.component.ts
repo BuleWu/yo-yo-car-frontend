@@ -40,7 +40,10 @@ export class FindRidePageComponent implements AfterViewInit {
 
   public searchRides(): void {
     const { startingPoint, destination } = this.searchForm.value;
-    const searchUrl = `?starting_point=${startingPoint}&destination=${destination}`;
-    this._router.navigateByUrl(searchUrl);
+    const queryParams = {
+      starting_point: startingPoint,
+      destination: destination
+    }
+    this._router.navigate(['/rides/search'], { queryParams });
   }
 }
