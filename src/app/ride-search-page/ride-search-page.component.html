@@ -9,11 +9,8 @@
     <div class="search-results__content">
       @for (ride of rides; track ride.id) {
         <app-ride-card
-          [rideId]="ride.id"
-          [startingPoint]="ride.startingPoint"
-          [destination]="ride.destination"
-          [driver]="ride.driver"
-          [maxPassengers]="ride.maxPassengers"
+          [ride]="ride"
+          class="card"
         ></app-ride-card>
       }
     </div>

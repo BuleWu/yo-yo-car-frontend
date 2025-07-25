@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {User} from '../../../shared/models/user/user-models';
 import {Router} from '@angular/router';
+import {Ride} from '../../../shared/models/ride/ride-models';
 
 @Component({
   selector: 'app-ride-card',
@@ -9,11 +10,7 @@ import {Router} from '@angular/router';
   styleUrl: './ride-card.component.scss'
 })
 export class RideCardComponent {
-  @Input() rideId: string = '';
-  @Input() startingPoint: string = '';
-  @Input() destination: string = '';
-  @Input() driver?: User;
-  @Input() maxPassengers?: number;
+  @Input() ride: Ride | undefined = undefined;
 
   constructor(
     private _router: Router
@@ -22,7 +19,7 @@ export class RideCardComponent {
 
   public viewRideDetails(): void {
     const queryParams = {
-      id: this.rideId
+      id: this.ride?.id
     }
     this._router.navigate(['/rides/ride'], { queryParams });
   }
