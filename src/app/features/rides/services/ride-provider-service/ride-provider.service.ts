@@ -36,11 +36,13 @@ export class RideProviderService {
   baseUrl = "http://localhost:8080";
 
   public getAllRides(): Observable<Ride[]> {
-    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides`);
+    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides`)
+      .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public getRideById(id: string): Observable<Ride> {
-    return this._httpClient.get<Ride>(`${this.baseUrl}/api/rides/${id}`);
+    return this._httpClient.get<Ride>(`${this.baseUrl}/api/rides/${id}`)
+      .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public searchRides(query: SearchQuery[]): Observable<Ride[]> {
@@ -74,7 +76,8 @@ export class RideProviderService {
       starting_point: updatedData.startingPoint,
       destination: updatedData.destination,
       max_passengers: updatedData.maxPassengers
-    });
+    })
+      .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public deleteRide(id: string): Observable<void> {
