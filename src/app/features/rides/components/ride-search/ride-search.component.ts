@@ -1,15 +1,13 @@
-import {Component} from '@angular/core';
-import {NavbarComponent} from '../../../../shared/components/navbar/navbar.component';
+import {Component, OnInit} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-ride-search',
   imports: [
-    NavbarComponent,
     MatButton,
     MatFormField,
     MatInput,
@@ -21,17 +19,30 @@ import {Router} from '@angular/router';
   templateUrl: './ride-search.component.html',
   styleUrl: './ride-search.component.scss'
 })
-export class RideSearchComponent {
+export class RideSearchComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(
     private _fb: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
   ) {
     this.searchForm = this._fb.group({
       startingPoint: ['', Validators.required],
       destination: ['', Validators.required]
     })
+  }
+
+  ngOnInit() {
+    const startingPoint = this._activatedRoute.snapshot.queryParamMap.get('starting_point');
+    const destination = this._activatedRoute.snapshot.queryParamMap.get('destination');
+
+    if(startingPoint && destination) {
+      this.searchForm.setValue({
+        startingPoint: startingPoint,
+        destination: destination
+      });
+    }
   }
 
   public searchRides() {
