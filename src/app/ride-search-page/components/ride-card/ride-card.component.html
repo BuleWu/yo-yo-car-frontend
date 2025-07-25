@@ -1,9 +1,9 @@
-<div class="card-wrapper">
+<div class="card-wrapper" (click)="viewRideDetails()">
   <div class="upper">
-    {{startingPoint}} {{destination}}
+    <p>{{startingPoint}} → {{destination}}</p>
   </div>
   <div class="lower">
-    <img [src]="driver?.profilePicture" alt="User profile picture" height="20" width="20">
-    {{driver?.firstName}} {{driver?.lastName}}
+    <img [src]="driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+    <p>{{driver?.firstName}} {{driver?.lastName}}</p>
   </div>
 </div>

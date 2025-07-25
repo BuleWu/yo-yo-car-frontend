@@ -3,12 +3,13 @@
   <app-ride-search class="ride-search slight-shadow"></app-ride-search>
   @if (rides$ | async; as rides) {
     <div class="search-results__header">
-      <pc>{{ startingPoint }} → {{ destination }}</pc>
+      <p class="secondary-text">{{ startingPoint }} → {{ destination }}</p>
       <p>{{rides.length}} transports available</p>
     </div>
     <div class="search-results__content">
       @for (ride of rides; track ride.id) {
         <app-ride-card
+          [rideId]="ride.id"
           [startingPoint]="ride.startingPoint"
           [destination]="ride.destination"
           [driver]="ride.driver"

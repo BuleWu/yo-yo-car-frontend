@@ -9,6 +9,7 @@ import {ROUTES} from './shared/enums/router.enum';
 import {FindRidePageComponent} from './find-ride-page/find-ride-page.component';
 import {RideSearchComponent} from './features/rides/components/ride-search/ride-search.component';
 import {RideSearchPageComponent} from './ride-search-page/ride-search-page.component';
+import {RideInfoComponent} from './ride-info/ride-info.component';
 
 export const routes: Routes = [
   {
@@ -47,11 +48,16 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: ROUTES.RIDE,
+    path: ROUTES.RIDES,
     children: [
       {
         path: ROUTES.SEARCH,
         component: RideSearchPageComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: ROUTES.RIDE,
+        component: RideInfoComponent,
         canActivate: [authGuard]
       }
      /* {

@@ -8,7 +8,8 @@ export enum ROUTES {
   LOGIN_PAGE = 'login',
   REGISTER_PAGE = 'register',
   AUTH_CALLBACK = 'callback',
-  RIDE = 'rides',
+  RIDES = 'rides',
+  RIDE = 'ride',
   POST = 'post',
   AUTH = 'auth',
   SEARCH = 'search'

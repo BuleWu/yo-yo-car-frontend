@@ -7,9 +7,22 @@
   border-radius: pixel-to-rem(20);
   box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
   font-size: pixel-to-rem(18);
+  font-weight: bold;
   padding: pixel-to-rem(20);
 
   .upper {
+    padding: pixel-to-rem(10);
     border-bottom: pixel-to-rem(1) solid $border-primary;
+  }
+
+  .lower {
+    display: flex;
+    align-items: center;
+    padding: pixel-to-rem(10);
+    gap: pixel-to-rem(20);
+  }
+
+  .profile-picture {
+    border-radius: pixel-to-rem(99);
   }
 }
