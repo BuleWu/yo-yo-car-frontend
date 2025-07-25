@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Ride} from '../../../../shared/models/ride/ride-models';
 import {AuthenticationService} from '../../../auth/services/authentication.service';
+import {deepObjSnakeToCamelCase} from '../../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
 
 export interface SearchQuery { // TODO: move somewhere else
   filter: string;
@@ -52,7 +53,8 @@ export class RideProviderService {
       }
     })
 
-    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides/search?${searchQuery}`);
+    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides/search?${searchQuery}`)
+      .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public createRide(formData: createRideData): Observable<Ride> {

@@ -1,2 +1,6 @@
 <app-navbar></app-navbar>
-<p>ride-search works!</p>
+@for (ride of rides$ | async; track ride.id) {
+  <div>Id: {{ ride.id }}</div>
+  <div>Starting point: {{ ride.startingPoint }}</div>
+  <div>Destination: {{ ride.destination }}</div>
+}
