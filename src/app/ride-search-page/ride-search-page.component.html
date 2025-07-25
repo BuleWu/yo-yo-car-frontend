@@ -2,17 +2,25 @@
 <div class="main-container">
   <app-ride-search class="ride-search slight-shadow"></app-ride-search>
   @if (rides$ | async; as rides) {
-    <div class="search-results__header">
-      <p class="secondary-text">{{ startingPoint }} → {{ destination }}</p>
-      <p>{{rides.length}} transports available</p>
-    </div>
-    <div class="search-results__content">
-      @for (ride of rides; track ride.id) {
-        <app-ride-card
-          [ride]="ride"
-          class="card"
-        ></app-ride-card>
-      }
+      <div class="search-results__header">
+        <p class="secondary-text">{{ startingPoint }} → {{ destination }}</p>
+        <p>{{rides.length}} transports available</p>
+      </div>
+      <div class="search-results__content">
+        @for (ride of rides; track ride.id) {
+          <app-ride-card
+            [ride]="ride"
+            class="card"
+          ></app-ride-card>
+        }
+      </div>
+  } @else {
+    <div class="not-found">
+      <div class="text">
+        <p>No rides found</p>
+        <p class="description-text">Try again or check if you entered your trip details correctly</p>
+      </div>
+      <img src="assets/images/not_found.svg" alt="Image of an unhappy face alongside a person" height="300" width="300">
     </div>
   }
 </div>

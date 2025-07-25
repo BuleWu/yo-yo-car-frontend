@@ -38,4 +38,23 @@
   .secondary-text {
     color: $text-secondary;
   }
+
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: pixel-to-rem(30);
+
+    .text {
+      width: 35%;
+      .description-text {
+        color: $text-primary;
+        font-size: pixel-to-rem(18);
+      }
+    }
+  }
 }
