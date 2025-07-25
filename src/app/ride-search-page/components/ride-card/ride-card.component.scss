@@ -1,0 +1,15 @@
+@import "main_palette";
+@import "helpers";
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: pixel-to-rem(20);
+  box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+  font-size: pixel-to-rem(18);
+  padding: pixel-to-rem(20);
+
+  .upper {
+    border-bottom: pixel-to-rem(1) solid $border-primary;
+  }
+}
