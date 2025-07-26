@@ -22,6 +22,12 @@
     align-items: center;
     padding: pixel-to-rem(10);
     gap: pixel-to-rem(20);
+
+    .user-rating {
+      display: flex;
+      align-items: center;
+      gap: pixel-to-rem(1);
+    }
   }
 
   .profile-picture {

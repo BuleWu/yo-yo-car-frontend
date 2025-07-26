@@ -1,14 +1,20 @@
 <div class="card-wrapper" (click)="viewRideDetails()">
-  <div class="upper">
-    <p>{{ride?.startingPoint}} → {{ride?.destination}}</p>
-    @if (ride?.passengers?.length !== ride?.maxPassengers) {
+  @if (ride?.passengers?.length !== ride?.maxPassengers) {
+    <div class="upper">
+      <p>{{ride?.startingPoint}} → {{ride?.destination}}</p>
       <p>{{ride?.price?.toFixed(2)}}€</p>
+    </div>
+    <div class="lower">
+      <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+      <p>{{ride?.driver?.firstName}} {{ride?.driver?.lastName}}</p>
+      @if (userRating) {
+        <div class="user-rating">
+          <p>{{userRating}}</p>
+          <mat-icon>star</mat-icon>
+        </div>
+      }
+    </div>
     } @else {
       <p>The ride is full</p>
     }
-  </div>
-  <div class="lower">
-    <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
-    <p>{{ride?.driver?.firstName}} {{ride?.driver?.lastName}}</p>
-  </div>
 </div>
