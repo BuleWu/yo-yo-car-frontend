@@ -68,7 +68,8 @@ export class RideProviderService {
       destination: destination,
       driver_id: userId,
       max_passengers: maxPassengers
-    });
+    })
+      .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public updateRide(id: string, updatedData: Partial<updateRideData>): Observable<Ride> {
