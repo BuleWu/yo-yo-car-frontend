@@ -1,0 +1,26 @@
+@import "helpers";
+
+.ride-search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: pixel-to-rem(80);
+  gap: pixel-to-rem(32);
+  border-radius: pixel-to-rem(20);
+
+  mat-form-field {
+    height: pixel-to-rem(50);
+    width: 30%;
+  }
+
+  button[mat-flat-button] {
+    display: flex;
+    height: pixel-to-rem(53);
+    width: pixel-to-rem(200);
+    align-items: center;
+    justify-content: center;
+    padding-left: pixel-to-rem(24);
+    padding-right: pixel-to-rem(24);
+  }
+}

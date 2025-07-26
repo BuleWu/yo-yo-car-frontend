@@ -7,6 +7,9 @@ import {authGuard} from './guards/auth-guard/auth.guard';
 import {blockAuthGuard} from './guards/block-auth/block-auth.guard';
 import {ROUTES} from './shared/enums/router.enum';
 import {FindRidePageComponent} from './find-ride-page/find-ride-page.component';
+import {RideSearchComponent} from './features/rides/components/ride-search/ride-search.component';
+import {RideSearchPageComponent} from './ride-search-page/ride-search-page.component';
+import {RideInfoComponent} from './ride-info/ride-info.component';
 
 export const routes: Routes = [
   {
@@ -40,13 +43,23 @@ export const routes: Routes = [
     ]
   },
   {
-    path: ROUTES.RIDE,
+    path: ROUTES.FIND_RIDE,
+    component: FindRidePageComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: ROUTES.RIDES,
     children: [
       {
-        path: ROUTES.FIND,
-        component: FindRidePageComponent,
+        path: ROUTES.SEARCH,
+        component: RideSearchPageComponent,
         canActivate: [authGuard]
       },
+      {
+        path: ROUTES.RIDE,
+        component: RideInfoComponent,
+        canActivate: [authGuard]
+      }
      /* {
         path: ROUTES.POST,
         /!*component:*!/

@@ -29,7 +29,7 @@ import {ROUTES} from '../../../shared/enums/router.enum';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   errorMessage: string | null = null;
   registerForm: FormGroup;
 
@@ -56,9 +56,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .subscribe(() => this.errorMessage = null);
   }
 
-  ngOnDestroy() {
-  }
-
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
@@ -71,7 +68,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       next:  (token) => {
         this._localStorageService.setItem('access_token', token);
         this._localStorageService.setItem('token_parsed', JSON.stringify(jwtDecode(token)));
-        this._router.navigateByUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
+        this._router.navigateByUrl(`${ROUTES.FIND_RIDE}`);
       },
       error: (err) => {
         this.errorMessage = err.error.message;

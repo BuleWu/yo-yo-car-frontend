@@ -98,9 +98,9 @@
   bottom: pixel-to-rem(55);
   transform: translateX(50%);
   right: 0;
-  width: 497px;
-  height: 505px;
-  border-radius: 505px;
+  width: pixel-to-rem(497);
+  height: pixel-to-rem(505);
+  border-radius: pixel-to-rem(505);
   z-index: 0;
   background: radial-gradient(74.36% 74.47% at 50% 50%, #DED9FF 0%, rgba(255, 255, 255, 0.00) 100%);
   pointer-events: none;
@@ -108,9 +108,9 @@
 .orange-ellipse {
   position: absolute;
   right: 0;
-  width: 497px;
-  height: 505px;
-  border-radius: 505px;
+  width: pixel-to-rem(497);
+  height: pixel-to-rem(505);
+  border-radius: pixel-to-rem(505);
   z-index: 0;
   background: radial-gradient(50% 50% at 50% 50%, #FDFFEA 0%, rgba(196, 196, 196, 0.00) 100%);
   pointer-events: none;
@@ -121,9 +121,9 @@
   bottom: pixel-to-rem(120);
   transform: translateX(-50%);
   left: 0;
-  width: 497px;
-  height: 505px;
-  border-radius: 505px;
+  width: pixel-to-rem(497);
+  height: pixel-to-rem(505);
+  border-radius: pixel-to-rem(505);
   z-index: 0;
   background: radial-gradient(74.36% 74.47% at 50% 50%, #F3FFD9 0%, rgba(255, 255, 255, 0.00) 100%);
   pointer-events: none;
@@ -134,9 +134,9 @@
   top: pixel-to-rem(70);
   transform: translateX(5%);
   right: 0;
-  width: 497px;
-  height: 505px;
-  border-radius: 505px;
+  width: pixel-to-rem(497);
+  height: pixel-to-rem(505);
+  border-radius: pixel-to-rem(505);
   z-index: 0;
   background: radial-gradient(74.36% 74.47% at 50% 50%, #FFD9EB 0%, rgba(255, 255, 255, 0.00) 100%);
   pointer-events: none;
@@ -166,6 +166,7 @@ main {
   display: flex;
   justify-content: center;
   padding-top: pixel-to-rem(150);
+  padding-bottom: pixel-to-rem(150);
 }
 
 .app-store-wrapper {

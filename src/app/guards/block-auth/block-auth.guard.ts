@@ -11,5 +11,5 @@ export const blockAuthGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  return router.parseUrl(`/${ROUTES.RIDE}/${ROUTES.FIND}`);
+  return router.parseUrl(`/${ROUTES.FIND_RIDE}`);
 };

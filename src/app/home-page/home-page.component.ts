@@ -17,7 +17,6 @@ import {NavbarComponent} from "../shared/components/navbar/navbar.component";
     MatButton,
     MatDividerModule,
     NgOptimizedImage,
-    MatIcon,
     MatInputModule,
     MatFormFieldModule,
     FooterComponent,

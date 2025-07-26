@@ -1,0 +1,60 @@
+@import "helpers";
+@import "main_palette";
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  padding: 0 pixel-to-rem(95) 0 pixel-to-rem(95);
+  font-size: pixel-to-rem(18);
+
+  .search-results {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: pixel-to-rem(30);
+      gap: pixel-to-rem(20);
+
+      .card {
+        width: 70%;
+      }
+    }
+  }
+
+  .ride-search {
+    margin-top: pixel-to-rem(30);
+    border-radius: pixel-to-rem(20);
+  }
+
+  .slight-shadow {
+    box-shadow: 0 0 pixel-to-rem(12) pixel-to-rem(2) rgba(0, 0, 0, 0.25);
+  }
+
+  .secondary-text {
+    color: $text-secondary;
+  }
+
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: pixel-to-rem(30);
+
+    .text {
+      width: 35%;
+      .description-text {
+        color: $text-primary;
+        font-size: pixel-to-rem(18);
+      }
+    }
+  }
+}
