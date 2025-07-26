@@ -35,7 +35,7 @@ $ellipse-size: pixel-to-rem(379);
     z-index: 0;
     border-radius: pixel-to-rem(379);
     background: #2D55FB;
-    filter: blur(275px);
+    filter: blur(pixel-to-rem(275));
   }
 
   .left-ellipse {
@@ -47,7 +47,7 @@ $ellipse-size: pixel-to-rem(379);
     border-radius: pixel-to-rem(379);
     transform: translate(-10%, 70%);
     background: #2D55FB;
-    filter: blur(275px);
+    filter: blur(pixel-to-rem(275));
   }
 
   .logo {

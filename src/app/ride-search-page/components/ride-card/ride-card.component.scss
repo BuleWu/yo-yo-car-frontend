@@ -10,6 +10,11 @@
   font-weight: bold;
   padding: pixel-to-rem(20);
 
+  &:hover {
+    border-color: $outline-primary;
+    box-shadow: 0 0 0 pixel-to-rem(4) rgba($outline-primary, 0.2);
+  }
+
   .upper {
     display: flex;
     justify-content: space-between;
