@@ -37,16 +37,19 @@ export class RatingProviderService {
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
-  public createRating(formData: createRatingFormData): Observable<Rating> {
+  public createRating(formData: createRatingFormData, raterId: string, ratedUserId: string, rideId: string): Observable<Rating> {
     return this._httpClient.post<Rating>(`${this.baseUrl}/api/ratings`, {
-      formData /*rater id, rated user id, ride id*/
+      ...formData,
+      rater_id: raterId,
+      rated_user_id: ratedUserId,
+      ride_id: rideId
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public updateRating(id: string, formData: createRatingFormData): Observable<Rating> {
     return this._httpClient.put<Rating>(`${this.baseUrl}/api/ratings/${id}`, {
-      formData,
+      ...formData,
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }

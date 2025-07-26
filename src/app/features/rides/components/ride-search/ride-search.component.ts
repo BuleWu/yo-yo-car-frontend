@@ -13,7 +13,6 @@ import {ActivatedRoute, Router} from '@angular/router';
     MatInput,
     MatLabel,
     ReactiveFormsModule,
-    MatFormField,
     MatIcon
   ],
   templateUrl: './ride-search.component.html',

@@ -28,7 +28,7 @@ export class RideCardComponent implements OnInit {
       .pipe()
       .subscribe((ratings) => {
         const sum = ratings.reduce((acc, curr) => acc + curr.value, 0)
-        this.userRating = sum / ratings.length;
+        this.userRating = ratings.length ? sum / ratings.length : 0;
       })
   }
 

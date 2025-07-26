@@ -23,7 +23,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
   templateUrl: './ride-search-page.component.html',
   styleUrl: './ride-search-page.component.scss'
 })
-export class RideSearchPageComponent implements OnInit, OnDestroy {
+export class RideSearchPageComponent implements OnInit {
   public rides$: Observable<Ride[]> = of([]);
   public startingPoint: string = '';
   public destination: string = '';
@@ -53,6 +53,4 @@ export class RideSearchPageComponent implements OnInit, OnDestroy {
         ])
     })
   }
-
-  ngOnDestroy(): void {}
 }

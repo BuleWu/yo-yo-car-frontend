@@ -23,7 +23,7 @@ import {ROUTES} from '../../../shared/enums/router.enum';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
@@ -48,9 +48,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this._elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#050A24';
-  }
-
-  ngOnDestroy() {
   }
 
   public loginHandler(): void {
