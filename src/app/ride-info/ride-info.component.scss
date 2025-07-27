@@ -4,7 +4,7 @@
 .ride-info-container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 100%;
   padding: pixel-to-rem(0) pixel-to-rem(95) pixel-to-rem(0) pixel-to-rem(95);
   gap: pixel-to-rem(20);
 
@@ -65,11 +65,55 @@
       }
     }
 
+    .name {
+      display: flex;
+      flex-direction: column;
+      gap: pixel-to-rem(5);
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .user-rating {
+        display: flex;
+        align-items: center;
+        gap: pixel-to-rem(1);
+        color: $text-secondary;
+      }
+    }
+
+    .profile-picture {
+      border-radius: pixel-to-rem(99);
+    }
+
     .left {
       display: flex;
       flex-direction: column;
       width: 55%;
       gap: pixel-to-rem(20);
+
+      .user-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: pixel-to-rem(20);
+        text-decoration: none;
+        color: black;
+        border-radius: pixel-to-rem(99);
+        padding: pixel-to-rem(10) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        .start {
+          display: flex;
+          align-items: center;
+          gap: pixel-to-rem(20);
+        }
+
+      }
 
       .from-to {
         display: flex;
@@ -84,7 +128,7 @@
         gap: pixel-to-rem(10);
       }
 
-      .driver-info {
+        .driver-info {
         display: flex;
         width: 100%;
         flex-direction: column;
@@ -95,58 +139,38 @@
         padding: pixel-to-rem(10) pixel-to-rem(20) pixel-to-rem(10) pixel-to-rem(20);
         gap: pixel-to-rem(20);
 
-        .profile-picture {
-          border-radius: pixel-to-rem(99);
+        .chat-btn {
+          width: 30%;
         }
+      }
 
-        .header {
+      .passenger-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: pixel-to-rem(20);
+        box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+        font-size: pixel-to-rem(18);
+        font-weight: bold;
+        padding: pixel-to-rem(10) pixel-to-rem(20) pixel-to-rem(10) pixel-to-rem(20);
+        gap: pixel-to-rem(10);
+
+        .passenger-details {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
           gap: pixel-to-rem(20);
-          text-decoration: none;
-          color: black;
-          border-radius: pixel-to-rem(99);
-          padding: pixel-to-rem(10) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
 
           &:hover {
             background-color: rgba(0, 0, 0, 0.04);
           }
-
-          .start {
-            display: flex;
-            align-items: center;
-            gap: pixel-to-rem(20);
-
-            .name {
-              display: flex;
-              flex-direction: column;
-              gap: pixel-to-rem(5);
-
-              p {
-                margin: 0;
-                padding: 0;
-              }
-
-              .user-rating {
-                display: flex;
-                align-items: center;
-                gap: pixel-to-rem(1);
-                color: $text-secondary;
-              }
-            }
-          }
-
-        }
-
-        .chat-btn {
-          width: 30%;
         }
       }
     }
 
     .right {
+      display: flex;
+      flex-direction: column;
       width: 35%;
+      gap: pixel-to-rem(20);
 
       .reservation-details {
         display: flex;
@@ -155,7 +179,7 @@
         box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
         font-size: pixel-to-rem(18);
         font-weight: bold;
-        padding: pixel-to-rem(0) pixel-to-rem(20) pixel-to-rem(0) pixel-to-rem(20);
+        padding: pixel-to-rem(5) pixel-to-rem(20) pixel-to-rem(5) pixel-to-rem(20);
         gap: pixel-to-rem(10);
 
         &__header {
@@ -166,6 +190,22 @@
           display: flex;
           flex-direction: column;
           text-align: center;
+
+          .from-to {
+            padding: pixel-to-rem(15);
+          }
+
+          .driver-details {
+            display: flex;
+            align-items: center;
+            gap: pixel-to-rem(30);
+            padding: pixel-to-rem(15);
+
+            .car-icon {
+              color: $text-secondary;
+              transform: scale(2);
+            }
+          }
         }
       }
     }

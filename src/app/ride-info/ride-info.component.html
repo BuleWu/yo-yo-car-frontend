@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="driver-info">
-        <a class="header" [routerLink]="['/users', ride.driver.id]">
+        <a class="user-link" [routerLink]="['/users', ride.driver.id]">
           <div class="start">
             <img [src]="ride.driver.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
             <div class="name">
@@ -51,6 +51,22 @@
           <mat-icon iconPositionEnd>chat_bubble</mat-icon>
         </button>
       </div>
+      <div class="passenger-info">
+        @if(!ride.passengers) {
+          <p>No passengers yet</p>
+        } @else {
+          <p>Passengers</p>
+          @for (passenger of ride.passengers; track passenger.id) {
+            <a class="user-link" [routerLink]="['/users', passenger.id]">
+          <div class="start">
+                <img [src]="passenger.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+                <p>{{passenger.firstName}}</p>
+              </div>
+              <mat-icon>arrow_forward_ios</mat-icon>
+            </a>
+          }
+        }
+      </div>
     </div>
     <div class="right">
       <div class="reservation-details">
@@ -58,32 +74,48 @@
           {{ ride.date | date:'EEEE, d MMMM' }}
         </p>
         <div class="reservation-details__content">
-          <div class="row">
-            <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
+          <div class="from-to">
+            <div class="row">
+              <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
 
-            <div class="dot-with-line">
-              <div class="dot"></div>
-              <div class="line"></div>
+              <div class="dot-with-line">
+                <div class="dot"></div>
+                <div class="line"></div>
+              </div>
+
+              <p class="location">{{ ride.startingPoint }}</p>
             </div>
+            <p class="duration">{{ [ride.startTime, ride.endTime] | duration }}</p>
+            <div class="row">
+              <p class="time">{{ ride.endTime | date: 'HH:mm' }}</p>
 
-            <p class="location">{{ ride.startingPoint }}</p>
+              <div class="dot-with-line">
+                <div class="line"></div>
+                <div class="dot"></div>
+              </div>
+
+              <p class="location">{{ ride.destination }}</p>
+            </div>
           </div>
 
-          <p class="duration">{{ [ride.startTime, ride.endTime] | duration }}</p>
+          <mat-divider></mat-divider>
 
-          <div class="row">
-            <p class="time">{{ ride.endTime | date: 'HH:mm' }}</p>
-
-            <div class="dot-with-line">
-              <div class="line"></div>
-              <div class="dot"></div>
+          <div class="driver-details">
+            <mat-icon class="car-icon">directions_car</mat-icon>
+            <img [src]="ride.driver.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+            <div class="name">
+              <p>{{ride.driver.firstName}}</p>
+              @if (userRating) {
+                <div class="user-rating">
+                  <mat-icon>star</mat-icon>
+                  <p>{{userRating.toFixed(1)}}</p>
+                </div>
+              }
             </div>
-
-            <p class="location">{{ ride.destination }}</p>
           </div>
         </div>
-        <mat-divider></mat-divider>
       </div>
+
     </div>
   </div>
 </div>
