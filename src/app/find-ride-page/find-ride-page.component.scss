@@ -37,28 +37,9 @@
     font-size: pixel-to-rem(30);
   }
 
-  .ride-search-form {
-    padding-top: pixel-to-rem(80);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    gap: pixel-to-rem(32);
-
-    mat-form-field {
-      width: 30%;
-    }
-
-    button[mat-flat-button] {
-      display: flex;
-      height: pixel-to-rem(56);
-      width: pixel-to-rem(170);
-      margin-bottom: 1.34375rem;
-      align-items: center;
-      justify-content: center;
-      padding-left: pixel-to-rem(24);
-      padding-right: pixel-to-rem(24);
-    }
+  .ride-search {
+    margin-top: pixel-to-rem(30);
+    border-radius: pixel-to-rem(99);
   }
 
   .ride-search-svg {

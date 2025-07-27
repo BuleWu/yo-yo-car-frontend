@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 import {RideSearchComponent} from '../features/rides/components/ride-search/ride-search.component';
 import {RideProviderService} from '../features/rides/services/ride-provider-service/ride-provider.service';
@@ -9,6 +9,7 @@ import {AsyncPipe} from '@angular/common';
 import {RideCardComponent} from './components/ride-card/ride-card.component';
 import {FooterComponent} from '../shared/components/footer/footer.component';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import {RideSerchFilter} from './enums/enum';
 
 @UntilDestroy()
 @Component({
@@ -40,15 +41,20 @@ export class RideSearchPageComponent implements OnInit {
       .subscribe((params) => {
         this.startingPoint = params['starting_point'];
         this.destination = params['destination'];
+        const date = new Date(params['date']);
 
         this.rides$ = this._rideProviderService.searchRides([
           {
-            filter: 'starting_point',
+            filter: RideSerchFilter.STARTING_POINT,
             value: this.startingPoint
           },
           {
-            filter: 'destination',
+            filter: RideSerchFilter.DESTINATION,
             value: this.destination
+          },
+          {
+            filter: RideSerchFilter.DATE,
+            value: date.toISOString()
           }
         ])
     })

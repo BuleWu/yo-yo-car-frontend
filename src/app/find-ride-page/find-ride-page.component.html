@@ -26,19 +26,7 @@
         width="300"
       >
       <h3 class="title-text">Find your ride!</h3>
-      <form [formGroup]="searchForm" class="ride-search-form">
-        <mat-form-field>
-          <mat-label>Starting point</mat-label>
-          <input id="starting_point" matInput placeholder="Where is your starting point?" [formControlName]="'startingPoint'">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Destination</mat-label>
-          <input id="destination" matInput placeholder="Where do you want to go?" [formControlName]="'destination'">
-        </mat-form-field>
-        <button [disabled]="!searchForm.valid" type="submit" mat-flat-button (click)="searchRides()">
-          SEARCH <mat-icon>search</mat-icon>
-        </button>
-      </form>
+      <app-ride-search class="ride-search"></app-ride-search>
     </div>
   </section>
   <section>

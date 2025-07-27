@@ -5,6 +5,7 @@ import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {RideSearchComponent} from '../features/rides/components/ride-search/ride-search.component';
 
 @Component({
   selector: 'app-find-ride-page',
@@ -15,7 +16,8 @@ import {Router} from '@angular/router';
     MatInput,
     MatLabel,
     MatIcon,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RideSearchComponent
   ],
   templateUrl: './find-ride-page.component.html',
   styleUrl: './find-ride-page.component.scss'

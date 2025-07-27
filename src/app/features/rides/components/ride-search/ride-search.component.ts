@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButton} from '@angular/material/button';
-import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-ride-search',
@@ -13,7 +14,11 @@ import {ActivatedRoute, Router} from '@angular/router';
     MatInput,
     MatLabel,
     ReactiveFormsModule,
-    MatIcon
+    MatIcon,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatSuffix
   ],
   templateUrl: './ride-search.component.html',
   styleUrl: './ride-search.component.scss'
@@ -28,27 +33,31 @@ export class RideSearchComponent implements OnInit {
   ) {
     this.searchForm = this._fb.group({
       startingPoint: ['', Validators.required],
-      destination: ['', Validators.required]
+      destination: ['', Validators.required],
+      date: [new Date(), Validators.required]
     })
   }
 
   ngOnInit() {
     const startingPoint = this._activatedRoute.snapshot.queryParamMap.get('starting_point');
     const destination = this._activatedRoute.snapshot.queryParamMap.get('destination');
+    const date = this._activatedRoute.snapshot.queryParamMap.get('date');
 
-    if(startingPoint && destination) {
+    if(startingPoint && destination && date) {
       this.searchForm.setValue({
         startingPoint: startingPoint,
-        destination: destination
+        destination: destination,
+        date: new Date(date),
       });
     }
   }
 
   public searchRides() {
-    const { startingPoint, destination } = this.searchForm.value;
+    const { startingPoint, destination, date } = this.searchForm.value;
     const queryParams = {
       starting_point: startingPoint,
-      destination: destination
+      destination: destination,
+      date: date
     }
     this._router.navigate(['/rides/search'], { queryParams });
   }

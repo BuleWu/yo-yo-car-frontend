@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @import 'main_palette';
+@import "helpers";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -31,6 +32,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @include mat.toolbar-overrides((
   container-background-color: white,
   container-text-color: black,
+));
+
+@include mat.datepicker-overrides((
+  calendar-body-label-text-color: $primary-text,
+  calendar-container-background-color: white,
+  calendar-date-selected-state-background-color: $primary-color,
+  calendar-container-elevation-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1),
+  calendar-date-today-outline-color: $outline-primary
 ));
 
 // Manipulate initial background color
@@ -71,9 +80,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: normal;
   font-style: normal;
 }
-
-/*input::-webkit-input-placeholder{
-  color: $primary-color;  // change [placeholder color] by this
-  text-shadow: none;
-  -webkit-text-fill-color: initial;
-}*/
