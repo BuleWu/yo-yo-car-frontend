@@ -1,5 +1,4 @@
-<div class="card-wrapper" (click)="viewRideDetails()">
-  @if (ride?.passengers?.length !== ride?.maxPassengers) {
+<div [class.disabled]="ride?.finished || ride?.passengers?.length === ride?.maxPassengers" class="card-wrapper" (click)="viewRideDetails()">
     <div class="upper">
       <div class="path">
         <div class="start">
@@ -13,7 +12,11 @@
           <p></p>
         </div>
       </div>
-      <p>{{ride?.price?.toFixed(2)}}€</p>
+      @if (ride?.passengers?.length !== ride?.maxPassengers) {
+        <p>{{ride?.price?.toFixed(2)}}€</p>
+      } @else {
+        <p>The ride is full</p>
+      }
     </div>
     <div class="lower">
       <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
@@ -25,7 +28,4 @@
         </div>
       }
     </div>
-    } @else {
-      <p>The ride is full</p>
-    }
 </div>
