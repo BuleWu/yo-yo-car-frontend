@@ -9,6 +9,7 @@ import {DurationPipe} from '../shared/pipes/duration.pipe';
 import {RatingProviderService} from '../features/ratings/services/rating-provider.service';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
+import {MatDivider} from '@angular/material/divider';
 
 @Component({
   selector: 'app-ride-info',
@@ -20,6 +21,7 @@ import {MatButton} from '@angular/material/button';
     MatIcon,
     RouterLink,
     MatButton,
+    MatDivider,
   ],
   templateUrl: './ride-info.component.html',
   styleUrl: './ride-info.component.scss'

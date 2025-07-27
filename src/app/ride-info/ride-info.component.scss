@@ -13,126 +13,163 @@
     color: $text-primary;
   }
 
-  .left {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    gap: pixel-to-rem(20);
+  .secondary-text {
+    color: $text-secondary;
+  }
 
-    .from-to {
+  &__content {
+    display: flex;
+    gap: pixel-to-rem(20);
+    justify-content: space-between;
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: pixel-to-rem(10);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .duration {
+      color: $text-secondary;
+      font-weight: normal;
+      font-size: pixel-to-rem(16);
+      margin: 0;
+    }
+
+    .time,
+    .location {
+      white-space: nowrap;
+    }
+
+    .dot-with-line {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
-      border-radius: pixel-to-rem(20);
-      box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
-      font-size: pixel-to-rem(18);
-      font-weight: bold;
-      padding: pixel-to-rem(20);
-      gap: pixel-to-rem(10);
+      height: pixel-to-rem(50);
+      position: relative;
 
-      .row {
-        display: flex;
-        align-items: center;
-        gap: pixel-to-rem(10);
-        width: 100%;
-        justify-content: center;
+      .dot {
+        width: pixel-to-rem(10);
+        height: pixel-to-rem(10);
+        border-radius: 50%;
+        background-color: $primary-color;
       }
 
-      .duration {
-        color: $text-secondary;
-        font-weight: normal;
-        font-size: pixel-to-rem(16);
-        margin: 0;
+      .line {
+        width: pixel-to-rem(2);
+        flex-grow: 1;
+        background-color: #ccc;
+        margin-top: pixel-to-rem(2);
+        margin-bottom: pixel-to-rem(2);
       }
+    }
 
-      .time,
-      .location {
-        white-space: nowrap;
-      }
+    .left {
+      display: flex;
+      flex-direction: column;
+      width: 55%;
+      gap: pixel-to-rem(20);
 
-      .dot-with-line {
+      .from-to {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: pixel-to-rem(50);
-        position: relative;
+        width: 100%;
+        border-radius: pixel-to-rem(20);
+        box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+        font-size: pixel-to-rem(18);
+        font-weight: bold;
+        padding: pixel-to-rem(20);
+        gap: pixel-to-rem(10);
+      }
 
-        .dot {
-          width: pixel-to-rem(10);
-          height: pixel-to-rem(10);
-          border-radius: 50%;
-          background-color: $primary-color;
+      .driver-info {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        border-radius: pixel-to-rem(20);
+        box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+        font-size: pixel-to-rem(18);
+        font-weight: bold;
+        padding: pixel-to-rem(10) pixel-to-rem(20) pixel-to-rem(10) pixel-to-rem(20);
+        gap: pixel-to-rem(20);
+
+        .profile-picture {
+          border-radius: pixel-to-rem(99);
         }
 
-        .line {
-          width: pixel-to-rem(2);
-          flex-grow: 1;
-          background-color: #ccc;
-          margin-top: pixel-to-rem(2);
-          margin-bottom: pixel-to-rem(2);
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: pixel-to-rem(20);
+          text-decoration: none;
+          color: black;
+          border-radius: pixel-to-rem(99);
+          padding: pixel-to-rem(10) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+          }
+
+          .start {
+            display: flex;
+            align-items: center;
+            gap: pixel-to-rem(20);
+
+            .name {
+              display: flex;
+              flex-direction: column;
+              gap: pixel-to-rem(5);
+
+              p {
+                margin: 0;
+                padding: 0;
+              }
+
+              .user-rating {
+                display: flex;
+                align-items: center;
+                gap: pixel-to-rem(1);
+                color: $text-secondary;
+              }
+            }
+          }
+
+        }
+
+        .chat-btn {
+          width: 30%;
         }
       }
     }
 
-    .driver-info {
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      border-radius: pixel-to-rem(20);
-      box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
-      font-size: pixel-to-rem(18);
-      font-weight: bold;
-      padding: pixel-to-rem(10) pixel-to-rem(20) pixel-to-rem(10) pixel-to-rem(20);
-      gap: pixel-to-rem(20);
+    .right {
+      width: 35%;
 
-      .profile-picture {
-        border-radius: pixel-to-rem(99);
-      }
-
-      .header {
+      .reservation-details {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: pixel-to-rem(20);
-        text-decoration: none;
-        color: black;
-        border-radius: pixel-to-rem(99);
-        padding: pixel-to-rem(10) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
+        flex-direction: column;
+        border-radius: pixel-to-rem(20);
+        box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+        font-size: pixel-to-rem(18);
+        font-weight: bold;
+        padding: pixel-to-rem(0) pixel-to-rem(20) pixel-to-rem(0) pixel-to-rem(20);
+        gap: pixel-to-rem(10);
 
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.04);
+        &__header {
+          font-size: pixel-to-rem(25);
         }
 
-        .start {
+        &__content {
           display: flex;
-          align-items: center;
-          gap: pixel-to-rem(20);
-
-          .name {
-            display: flex;
-            flex-direction: column;
-            gap: pixel-to-rem(5);
-
-            p {
-              margin: 0;
-              padding: 0;
-            }
-
-            .user-rating {
-              display: flex;
-              align-items: center;
-              gap: pixel-to-rem(1);
-            }
-          }
+          flex-direction: column;
+          text-align: center;
         }
-
-      }
-
-      .chat-btn {
-        width: 30%;
       }
     }
   }
+
 
 }
