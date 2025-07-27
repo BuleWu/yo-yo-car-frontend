@@ -3,7 +3,7 @@ import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 import {RideSearchComponent} from '../features/rides/components/ride-search/ride-search.component';
 import {RideProviderService} from '../features/rides/services/ride-provider-service/ride-provider.service';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {filter, Observable, of} from 'rxjs';
 import {Ride} from '../shared/models/ride/ride-models';
 import {AsyncPipe} from '@angular/common';
 import {RideCardComponent} from './components/ride-card/ride-card.component';
@@ -40,6 +40,7 @@ export class RideSearchPageComponent implements OnInit {
       .subscribe((params) => {
         this.startingPoint = params['starting_point'];
         this.destination = params['destination'];
+        const date = new Date(params['date']);
 
         this.rides$ = this._rideProviderService.searchRides([
           {
@@ -49,6 +50,10 @@ export class RideSearchPageComponent implements OnInit {
           {
             filter: 'destination',
             value: this.destination
+          },
+          {
+            filter: 'date',
+            value: date.toISOString()
           }
         ])
     })

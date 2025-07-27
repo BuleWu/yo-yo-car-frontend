@@ -34,7 +34,7 @@ export class RideSearchComponent implements OnInit {
     this.searchForm = this._fb.group({
       startingPoint: ['', Validators.required],
       destination: ['', Validators.required],
-      date: [Date.now(), Validators.required]
+      date: [new Date(), Validators.required]
     })
   }
 
@@ -47,17 +47,17 @@ export class RideSearchComponent implements OnInit {
       this.searchForm.setValue({
         startingPoint: startingPoint,
         destination: destination,
-        date: date,
+        date: new Date(date),
       });
     }
   }
 
   public searchRides() {
-    const { startingPoint, destination/*, date*/ } = this.searchForm.value;
+    const { startingPoint, destination, date } = this.searchForm.value;
     const queryParams = {
       starting_point: startingPoint,
       destination: destination,
-      /*date: date*/
+      date: date
     }
     this._router.navigate(['/rides/search'], { queryParams });
   }

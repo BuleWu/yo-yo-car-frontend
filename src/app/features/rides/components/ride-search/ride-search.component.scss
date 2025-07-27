@@ -7,7 +7,7 @@
   width: 100%;
   height: pixel-to-rem(80);
   gap: pixel-to-rem(32);
-  border-radius: pixel-to-rem(20);
+  padding: pixel-to-rem(3) 0 pixel-to-rem(3) 0;
 
   mat-form-field {
     height: pixel-to-rem(50);
