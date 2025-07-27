@@ -14,5 +14,4 @@ export class DurationPipe implements PipeTransform {
     const paddedMinutes = remaining.toString().padStart(2, '0');
     return `${hours}h${paddedMinutes}`;
   }
-
 }
