@@ -10,7 +10,9 @@ import {RatingProviderService} from '../features/ratings/services/rating-provide
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-ride-info',
   imports: [
@@ -43,10 +45,12 @@ export class RideInfoComponent implements OnInit {
     const id = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
 
     this._rideProviderService.getRideById(id)
+      .pipe(untilDestroyed(this))
       .subscribe({
         next: (ride) => {
           this.ride = ride;
           this._ratingProviderService.getRatingsByUserId(this.ride.driverId as string)
+            .pipe(untilDestroyed(this))
             .subscribe((ratings) => {
               const sum = ratings.reduce((acc, curr) => acc + curr.value, 0)
               this.noOfRatings = ratings.length;
