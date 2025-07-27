@@ -172,7 +172,7 @@
       width: 35%;
       gap: pixel-to-rem(20);
 
-      .reservation-details {
+      .ride-details {
         display: flex;
         flex-direction: column;
         border-radius: pixel-to-rem(20);
@@ -206,6 +206,28 @@
               transform: scale(2);
             }
           }
+        }
+      }
+
+      .reservation-details {
+        display: flex;
+        justify-content: space-between;
+        border-radius: pixel-to-rem(20);
+        box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+        font-size: pixel-to-rem(18);
+        font-weight: bold;
+        padding: pixel-to-rem(5) pixel-to-rem(20) pixel-to-rem(5) pixel-to-rem(20);
+        gap: pixel-to-rem(10);
+      }
+
+      .reservation-btn {
+        display: flex;
+        font-size: pixel-to-rem(20);
+        height: pixel-to-rem(60);
+        gap: pixel-to-rem(10);
+
+        mat-icon {
+          transform: scale(1.5);
         }
       }
     }

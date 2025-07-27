@@ -69,11 +69,11 @@
       </div>
     </div>
     <div class="right">
-      <div class="reservation-details">
-        <p class="reservation-details__header">
+      <div class="ride-details">
+        <p class="ride-details__header">
           {{ ride.date | date:'EEEE, d MMMM' }}
         </p>
-        <div class="reservation-details__content">
+        <div class="ride-details__content">
           <div class="from-to">
             <div class="row">
               <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
@@ -115,6 +115,16 @@
           </div>
         </div>
       </div>
+
+      <div class="reservation-details">
+        <p>1 passenger</p>
+        <p>{{ride.price}}€</p>
+      </div>
+
+      <button matButton="filled" class="reservation-btn">
+        <span>Send a reservation request</span>
+        <mat-icon iconPositionEnd>event_upcoming</mat-icon>
+      </button>
 
     </div>
   </div>
