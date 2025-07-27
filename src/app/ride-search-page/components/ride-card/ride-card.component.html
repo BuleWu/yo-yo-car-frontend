@@ -1,7 +1,18 @@
 <div class="card-wrapper" (click)="viewRideDetails()">
   @if (ride?.passengers?.length !== ride?.maxPassengers) {
     <div class="upper">
-      <p>{{ride?.startingPoint}} → {{ride?.destination}}</p>
+      <div class="path">
+        <div class="start">
+          <p>{{ride?.startTime | date: 'HH:mm'}}</p>
+          <p>{{ride?.startingPoint}}</p>
+        </div>
+        <p>→</p>
+        <div class="end">
+          <p>{{ride?.endTime | date: 'HH:mm'}}</p>
+          <p>{{ride?.destination}}</p>
+          <p></p>
+        </div>
+      </div>
       <p>{{ride?.price?.toFixed(2)}}€</p>
     </div>
     <div class="lower">
@@ -9,7 +20,7 @@
       <p>{{ride?.driver?.firstName}} {{ride?.driver?.lastName}}</p>
       @if (userRating) {
         <div class="user-rating">
-          <p>{{userRating}}</p>
+          <p>{{userRating.toFixed(1)}}</p>
           <mat-icon>star</mat-icon>
         </div>
       }

@@ -3,11 +3,13 @@ import {Router} from '@angular/router';
 import {Ride} from '../../../shared/models/ride/ride-models';
 import {RatingProviderService} from '../../../features/ratings/services/rating-provider.service';
 import {MatIcon} from '@angular/material/icon';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-ride-card',
   imports: [
-    MatIcon
+    MatIcon,
+    DatePipe
   ],
   templateUrl: './ride-card.component.html',
   styleUrl: './ride-card.component.scss'

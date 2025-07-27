@@ -35,6 +35,21 @@
     }
   }
 
+  .path {
+    display: flex;
+    gap: pixel-to-rem(5);
+    justify-content: center;
+    text-align: center;
+
+    .start {
+
+    }
+
+    .end {
+
+    }
+  }
+
   .profile-picture {
     border-radius: pixel-to-rem(99);
   }
