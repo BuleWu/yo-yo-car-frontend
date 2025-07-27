@@ -4,9 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import {Ride} from '../../../../shared/models/ride/ride-models';
 import {AuthenticationService} from '../../../auth/services/authentication.service';
 import {deepObjSnakeToCamelCase} from '../../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
+import {RideSerchFilter} from '../../../../ride-search-page/enums/enum';
 
 export interface SearchQuery { // TODO: move somewhere else
-  filter: string;
+  filter: RideSerchFilter;
   value: string;
 }
 
