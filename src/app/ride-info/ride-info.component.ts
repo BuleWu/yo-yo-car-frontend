@@ -45,9 +45,8 @@ export class RideInfoComponent implements OnInit {
     this._rideProviderService.getRideById(id)
       .subscribe({
         next: (ride) => {
-          this.ride = ride
+          this.ride = ride;
           this._ratingProviderService.getRatingsByUserId(this.ride.driverId as string)
-            .pipe()
             .subscribe((ratings) => {
               const sum = ratings.reduce((acc, curr) => acc + curr.value, 0)
               this.noOfRatings = ratings.length;

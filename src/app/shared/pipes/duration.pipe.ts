@@ -12,6 +12,6 @@ export class DurationPipe implements PipeTransform {
     const hours = Math.floor(minutes / 60);
     const remaining = minutes % 60;
     const paddedMinutes = remaining.toString().padStart(2, '0');
-    return `${hours}h${paddedMinutes}`;
+    return `${hours}h${paddedMinutes}m`;
   }
 }
