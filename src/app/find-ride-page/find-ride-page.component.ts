@@ -12,9 +12,6 @@ import {RideSearchComponent} from '../features/rides/components/ride-search/ride
   imports: [
     NavbarComponent,
     MatButton,
-    MatFormField,
-    MatInput,
-    MatLabel,
     MatIcon,
     ReactiveFormsModule,
     RideSearchComponent

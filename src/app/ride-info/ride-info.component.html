@@ -1,1 +1,58 @@
 <app-navbar></app-navbar>
+<div class="ride-info-container">
+  <p class="date">
+    {{ ride.date | date:'EEEE, d MMMM' }}
+  </p>
+  <div class="left">
+    <div class="from-to">
+      <div class="row">
+        <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
+
+        <div class="dot-with-line">
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+
+        <p class="location">{{ ride.startingPoint }}</p>
+      </div>
+
+      <p class="duration">{{ [ride.startTime, ride.endTime] | duration }}</p>
+
+      <div class="row">
+        <p class="time">{{ ride.endTime | date: 'HH:mm' }}</p>
+
+        <div class="dot-with-line">
+          <div class="line"></div>
+          <div class="dot"></div>
+        </div>
+
+        <p class="location">{{ ride.destination }}</p>
+      </div>
+    </div>
+    <div class="driver-info">
+      <a class="header" [routerLink]="['/users', ride.driver.id]">
+        <div class="start">
+          <img [src]="ride.driver.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+          <div class="name">
+            <p>{{ride.driver.firstName}}</p>
+            @if (userRating) {
+              <div class="user-rating">
+                <mat-icon>star</mat-icon>
+                <p>{{userRating.toFixed(1)}}/5 - {{noOfRatings}} ratings</p>
+              </div>
+            }
+          </div>
+        </div>
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </a>
+      <button matButton (click)="startChat()" class="chat-btn">
+        <span>Start a chat with {{ride.driver.firstName}}</span>
+        <mat-icon iconPositionEnd>chat_bubble</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="right">
+
+  </div>
+</div>
+<app-footer></app-footer>
