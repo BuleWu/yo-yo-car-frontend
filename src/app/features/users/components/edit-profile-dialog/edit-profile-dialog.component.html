@@ -1,0 +1,82 @@
+<div mat-dialog-title class="dialog-title">
+  <h2>Edit Profile</h2>
+  <button matIconButton (click)="onCloseClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <div class="profile-tabs">
+    <div class="tabs">
+      <button #personalInfo (click)="selectTab('personalInfo')" [class.active]="selectedTab === 'personalInfo'">
+        <span>Personal info</span>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button #securityBtn (click)="selectTab('security')" [class.active]="selectedTab === 'security'">
+        <span>Security</span>
+        <mat-icon>security</mat-icon>
+      </button>
+    </div>
+
+    <div class="tab-content">
+      @if (selectedTab === 'personalInfo') {
+        <div class="personal-info">
+          <div class="profile-picture-container" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
+            <img [src]="data.user.profilePicture" alt="User profile picture" height="85" width="85" class="profile-picture">
+            @if(hovering) {
+              <button mat-icon-button class="edit-icon" (click)="fileInput.click()">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
+            <input type="file" #fileInput hidden (change)="onProfilePictureSelected($event)" />
+          </div>
+
+          <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput [(ngModel)]="editableUser.firstName" name="firstName" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput [(ngModel)]="editableUser.lastName" name="lastName" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle</mat-label>
+              <input matInput [(ngModel)]="editableUser.vehicle" name="vehicle" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Save Changes</button>
+          </form>
+        </div>
+      } @else if(selectedTab === 'security') {
+        <form #passwordForm="ngForm" (ngSubmit)="onPasswordChange()" class="change-password-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Current Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.currentPassword" name="currentPassword" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.newPassword" name="newPassword" required minlength="6" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm New Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" required />
+          </mat-form-field>
+
+          @if (errorMessage) {
+            <div class="error-message">
+              {{ errorMessage }}
+            </div>
+          }
+
+          <button class="change-password-btn" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">
+            Change Password
+          </button>
+        </form>
+      }
+    </div>
+  </div>
+</mat-dialog-content>

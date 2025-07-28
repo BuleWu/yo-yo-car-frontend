@@ -20,8 +20,8 @@ export class AuthenticationService {
   public loginUser(
     email: string,
     password: string,
-  ): Observable<any> { // TODO: change the type to token
-    return this._httpClient.post(`${this.baseUrl}/auth/login`, // TODO: add getBaseUrl which pull URL from config json
+  ): Observable<string> { // TODO: change the type to token
+    return this._httpClient.post<string>(`${this.baseUrl}/auth/login`, // TODO: add getBaseUrl which pull URL from config json
       {
         email: email,
         password: password
@@ -33,8 +33,8 @@ export class AuthenticationService {
     lastName: string,
     email: string,
     password: string
-  ): Observable<any> { // TODO: change the type to token
-    return this._httpClient.post(`${this.baseUrl}/auth/register`,
+  ): Observable<string> { // TODO: change the type to token
+    return this._httpClient.post<string>(`${this.baseUrl}/auth/register`,
       {
         first_name: firstName,
         last_name: lastName,
@@ -71,5 +71,10 @@ export class AuthenticationService {
 
   public getUserId(): string {
     return JSON.parse(this._localStorageService.getItem('token_parsed') as string).user_id;
+  }
+
+  public logout(): void {
+    this._localStorageService.removeItem('access_token');
+    this._localStorageService.removeItem('token_parsed');
   }
 }

@@ -8,13 +8,27 @@
   <div class="end">
     <a href="/" class="about-us">About us</a>
     <a matButton="filled" href="/">
-      <span class="flex-btn-content">
-        <span class="paragraph-text">Post a ride</span>
-        <mat-icon>add</mat-icon>
-      </span>
+      <span class="paragraph-text">Post a ride</span>
+      <mat-icon iconPositionEnd>add</mat-icon>
     </a>
     <a matButton="filled" href="/">
       <p class="paragraph-text">Contact us</p>
     </a>
+
+    @if (isSignedIn) {
+      <img class="profile-picture" [src]="user?.profilePicture" alt="User profile picture" width="60" height="60" [matMenuTriggerFor]="profileMenu">
+      <mat-menu #profileMenu="matMenu">
+        <div [ngStyle]="profileMenuStyle">
+          <button matButton (click)="openEditProfileDialog()">
+            <span>Edit profile</span>
+            <mat-icon iconPositionEnd>edit</mat-icon>
+          </button>
+          <button matButton="filled" (click)="logOutHandler()">
+            <span>Log out</span>
+            <mat-icon iconPositionEnd>logout</mat-icon>
+          </button>
+        </div>
+      </mat-menu>
+    }
   </div>
 </mat-toolbar>

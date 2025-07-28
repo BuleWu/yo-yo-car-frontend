@@ -12,5 +12,7 @@ export enum ROUTES {
   RIDE = 'ride',
   POST = 'post',
   AUTH = 'auth',
-  SEARCH = 'search'
+  SEARCH = 'search',
+  PROFILE = 'profile',
+  EDIT = 'edit',
 }

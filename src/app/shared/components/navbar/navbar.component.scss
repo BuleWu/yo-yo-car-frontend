@@ -42,10 +42,9 @@
       font-size: pixel-to-rem(18);
     }
 
-    .flex-btn-content {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    .profile-picture {
+      border-radius: pixel-to-rem(99);
+      margin-left: pixel-to-rem(20);
     }
   }
 }

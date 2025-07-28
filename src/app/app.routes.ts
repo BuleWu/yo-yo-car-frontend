@@ -67,6 +67,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: ROUTES.PROFILE,
+    children: []
+  },
+  {
     path:'**',
     redirectTo: ROUTES.LANDING_PAGE,
     pathMatch: 'full'

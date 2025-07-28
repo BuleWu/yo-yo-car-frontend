@@ -42,6 +42,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   calendar-date-today-outline-color: $outline-primary
 ));
 
+@include mat.menu-overrides((
+  container-color: white,
+  container-shape: var(--mat-sys-corner-medium),
+  container-elevation-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1),
+));
+
+@include mat.snack-bar-overrides((
+  supporting-text-color: white
+));
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
@@ -80,3 +90,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: normal;
   font-style: normal;
 }
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+  --mat-mdc-snack-bar-button-color: white !important;
+}
+
+.mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.success-snackbar {
+  background-color: #61bb97;
+}
+
+// TODO: overwrite action color, this doesn't work
+
+.success-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.mat-simple-snackbar-action > button { color: white !important;}
