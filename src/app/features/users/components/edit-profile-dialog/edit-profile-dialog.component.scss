@@ -87,6 +87,15 @@
         width: 100%;
       }
     }
+
+    .change-password-form {
+      display: flex;
+      flex-direction: column;
+
+      .change-password-btn {
+        width: 30%;
+      }
+    }
   }
 }
 

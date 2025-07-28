@@ -7,11 +7,14 @@
 <mat-dialog-content>
   <div class="profile-tabs">
     <div class="tabs">
-      <button #tab1Btn (click)="selectTab('personalInfo')" [class.active]="selectedTab === 'personalInfo'">
+      <button #personalInfo (click)="selectTab('personalInfo')" [class.active]="selectedTab === 'personalInfo'">
         <span>Personal info</span>
         <mat-icon>account_circle</mat-icon>
       </button>
-      <button #tab2Btn (click)="selectTab('tab2')" [class.active]="selectedTab === 'tab2'">Tab 2</button>
+      <button #securityBtn (click)="selectTab('security')" [class.active]="selectedTab === 'security'">
+        <span>Security</span>
+        <mat-icon>security</mat-icon>
+      </button>
       <button #tab3Btn (click)="selectTab('tab3')" [class.active]="selectedTab === 'tab3'">Tab 3</button>
     </div>
 
@@ -47,8 +50,27 @@
             <button mat-raised-button color="primary" type="submit">Save Changes</button>
           </form>
         </div>
-      } @else if(selectedTab === 'tab2') {
-        Tab 2 content
+      } @else if(selectedTab === 'security') {
+        <form #passwordForm="ngForm" (ngSubmit)="onPasswordChange()" class="change-password-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Current Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.currentPassword" name="currentPassword" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.newPassword" name="newPassword" required minlength="6" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm New Password</mat-label>
+            <input matInput type="password" [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" required />
+          </mat-form-field>
+
+          <button class="change-password-btn" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">
+            Change Password
+          </button>
+        </form>
       } @else if(selectedTab === 'tab3') {
         Tab 3 content
       }

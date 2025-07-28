@@ -36,9 +36,15 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
   readonly dialogRef = inject(MatDialogRef<EditProfileDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  public selectedTab: 'personalInfo' | 'tab2' | 'tab3' = 'personalInfo';
+  public selectedTab: 'personalInfo' | 'security' | 'tab3' = 'personalInfo';
   public hovering = false;
   public editableUser = {...this.data.user}
+
+  public passwordData = {
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  };
 
   constructor(
     private _userProviderService: UserProviderService
@@ -51,7 +57,7 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-  selectTab(tab: 'personalInfo' | 'tab2' | 'tab3') {
+  selectTab(tab: 'personalInfo' | 'security' | 'tab3') {
     this.selectedTab = tab;
   }
 
@@ -79,5 +85,25 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
       .subscribe((updatedUser) => {
         this.data.user = updatedUser;
       });
+  }
+
+  onPasswordChange() {
+    const { currentPassword, newPassword, confirmPassword } = this.passwordData;
+
+    if (newPassword !== confirmPassword) {
+      alert('New passwords do not match.');
+      return;
+    }
+
+    // Call backend endpoint for password change
+    this._userProviderService.changePassword(currentPassword, newPassword).subscribe({
+      next: () => {
+        alert('Password changed successfully!');
+        this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
+      },
+      error: (err) => {
+        alert('Failed to change password: ' + err.error?.message || 'Unknown error');
+      }
+    });
   }
 }
