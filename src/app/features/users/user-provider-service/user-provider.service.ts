@@ -39,6 +39,6 @@ export class UserProviderService {
 
   /** POST /users/:id/profile-picture */
   uploadProfilePicture(id: string, file: FormData): Observable<string> {
-    return this._http.post<string>(`/api/users/${id}/profile-picture`, file);
+    return this._http.post<string>(`${this.apiUrl}/${id}/profile-picture`, file);
   }
 }

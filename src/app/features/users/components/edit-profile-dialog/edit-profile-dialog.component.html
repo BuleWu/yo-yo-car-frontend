@@ -18,11 +18,13 @@
     <div class="tab-content">
       @if (selectedTab === 'personalInfo') {
         <div class="personal-info">
-          <div class="personal-info-container" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
+          <div class="profile-picture-container" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
             <img [src]="data.user.profilePicture" alt="User profile picture" height="85" width="85" class="profile-picture">
-            <button *ngIf="hovering" mat-icon-button class="edit-icon" (click)="fileInput.click()">
-              <mat-icon>edit</mat-icon>
-            </button>
+            @if(hovering) {
+              <button mat-icon-button class="edit-icon" (click)="fileInput.click()">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
             <input type="file" #fileInput hidden (change)="onProfilePictureSelected($event)" />
           </div>
 
