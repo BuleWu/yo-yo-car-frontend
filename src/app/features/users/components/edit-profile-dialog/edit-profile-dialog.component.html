@@ -67,6 +67,12 @@
             <input matInput type="password" [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" required />
           </mat-form-field>
 
+          @if (errorMessage) {
+            <div class="error-message">
+              {{ errorMessage }}
+            </div>
+          }
+
           <button class="change-password-btn" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">
             Change Password
           </button>

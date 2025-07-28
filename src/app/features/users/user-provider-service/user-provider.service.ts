@@ -52,7 +52,7 @@ export class UserProviderService {
     return this._http.post<string>(`${this.apiUrl}/${id}/profile-picture`, file);
   }
 
-  changePassword(currentPassword: string, newPassword: string) {
+  changePassword(currentPassword: string, newPassword: string): Observable<any> {
     return this._http.post(`${this.apiUrl}/change-password`, {
       currentPassword,
       newPassword

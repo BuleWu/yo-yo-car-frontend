@@ -40,6 +40,8 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
   public hovering = false;
   public editableUser = {...this.data.user}
 
+  errorMessage: string | null = null;
+
   public passwordData = {
     currentPassword: '',
     newPassword: '',
@@ -91,19 +93,18 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
     const { currentPassword, newPassword, confirmPassword } = this.passwordData;
 
     if (newPassword !== confirmPassword) {
-      alert('New passwords do not match.');
+      this.errorMessage = 'New passwords do not match.';
       return;
     }
 
-    // Call backend endpoint for password change
-    this._userProviderService.changePassword(currentPassword, newPassword).subscribe({
+ /*   this._userProviderService.changePassword(currentPassword, newPassword).subscribe({
       next: () => {
-        alert('Password changed successfully!');
+        this.errorMessage = 'Password changed successfully!';
         this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
       },
       error: (err) => {
-        alert('Failed to change password: ' + err.error?.message || 'Unknown error');
+        this.errorMessage = 'Failed to change password: ' + err.error?.message || 'Unknown error';
       }
-    });
+    });*/
   }
 }

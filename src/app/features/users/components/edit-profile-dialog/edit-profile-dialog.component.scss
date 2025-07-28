@@ -95,6 +95,12 @@
       .change-password-btn {
         width: 30%;
       }
+
+      .error-message {
+        color: #d32f2f;
+        font-weight: 500;
+        padding-bottom: pixel-to-rem(15);
+      }
     }
   }
 }
