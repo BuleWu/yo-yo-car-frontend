@@ -7,6 +7,7 @@ import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {UserProviderService} from '../../user-provider-service/user-provider.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 export interface DialogData {
   user: User
@@ -28,15 +29,14 @@ export interface DialogData {
   templateUrl: './edit-profile-dialog.component.html',
   styleUrl: './edit-profile-dialog.component.scss'
 })
-export class EditProfileDialogComponent implements OnInit, AfterViewInit {
+export class EditProfileDialogComponent {
   @ViewChild('personalInfoBtn', { static: true }) personalInfoBtn!: ElementRef<HTMLButtonElement>;
-  @ViewChild('tab2Btn', { static: true }) tab2Btn!: ElementRef<HTMLButtonElement>;
-  @ViewChild('tab3Btn', { static: true }) tab3Btn!: ElementRef<HTMLButtonElement>;
+  @ViewChild('security', { static: true }) tab2Btn!: ElementRef<HTMLButtonElement>;
 
   readonly dialogRef = inject(MatDialogRef<EditProfileDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  public selectedTab: 'personalInfo' | 'security' | 'tab3' = 'personalInfo';
+  public selectedTab: 'personalInfo' | 'security' = 'personalInfo';
   public hovering = false;
   public editableUser = {...this.data.user}
 
@@ -49,17 +49,12 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private _userProviderService: UserProviderService
+    private _userProviderService: UserProviderService,
+    private _snackbar: MatSnackBar
   ) {
   }
 
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-  }
-
-  selectTab(tab: 'personalInfo' | 'security' | 'tab3') {
+  selectTab(tab: 'personalInfo' | 'security') {
     this.selectedTab = tab;
   }
 
@@ -97,14 +92,17 @@ export class EditProfileDialogComponent implements OnInit, AfterViewInit {
       return;
     }
 
- /*   this._userProviderService.changePassword(currentPassword, newPassword).subscribe({
+    this._userProviderService.changePassword(currentPassword, newPassword).subscribe({
       next: () => {
-        this.errorMessage = 'Password changed successfully!';
+        this._snackbar.open('Password changed successfully!', 'Close', {
+          duration: 5000,
+          panelClass: ['success-snackbar']
+        });
         this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
       },
       error: (err) => {
         this.errorMessage = 'Failed to change password: ' + err.error?.message || 'Unknown error';
       }
-    });*/
+    });
   }
 }

@@ -15,7 +15,6 @@
         <span>Security</span>
         <mat-icon>security</mat-icon>
       </button>
-      <button #tab3Btn (click)="selectTab('tab3')" [class.active]="selectedTab === 'tab3'">Tab 3</button>
     </div>
 
     <div class="tab-content">
@@ -77,8 +76,6 @@
             Change Password
           </button>
         </form>
-      } @else if(selectedTab === 'tab3') {
-        Tab 3 content
       }
     </div>
   </div>
