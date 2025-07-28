@@ -1,0 +1,47 @@
+@import "main_palette";
+@import "helpers";
+
+.profile-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: pixel-to-rem(18);
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    width: pixel-to-rem(300);
+    font-size: pixel-to-rem(18);
+
+    button {
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      text-align: left;
+      border-radius: pixel-to-rem(20);
+      transition: background-color 0.2s;
+      font-size: pixel-to-rem(18);
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &.active {
+        background-color: #e0f0ff;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .tab-content {
+    flex-grow: 1;
+    padding: pixel-to-rem(10);
+    background-color: #fafafa;
+    border-radius: pixel-to-rem(5);
+    min-height: pixel-to-rem(300);
+  }
+}
+
+

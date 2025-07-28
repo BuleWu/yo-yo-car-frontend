@@ -16,10 +16,10 @@
     </a>
 
     @if (isSignedIn) {
-      <img class="profile-picture" [src]="profilePictureUrl" alt="User profile picture" width="60" height="60" [matMenuTriggerFor]="profileMenu">
+      <img class="profile-picture" [src]="user.profilePicture" alt="User profile picture" width="60" height="60" [matMenuTriggerFor]="profileMenu">
       <mat-menu #profileMenu="matMenu">
         <div [ngStyle]="profileMenuStyle">
-          <button matButton>
+          <button matButton (click)="openEditProfileDialog()">
             <span>Edit profile</span>
             <mat-icon iconPositionEnd>edit</mat-icon>
           </button>

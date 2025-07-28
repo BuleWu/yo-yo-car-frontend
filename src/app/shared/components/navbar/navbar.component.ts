@@ -7,6 +7,19 @@ import {MatMenu, MatMenuTrigger} from '@angular/material/menu';
 import {UserProviderService} from '../../../features/users/user-provider-service/user-provider.service';
 import {NgStyle} from '@angular/common';
 import {Router} from '@angular/router';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import {User} from '../../models/user/user-models';
+import {
+  EditProfileDialogComponent
+} from '../../../features/users/components/edit-profile-dialog/edit-profile-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +36,7 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   public isSignedIn: boolean = false;
-  public profilePictureUrl: string = '';
+  public user!: User;
 
   public profileMenuStyle: any = {
     display: 'flex',
@@ -35,7 +48,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private _authenticationService: AuthenticationService,
     private _userProviderService: UserProviderService,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog
   ) {
     this.isSignedIn = this._authenticationService.isAuthenticated();
   }
@@ -43,13 +57,21 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this._userProviderService.getUserById(this._authenticationService.getUserId()) // TODO: add unsubscribe
       .subscribe((user) => {
-        this.profilePictureUrl = user.profilePicture
-        console.log(this.profilePictureUrl)
+        this.user = user
       })
   }
 
   public logOutHandler(): void {
     this._authenticationService.logout();
     this._router.navigateByUrl('/auth/login')
+  }
+
+  public openEditProfileDialog(): void {
+    const dialogRef = this._dialog.open(EditProfileDialogComponent, {
+      width: '80%',
+      data: {
+        user: this.user
+      }
+    })
   }
 }
