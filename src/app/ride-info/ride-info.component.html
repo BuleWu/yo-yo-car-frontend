@@ -52,7 +52,7 @@
         </button>
       </div>
       <div class="passenger-info">
-        @if(!ride.passengers) {
+        @if(!ride.passengers || !ride.passengers.length) {
           <p>No passengers yet</p>
         } @else {
           <p>Passengers</p>

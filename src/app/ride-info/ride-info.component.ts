@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {RideProviderService} from '../features/rides/services/ride-provider-service/ride-provider.service';
 import {FooterComponent} from '../shared/components/footer/footer.component';
@@ -11,12 +10,12 @@ import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 
 @UntilDestroy()
 @Component({
   selector: 'app-ride-info',
   imports: [
-    NavbarComponent,
     FooterComponent,
     DatePipe,
     DurationPipe,
@@ -24,6 +23,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
     RouterLink,
     MatButton,
     MatDivider,
+    NavbarComponent,
   ],
   templateUrl: './ride-info.component.html',
   styleUrl: './ride-info.component.scss'

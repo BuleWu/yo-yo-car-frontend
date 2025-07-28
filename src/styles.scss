@@ -42,6 +42,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   calendar-date-today-outline-color: $outline-primary
 ));
 
+@include mat.menu-overrides((
+  container-color: white,
+  container-shape: var(--mat-sys-corner-medium),
+  container-elevation-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1),
+));
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
