@@ -16,7 +16,7 @@
     </a>
 
     @if (isSignedIn) {
-      <img class="profile-picture" [src]="user.profilePicture" alt="User profile picture" width="60" height="60" [matMenuTriggerFor]="profileMenu">
+      <img class="profile-picture" [src]="user?.profilePicture" alt="User profile picture" width="60" height="60" [matMenuTriggerFor]="profileMenu">
       <mat-menu #profileMenu="matMenu">
         <div [ngStyle]="profileMenuStyle">
           <button matButton (click)="openEditProfileDialog()">

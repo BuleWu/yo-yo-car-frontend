@@ -101,7 +101,7 @@ export class EditProfileDialogComponent {
         this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
       },
       error: (err) => {
-        this.errorMessage = 'Failed to change password: ' + err.error?.message || 'Unknown error';
+        this.errorMessage = 'Failed to change password: ' + (err.error?.message || 'Unknown error');
       }
     });
   }

@@ -20,7 +20,9 @@ import {User} from '../../models/user/user-models';
 import {
   EditProfileDialogComponent
 } from '../../../features/users/components/edit-profile-dialog/edit-profile-dialog.component';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-navbar',
   imports: [
@@ -55,7 +57,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._userProviderService.getUserById(this._authenticationService.getUserId()) // TODO: add unsubscribe
+    this._userProviderService.getUserById(this._authenticationService.getUserId())
+      .pipe(untilDestroyed(this))
       .subscribe((user) => {
         this.user = user
       })

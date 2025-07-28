@@ -28,10 +28,10 @@ export class UserProviderService {
   }
 
   /** POST /users */
-  createUser(userData: any): Observable<User> {
+ /* createUser(userData: createUserData): Observable<User> {
     return this._http.post<User>(this.apiUrl, userData)
       .pipe(map(deepObjSnakeToCamelCase));
-  }
+  }*/
 
   updateUser(id: string, user: UpdateUserData): Observable<User> {
     return this._http.put<User>(`${this.apiUrl}/${id}`, {
@@ -43,8 +43,8 @@ export class UserProviderService {
   }
 
   /** DELETE /users/:id */
-  deleteUser(id: string): Observable<string> {
-    return this._http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
+  deleteUser(id: string): Observable<void> {
+    return this._http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
   /** POST /users/:id/profile-picture */
@@ -52,8 +52,8 @@ export class UserProviderService {
     return this._http.post<string>(`${this.apiUrl}/${id}/profile-picture`, file);
   }
 
-  changePassword(currentPassword: string, newPassword: string): Observable<any> {
-    return this._http.post(`${this.apiUrl}/change-password`, {
+  changePassword(currentPassword: string, newPassword: string): Observable<void> {
+    return this._http.post<void>(`${this.apiUrl}/change-password`, {
       currentPassword,
       newPassword
     });
