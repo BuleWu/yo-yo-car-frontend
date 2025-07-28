@@ -27,18 +27,18 @@ export class UserProviderService {
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
+  updateUser(id: string, user: Partial<User>): Observable<User> {
+    return this._http.put<User>(`/api/users/${id}`, user)
+      .pipe(map(deepObjSnakeToCamelCase));
+  }
+
   /** DELETE /users/:id */
   deleteUser(id: string): Observable<string> {
     return this._http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
 
   /** POST /users/:id/profile-picture */
-  uploadProfilePicture(userId: string, file: File): Observable<string> {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    return this._http.post(`${this.apiUrl}/${userId}/profile-picture`, formData, {
-      responseType: 'text'
-    });
+  uploadProfilePicture(id: string, file: FormData): Observable<string> {
+    return this._http.post<string>(`/api/users/${id}/profile-picture`, file);
   }
 }

@@ -1,25 +1,55 @@
-<h2 mat-dialog-title>Edit Profile</h2>
+<div mat-dialog-title class="dialog-title">
+  <h2>Edit Profile</h2>
+  <button matIconButton (click)="onCloseClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <mat-dialog-content>
   <div class="profile-tabs">
     <div class="tabs">
-      <button (click)="template = tab1" [class.active]="template === tab1">Tab 1</button>
-      <button (click)="template = tab2" [class.active]="template === tab2">Tab 2</button>
-      <button (click)="template = tab3" [class.active]="template === tab3">Tab 3</button>
+      <button #tab1Btn (click)="selectTab('personalInfo')" [class.active]="selectedTab === 'personalInfo'">
+        <span>Personal info</span>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button #tab2Btn (click)="selectTab('tab2')" [class.active]="selectedTab === 'tab2'">Tab 2</button>
+      <button #tab3Btn (click)="selectTab('tab3')" [class.active]="selectedTab === 'tab3'">Tab 3</button>
     </div>
 
     <div class="tab-content">
-      <ng-container *ngTemplateOutlet="template"></ng-container>
-    </div>
+      @if (selectedTab === 'personalInfo') {
+        <div class="personal-info">
+          <div class="personal-info-container" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
+            <img [src]="data.user.profilePicture" alt="User profile picture" height="85" width="85" class="profile-picture">
+            <button *ngIf="hovering" mat-icon-button class="edit-icon" (click)="fileInput.click()">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <input type="file" #fileInput hidden (change)="onProfilePictureSelected($event)" />
+          </div>
 
-    <!-- Templates for each tab -->
-    <ng-template #tab1>
-      <p>Tab 1 content</p>
-    </ng-template>
-    <ng-template #tab2>
-      <p>Tab 2 content</p>
-    </ng-template>
-    <ng-template #tab3>
-      <p>Tab 3 content</p>
-    </ng-template>
+          <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput [(ngModel)]="editableUser.firstName" name="firstName" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput [(ngModel)]="editableUser.lastName" name="lastName" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle</mat-label>
+              <input matInput [(ngModel)]="editableUser.vehicle" name="vehicle" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Save Changes</button>
+          </form>
+        </div>
+      } @else if(selectedTab === 'tab2') {
+        Tab 2 content
+      } @else if(selectedTab === 'tab3') {
+        Tab 3 content
+      }
+    </div>
   </div>
 </mat-dialog-content>

@@ -1,6 +1,12 @@
 @import "main_palette";
 @import "helpers";
 
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .profile-tabs {
   display: flex;
   flex-direction: row;
@@ -15,22 +21,29 @@
     font-size: pixel-to-rem(18);
 
     button {
-      padding: 10px;
+      display: flex;
+      align-items: center;
+      padding: pixel-to-rem(10);
+      gap: pixel-to-rem(5);
       border: none;
       background-color: transparent;
       cursor: pointer;
       text-align: left;
       border-radius: pixel-to-rem(20);
-      transition: background-color 0.2s;
+      transition: background-color 0.3s ease, transform 0.3s ease;
       font-size: pixel-to-rem(18);
+      position: relative;
+      z-index: 1;
 
       &:hover {
         background-color: #f0f0f0;
       }
 
       &.active {
+        color: $primary-text;
         background-color: #e0f0ff;
         font-weight: bold;
+        transform: translateX(4px);
       }
     }
   }
@@ -41,6 +54,10 @@
     background-color: #fafafa;
     border-radius: pixel-to-rem(5);
     min-height: pixel-to-rem(300);
+
+    .profile-picture {
+      border-radius: pixel-to-rem(99);
+    }
   }
 }
 
