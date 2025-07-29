@@ -3,13 +3,14 @@ import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 import {RideSearchComponent} from '../features/rides/components/ride-search/ride-search.component';
 import {RideProviderService} from '../features/rides/services/ride-provider-service/ride-provider.service';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {filter, map, Observable, of} from 'rxjs';
 import {Ride} from '../shared/models/ride/ride-models';
 import {AsyncPipe} from '@angular/common';
 import {RideCardComponent} from './components/ride-card/ride-card.component';
 import {FooterComponent} from '../shared/components/footer/footer.component';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {RideSerchFilter} from './enums/enum';
+import {AuthenticationService} from '../features/auth/services/authentication.service';
 
 @UntilDestroy()
 @Component({
@@ -31,13 +32,16 @@ export class RideSearchPageComponent implements OnInit {
 
   constructor(
     private _rideProviderService: RideProviderService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _authenticationService: AuthenticationService
   ) {
   }
 
   ngOnInit() {
     this._activatedRoute.queryParams
-      .pipe(untilDestroyed(this))
+      .pipe(
+        untilDestroyed(this),
+      )
       .subscribe((params) => {
         this.startingPoint = params['starting_point'];
         this.destination = params['destination'];
@@ -57,6 +61,9 @@ export class RideSearchPageComponent implements OnInit {
             value: date.toISOString()
           }
         ])
+          .pipe(
+            map((rides) => rides.filter((ride) => ride.driverId !== this._authenticationService.getUserId()))
+          )
     })
   }
 }
