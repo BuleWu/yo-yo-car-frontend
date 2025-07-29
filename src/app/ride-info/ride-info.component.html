@@ -1,41 +1,41 @@
 <app-navbar></app-navbar>
 <div class="ride-info-container">
   <p class="date">
-    {{ ride.date | date:'EEEE, d MMMM' }}
+    {{ ride?.date | date:'EEEE, d MMMM' }}
   </p>
   <div class="ride-info-container__content">
     <div class="left">
       <div class="from-to">
         <div class="row">
-          <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
+          <p class="time">{{ ride?.startTime | date: 'HH:mm' }}</p>
 
           <div class="dot-with-line">
             <div class="dot"></div>
             <div class="line"></div>
           </div>
 
-          <p class="location">{{ ride.startingPoint }}</p>
+          <p class="location">{{ ride?.startingPoint }}</p>
         </div>
 
-        <p class="duration">{{ [ride.startTime, ride.endTime] | duration }}</p>
+        <p class="duration">{{ [ride?.startTime, ride?.endTime] | duration }}</p>
 
         <div class="row">
-          <p class="time">{{ ride.endTime | date: 'HH:mm' }}</p>
+          <p class="time">{{ ride?.endTime | date: 'HH:mm' }}</p>
 
           <div class="dot-with-line">
             <div class="line"></div>
             <div class="dot"></div>
           </div>
 
-          <p class="location">{{ ride.destination }}</p>
+          <p class="location">{{ ride?.destination }}</p>
         </div>
       </div>
       <div class="driver-info">
-        <a class="user-link" [routerLink]="['/users', ride.driver.id]">
+        <a class="user-link" [routerLink]="['/users', ride?.driver?.id]">
           <div class="start">
-            <img [src]="ride.driver.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+            <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
             <div class="name">
-              <p>{{ride.driver.firstName}}</p>
+              <p>{{ride?.driver?.firstName}}</p>
               @if (userRating) {
                 <div class="user-rating">
                   <mat-icon>star</mat-icon>
@@ -47,16 +47,16 @@
           <mat-icon>arrow_forward_ios</mat-icon>
         </a>
         <button matButton (click)="startChat()" class="chat-btn">
-          <span>Start a chat with {{ride.driver.firstName}}</span>
+          <span>Start a chat with {{ride?.driver?.firstName}}</span>
           <mat-icon iconPositionEnd>chat_bubble</mat-icon>
         </button>
       </div>
       <div class="passenger-info">
-        @if(!ride.passengers || !ride.passengers.length) {
+        @if(!ride?.passengers || !ride?.passengers?.length) {
           <p>No passengers yet</p>
         } @else {
           <p>Passengers</p>
-          @for (passenger of ride.passengers; track passenger.id) {
+          @for (passenger of ride?.passengers; track passenger.id) {
             <a class="user-link" [routerLink]="['/users', passenger.id]">
           <div class="start">
                 <img [src]="passenger.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
@@ -71,30 +71,30 @@
     <div class="right">
       <div class="ride-details">
         <p class="ride-details__header">
-          {{ ride.date | date:'EEEE, d MMMM' }}
+          {{ ride?.date | date:'EEEE, d MMMM' }}
         </p>
         <div class="ride-details__content">
           <div class="from-to">
             <div class="row">
-              <p class="time">{{ ride.startTime | date: 'HH:mm' }}</p>
+              <p class="time">{{ ride?.startTime | date: 'HH:mm' }}</p>
 
               <div class="dot-with-line">
                 <div class="dot"></div>
                 <div class="line"></div>
               </div>
 
-              <p class="location">{{ ride.startingPoint }}</p>
+              <p class="location">{{ ride?.startingPoint }}</p>
             </div>
-            <p class="duration">{{ [ride.startTime, ride.endTime] | duration }}</p>
+            <p class="duration">{{ [ride?.startTime, ride?.endTime] | duration }}</p>
             <div class="row">
-              <p class="time">{{ ride.endTime | date: 'HH:mm' }}</p>
+              <p class="time">{{ ride?.endTime | date: 'HH:mm' }}</p>
 
               <div class="dot-with-line">
                 <div class="line"></div>
                 <div class="dot"></div>
               </div>
 
-              <p class="location">{{ ride.destination }}</p>
+              <p class="location">{{ ride?.destination }}</p>
             </div>
           </div>
 
@@ -102,9 +102,9 @@
 
           <div class="driver-details">
             <mat-icon class="car-icon">directions_car</mat-icon>
-            <img [src]="ride.driver.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+            <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
             <div class="name">
-              <p>{{ride.driver.firstName}}</p>
+              <p>{{ride?.driver?.firstName}}</p>
               @if (userRating) {
                 <div class="user-rating">
                   <mat-icon>star</mat-icon>
@@ -118,12 +118,21 @@
 
       <div class="reservation-details">
         <p>1 passenger</p>
-        <p>{{ride.price}}€</p>
+        <p>{{ride?.price}}€</p>
       </div>
 
-      <button matButton="filled" class="reservation-btn">
-        <span>Send a reservation request</span>
-        <mat-icon iconPositionEnd>event_upcoming</mat-icon>
+      <button matButton="filled" class="reservation-btn" (click)="makeReservation()" [disabled]="!!userReservation && (userReservation.status === ReservationStatusesEnum.COMPLETED || userReservation.status === ReservationStatusesEnum.CANCELLED || userReservation.status === ReservationStatusesEnum.PENDING)">
+        @if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
+          <span>Reservation pending</span>
+        } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.CONFIRMED) {
+          <span>Cancel reservation</span>
+        } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.CANCELLED) {
+          <span>Reservation cancelled</span>
+        } @else {
+          <span>Send a reservation request</span>
+        }
+
+        <mat-icon iconPositionEnd>{{ reservationIcon }}</mat-icon>
       </button>
 
     </div>

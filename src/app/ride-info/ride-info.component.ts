@@ -11,6 +11,12 @@ import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {NavbarComponent} from '../shared/components/navbar/navbar.component';
+import {
+  ReservationProviderService
+} from '../features/reservations/services/reservation-provider-service/reservation-provider.service';
+import {AuthenticationService} from '../features/auth/services/authentication.service';
+import {Reservation} from '../shared/models/reservation/reservation-models';
+import {ReservationIconsMapping, ReservationStatusesEnum} from '../features/reservations/enums/enum';
 
 @UntilDestroy()
 @Component({
@@ -29,22 +35,27 @@ import {NavbarComponent} from '../shared/components/navbar/navbar.component';
   styleUrl: './ride-info.component.scss'
 })
 export class RideInfoComponent implements OnInit {
-  public ride!: Ride;
+  public ride: Ride | undefined;
   public userRating: number = 0;
   public noOfRatings: number = 0;
+  public userReservation: Reservation | undefined;
+  public rideId!: string;
+  public reservationIcon = 'event_upcoming';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _rideProviderService: RideProviderService,
-    private _ratingProviderService: RatingProviderService
+    private _ratingProviderService: RatingProviderService,
+    private _reservationProviderService: ReservationProviderService,
+    private _authenticationService: AuthenticationService
   ) {
   }
 
   ngOnInit() {
-    const id = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
+    this.rideId = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
 
-    this._rideProviderService.getRideById(id)
+    this._rideProviderService.getRideById(this.rideId)
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (ride) => {
@@ -62,9 +73,41 @@ export class RideInfoComponent implements OnInit {
           this._router.navigateByUrl('/rides/find-ride');
         }
       })
+
+    this._rideProviderService.getRideReservations(this.rideId)
+      .pipe(untilDestroyed(this))
+      .subscribe((reservations) => {
+        if(reservations) {
+          console.log('Reservations: ', reservations);
+          reservations.map((reservation) => {
+            if(reservation.userId === this._authenticationService.getUserId()) {
+              this.userReservation = reservation;
+              this.reservationIcon = ReservationIconsMapping[this.userReservation.status];
+            }
+          })
+        }
+      })
   }
 
   public startChat(): void {
 
   }
+
+  public makeReservation() {
+    if(!!this.userReservation) return;
+
+    this._reservationProviderService.createReservation(
+      {
+        userId: this._authenticationService.getUserId(),
+        rideId: this.rideId
+      }
+    )
+      .subscribe((updatedReservation) => {
+        this.userReservation = updatedReservation;
+        this.reservationIcon = ReservationIconsMapping[this.userReservation.status];
+      });
+  }
+
+  protected readonly ReservationStatusesEnum = ReservationStatusesEnum;
+  protected readonly ReservationIconsMapping = ReservationIconsMapping;
 }

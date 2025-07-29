@@ -9,7 +9,7 @@ import {AsyncPipe} from '@angular/common';
 import {RideCardComponent} from './components/ride-card/ride-card.component';
 import {FooterComponent} from '../shared/components/footer/footer.component';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
-import {RideSerchFilter} from './enums/enum';
+import {RideSearchFilter} from './enums/enum';
 import {AuthenticationService} from '../features/auth/services/authentication.service';
 
 @UntilDestroy()
@@ -49,15 +49,15 @@ export class RideSearchPageComponent implements OnInit {
 
         this.rides$ = this._rideProviderService.searchRides([
           {
-            filter: RideSerchFilter.STARTING_POINT,
+            filter: RideSearchFilter.STARTING_POINT,
             value: this.startingPoint
           },
           {
-            filter: RideSerchFilter.DESTINATION,
+            filter: RideSearchFilter.DESTINATION,
             value: this.destination
           },
           {
-            filter: RideSerchFilter.DATE,
+            filter: RideSearchFilter.DATE,
             value: date.toISOString()
           }
         ])
