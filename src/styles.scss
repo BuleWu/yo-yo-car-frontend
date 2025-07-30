@@ -52,6 +52,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   supporting-text-color: white
 ));
 
+:root {
+  @include mat.stepper-overrides((
+    container-color: white,
+    header-edit-state-icon-background-color: $primary-color,
+    header-selected-state-icon-background-color: $primary-color,
+  ));
+}
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;

@@ -15,13 +15,23 @@ export interface SearchQuery { // TODO: move somewhere else
 export interface createRideData {
   startingPoint: string;
   destination: string;
+  startTime: string;
+  endTime: string;
+  price: string;
+  driverId: string;
   maxPassengers: number;
+  date: string;
 }
 
 export interface updateRideData {
-  startingPoint?: string;
-  destination?: string;
-  maxPassengers?: number;
+  startingPoint: string;
+  destination: string;
+  startTime: string;
+  endTime: string;
+  price: string;
+  driverId: string;
+  maxPassengers: number;
+  date: string;
 }
 
 @Injectable({

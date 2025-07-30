@@ -3,7 +3,7 @@ import {NavbarComponent} from '../shared/components/navbar/navbar.component';
 import {RideSearchComponent} from '../features/rides/components/ride-search/ride-search.component';
 import {RideProviderService} from '../features/rides/services/ride-provider-service/ride-provider.service';
 import {ActivatedRoute} from '@angular/router';
-import {filter, map, Observable, of} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import {Ride} from '../shared/models/ride/ride-models';
 import {AsyncPipe} from '@angular/common';
 import {RideCardComponent} from './components/ride-card/ride-card.component';
