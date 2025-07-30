@@ -71,14 +71,8 @@ export class RideProviderService {
   }
 
   public createRide(formData: createRideData): Observable<Ride> {
-    const { startingPoint, destination, maxPassengers } = formData;
-    const userId = this._authenticationService.getUserId();
-
     return this._http.post<Ride>(`${this.apiUrl}`, {
-      starting_point: startingPoint,
-      destination: destination,
-      driver_id: userId,
-      max_passengers: maxPassengers
+     ...formData
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }
