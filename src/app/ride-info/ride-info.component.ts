@@ -110,9 +110,9 @@ export class RideInfoComponent implements OnInit {
       .subscribe((rides) => {
         if(rides.length) {
           const hasConflict = rides.some((ride) => {
-            return ride.endTime >= this.ride!.startTime;
+            return ride.startTime < this.ride!.endTime && ride.endTime > this.ride!.startTime;
           });
-          if (hasConflict) {
+          if(hasConflict) {
             this.hasReservation = true;
             this.reservationIcon = ReservationIconsMapping[ReservationStatusesEnum.BLOCKED];
           }
