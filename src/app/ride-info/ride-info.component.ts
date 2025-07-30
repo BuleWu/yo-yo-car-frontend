@@ -40,7 +40,7 @@ export class RideInfoComponent implements OnInit {
   public noOfRatings: number = 0;
   public userReservation: Reservation | undefined;
   public rideId!: string;
-  public reservationIcon = 'event_upcoming';
+  public reservationIcon: string = ReservationIconsMapping[ReservationStatusesEnum.INITIAL];
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -53,6 +53,7 @@ export class RideInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('Reservation icon: ', this.reservationIcon)
     this.rideId = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
 
     this._rideProviderService.getRideById(this.rideId)
@@ -78,11 +79,12 @@ export class RideInfoComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((reservations) => {
         if(reservations) {
-          console.log('Reservations: ', reservations);
           reservations.map((reservation) => {
             if(reservation.userId === this._authenticationService.getUserId()) {
               this.userReservation = reservation;
-              this.reservationIcon = ReservationIconsMapping[this.userReservation.status];
+              if(this.userReservation) {
+                this.reservationIcon = ReservationIconsMapping[this.userReservation?.status ?? ReservationStatusesEnum.INITIAL];
+              }
             }
           })
         }
@@ -93,19 +95,37 @@ export class RideInfoComponent implements OnInit {
 
   }
 
-  public makeReservation() {
-    if(!!this.userReservation) return;
+  public reservationHandler() {
+    console.log(this.userReservation?.status);
+    if(this.isReservationLocked()) return;
 
-    this._reservationProviderService.createReservation(
-      {
-        userId: this._authenticationService.getUserId(),
-        rideId: this.rideId
-      }
-    )
-      .subscribe((updatedReservation) => {
-        this.userReservation = updatedReservation;
-        this.reservationIcon = ReservationIconsMapping[this.userReservation.status];
-      });
+    if(!this.userReservation) {
+      this._reservationProviderService.createReservation(
+        {
+          userId: this._authenticationService.getUserId(),
+          rideId: this.rideId
+        }
+      )
+        .subscribe((updatedReservation) => {
+          this.userReservation = updatedReservation;
+          this.reservationIcon = ReservationIconsMapping[this.userReservation?.status ?? ReservationStatusesEnum.INITIAL];
+        });
+    } else if(this.userReservation.status === ReservationStatusesEnum.CONFIRMED) {
+      this._reservationProviderService.updateReservation(this.userReservation.id, {
+        status: ReservationStatusesEnum.CANCELLED
+      })
+        .subscribe((updatedReservation) => {
+          this.userReservation = updatedReservation;
+          this.reservationIcon = ReservationIconsMapping[this.userReservation?.status ?? ReservationStatusesEnum.INITIAL];
+        });
+    }
+  }
+
+  public isReservationLocked(): boolean {
+    const status = this.userReservation?.status;
+    return status === ReservationStatusesEnum.PENDING ||
+      status === ReservationStatusesEnum.CANCELLED ||
+      status === ReservationStatusesEnum.COMPLETED;
   }
 
   protected readonly ReservationStatusesEnum = ReservationStatusesEnum;

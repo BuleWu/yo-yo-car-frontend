@@ -121,13 +121,15 @@
         <p>{{ride?.price}}€</p>
       </div>
 
-      <button matButton="filled" class="reservation-btn" (click)="makeReservation()" [disabled]="!!userReservation && (userReservation.status === ReservationStatusesEnum.COMPLETED || userReservation.status === ReservationStatusesEnum.CANCELLED || userReservation.status === ReservationStatusesEnum.PENDING)">
+      <button matButton="filled" class="reservation-btn" (click)="reservationHandler()" [disabled]="isReservationLocked()">
         @if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
           <span>Reservation pending</span>
         } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.CONFIRMED) {
           <span>Cancel reservation</span>
         } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.CANCELLED) {
           <span>Reservation cancelled</span>
+        } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.COMPLETED) {
+          <span>Ride completed</span>
         } @else {
           <span>Send a reservation request</span>
         }

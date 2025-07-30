@@ -62,7 +62,7 @@ export class RideSearchPageComponent implements OnInit {
           }
         ])
           .pipe(
-            map((rides) => rides.filter((ride) => ride.driverId !== this._authenticationService.getUserId()))
+            map((rides) => rides?.filter((ride) => ride.driverId !== this._authenticationService.getUserId()))
           )
     })
   }
