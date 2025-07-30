@@ -122,7 +122,9 @@
       </div>
 
       <button matButton="filled" class="reservation-btn" (click)="reservationHandler()" [disabled]="isReservationLocked()">
-        @if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
+        @if(hasReservation) {
+          <span>You have another reservation on this date</span>
+        } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
           <span>Reservation pending</span>
         } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.CONFIRMED) {
           <span>Cancel reservation</span>

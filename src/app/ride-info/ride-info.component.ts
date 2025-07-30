@@ -17,6 +17,8 @@ import {
 import {AuthenticationService} from '../features/auth/services/authentication.service';
 import {Reservation} from '../shared/models/reservation/reservation-models';
 import {ReservationIconsMapping, ReservationStatusesEnum} from '../features/reservations/enums/enum';
+import {UserProviderService} from '../features/users/user-provider-service/user-provider.service';
+import {filter, from, map, mergeMap, switchMap, toArray} from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -41,6 +43,7 @@ export class RideInfoComponent implements OnInit {
   public userReservation: Reservation | undefined;
   public rideId!: string;
   public reservationIcon: string = ReservationIconsMapping[ReservationStatusesEnum.INITIAL];
+  public hasReservation = false;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -48,14 +51,15 @@ export class RideInfoComponent implements OnInit {
     private _rideProviderService: RideProviderService,
     private _ratingProviderService: RatingProviderService,
     private _reservationProviderService: ReservationProviderService,
-    private _authenticationService: AuthenticationService
+    private _authenticationService: AuthenticationService,
+    private _userProviderService: UserProviderService
   ) {
   }
 
   ngOnInit() {
-    console.log('Reservation icon: ', this.reservationIcon)
     this.rideId = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
 
+    // get ride data
     this._rideProviderService.getRideById(this.rideId)
       .pipe(untilDestroyed(this))
       .subscribe({
@@ -75,6 +79,7 @@ export class RideInfoComponent implements OnInit {
         }
       })
 
+    // get ride reservations
     this._rideProviderService.getRideReservations(this.rideId)
       .pipe(untilDestroyed(this))
       .subscribe((reservations) => {
@@ -89,6 +94,30 @@ export class RideInfoComponent implements OnInit {
           })
         }
       })
+
+    // check if user already has a reservation on another ride
+    this._userProviderService.getUserReservations(this._authenticationService.getUserId())
+      .pipe(
+        map((reservations) => reservations.filter(reservation => reservation.rideId !== this.rideId)),
+        switchMap((reservations) => from(reservations)),
+        filter(reservation =>
+          reservation.status === ReservationStatusesEnum.PENDING ||
+          reservation.status === ReservationStatusesEnum.CONFIRMED
+        ),
+        mergeMap((reservation) => this._rideProviderService.getRideById(reservation.rideId)),
+        toArray()
+      )
+      .subscribe((rides) => {
+        if(rides.length) {
+          const hasConflict = rides.some((ride) => {
+            return ride.endTime >= this.ride!.startTime;
+          });
+          if (hasConflict) {
+            this.hasReservation = true;
+            this.reservationIcon = ReservationIconsMapping[ReservationStatusesEnum.BLOCKED];
+          }
+        }
+      })
   }
 
   public startChat(): void {
@@ -96,7 +125,6 @@ export class RideInfoComponent implements OnInit {
   }
 
   public reservationHandler() {
-    console.log(this.userReservation?.status);
     if(this.isReservationLocked()) return;
 
     if(!this.userReservation) {
@@ -123,9 +151,9 @@ export class RideInfoComponent implements OnInit {
 
   public isReservationLocked(): boolean {
     const status = this.userReservation?.status;
-    return status === ReservationStatusesEnum.PENDING ||
+    return this.hasReservation  || (status === ReservationStatusesEnum.PENDING ||
       status === ReservationStatusesEnum.CANCELLED ||
-      status === ReservationStatusesEnum.COMPLETED;
+      status === ReservationStatusesEnum.COMPLETED);
   }
 
   protected readonly ReservationStatusesEnum = ReservationStatusesEnum;
