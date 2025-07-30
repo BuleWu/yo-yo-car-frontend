@@ -25,6 +25,7 @@ import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/m
 })
 export class RideSearchComponent implements OnInit {
   searchForm: FormGroup;
+  minDate = new Date();
 
   constructor(
     private _fb: FormBuilder,
@@ -47,17 +48,19 @@ export class RideSearchComponent implements OnInit {
       this.searchForm.setValue({
         startingPoint: startingPoint,
         destination: destination,
-        date: new Date(date),
+        date: date,
       });
     }
   }
 
   public searchRides() {
     const { startingPoint, destination, date } = this.searchForm.value;
+    const normalizedDate = new Date(date);
+    normalizedDate.setHours(0, 0, 0, 0);
     const queryParams = {
       starting_point: startingPoint,
       destination: destination,
-      date: date
+      date: normalizedDate
     }
     this._router.navigate(['/rides/search'], { queryParams });
   }

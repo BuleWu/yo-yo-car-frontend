@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {User} from '../../../shared/models/user/user-models';
 import {deepObjSnakeToCamelCase} from '../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
+import {Reservation} from '../../../shared/models/reservation/reservation-models';
 
 export interface UpdateUserData {
   firstName: string;
@@ -57,5 +58,10 @@ export class UserProviderService {
       currentPassword,
       newPassword
     });
+  }
+
+  public getUserReservations(id: string): Observable<Reservation[]> {
+    return this._http.get<Reservation[]>(`${this.apiUrl}/${id}/reservations`)
+      .pipe(map((res) => deepObjSnakeToCamelCase(res)));
   }
 }

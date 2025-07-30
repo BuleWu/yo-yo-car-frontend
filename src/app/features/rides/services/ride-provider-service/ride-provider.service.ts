@@ -4,10 +4,11 @@ import {HttpClient} from '@angular/common/http';
 import {Ride} from '../../../../shared/models/ride/ride-models';
 import {AuthenticationService} from '../../../auth/services/authentication.service';
 import {deepObjSnakeToCamelCase} from '../../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
-import {RideSerchFilter} from '../../../../ride-search-page/enums/enum';
+import {RideSearchFilter} from '../../../../ride-search-page/enums/enum';
+import {Reservation} from '../../../../shared/models/reservation/reservation-models';
 
 export interface SearchQuery { // TODO: move somewhere else
-  filter: RideSerchFilter;
+  filter: RideSearchFilter;
   value: string;
 }
 
@@ -29,20 +30,19 @@ export interface updateRideData {
 export class RideProviderService {
 
   constructor(
-    private _httpClient: HttpClient,
+    private _http: HttpClient,
     private _authenticationService: AuthenticationService
   ) { }
 
-
-  baseUrl = "http://localhost:8080";
+  private readonly apiUrl = "http://localhost:8080/api/rides";
 
   public getAllRides(): Observable<Ride[]> {
-    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides`)
+    return this._http.get<Ride[]>(`${this.apiUrl}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public getRideById(id: string): Observable<Ride> {
-    return this._httpClient.get<Ride>(`${this.baseUrl}/api/rides/${id}`)
+    return this._http.get<Ride>(`${this.apiUrl}/${id}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
@@ -56,7 +56,7 @@ export class RideProviderService {
       }
     })
 
-    return this._httpClient.get<Ride[]>(`${this.baseUrl}/api/rides/search?${searchQuery}`)
+    return this._http.get<Ride[]>(`${this.apiUrl}/search?${searchQuery}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
@@ -64,7 +64,7 @@ export class RideProviderService {
     const { startingPoint, destination, maxPassengers } = formData;
     const userId = this._authenticationService.getUserId();
 
-    return this._httpClient.post<Ride>(`${this.baseUrl}/api/rides`, {
+    return this._http.post<Ride>(`${this.apiUrl}`, {
       starting_point: startingPoint,
       destination: destination,
       driver_id: userId,
@@ -74,7 +74,7 @@ export class RideProviderService {
   }
 
   public updateRide(id: string, updatedData: Partial<updateRideData>): Observable<Ride> {
-    return this._httpClient.put<Ride>(`${this.baseUrl}/api/rides/${id}`, {
+    return this._http.put<Ride>(`${this.apiUrl}/${id}`, {
       starting_point: updatedData.startingPoint,
       destination: updatedData.destination,
       max_passengers: updatedData.maxPassengers
@@ -83,6 +83,11 @@ export class RideProviderService {
   }
 
   public deleteRide(id: string): Observable<void> {
-    return this._httpClient.delete<void>(`${this.baseUrl}/api/rides/${id}`);
+    return this._http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  public getRideReservations(id: string): Observable<Reservation[]> {
+    return this._http.get<Reservation[]>(`${this.apiUrl}/${id}/reservations`)
+      .pipe(map((res) => deepObjSnakeToCamelCase(res)));
   }
 }

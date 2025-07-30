@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DurationPipe implements PipeTransform {
 
-  transform([start, end]: [string | Date, string | Date]): string {
+  transform([start, end]: [string | Date | undefined, string | Date | undefined]): string {
     if (!start || !end) return '';
     const diff = new Date(end).getTime() - new Date(start).getTime();
     const minutes = Math.floor(diff / 60000);
