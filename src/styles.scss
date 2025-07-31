@@ -52,6 +52,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   supporting-text-color: white
 ));
 
+@include mat.timepicker-overrides((
+  container-background-color: white,
+  container-shape: var(--mat-sys-corner-medium),
+  container-elevation-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1),
+));
+
+:root {
+  @include mat.stepper-overrides((
+    container-color: white,
+    header-edit-state-icon-background-color: $primary-color,
+    header-selected-state-icon-background-color: $primary-color,
+    header-focus-state-layer-shape: var(--mat-sys-corner-medium),
+    header-hover-state-layer-shape: var(--mat-sys-corner-medium),
+    header-height: pixel-to-rem(60),
+  ));
+}
+
 // Manipulate initial background color
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
@@ -104,10 +121,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #61bb97;
 }
 
+.error-snackbar {
+  background-color: #f6695e;
+}
+
 // TODO: overwrite action color, this doesn't work
 
-.success-snackbar .mat-simple-snackbar-action {
+.success-snackbar.mat-simple-snackbar-action {
+  color: white !important;
+}
+.error-snackbar.mat-simple-snackbar-action {
   color: white !important;
 }
 
+
 .mat-simple-snackbar-action > button { color: white !important;}
+
+.mat-simple-snackbar {
+  color: white;
+
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}

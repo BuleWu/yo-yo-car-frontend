@@ -15,13 +15,23 @@ export interface SearchQuery { // TODO: move somewhere else
 export interface createRideData {
   startingPoint: string;
   destination: string;
+  startTime: string;
+  endTime: string;
+  price: string;
+  driverId: string;
   maxPassengers: number;
+  date: string;
 }
 
 export interface updateRideData {
   startingPoint?: string;
   destination?: string;
+  startTime?: string;
+  endTime?: string;
+  price?: string;
   maxPassengers?: number;
+  date?: string;
+  finished?: boolean;
 }
 
 @Injectable({
@@ -61,23 +71,15 @@ export class RideProviderService {
   }
 
   public createRide(formData: createRideData): Observable<Ride> {
-    const { startingPoint, destination, maxPassengers } = formData;
-    const userId = this._authenticationService.getUserId();
-
     return this._http.post<Ride>(`${this.apiUrl}`, {
-      starting_point: startingPoint,
-      destination: destination,
-      driver_id: userId,
-      max_passengers: maxPassengers
+     ...formData
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
-  public updateRide(id: string, updatedData: Partial<updateRideData>): Observable<Ride> {
+  public updateRide(id: string, formData: Partial<updateRideData>): Observable<Ride> {
     return this._http.put<Ride>(`${this.apiUrl}/${id}`, {
-      starting_point: updatedData.startingPoint,
-      destination: updatedData.destination,
-      max_passengers: updatedData.maxPassengers
+     ...formData
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }

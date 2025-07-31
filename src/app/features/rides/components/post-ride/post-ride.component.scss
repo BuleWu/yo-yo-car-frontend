@@ -1,0 +1,89 @@
+@import "helpers";
+@import "main_palette";
+
+.post-ride-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+
+  .post-ride-wrapper {
+    height: 70%;
+    width: 60%;
+
+    .stepper {
+      box-shadow: 0 0 pixel-to-rem(12) pixel-to-rem(2) rgba(0, 0, 0, 0.25);
+      border-radius: $border-radius;
+      height: 100%;
+      padding: pixel-to-rem(20);
+
+      .mat-horizontal-stepper-wrapper {
+        height: 100%;
+      }
+    }
+
+    .form {
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-top: pixel-to-rem(25);
+    }
+
+    .content {
+      display: flex;
+      height: 70%;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: pixel-to-rem(20);
+
+      mat-form-field {
+        width: 45%;
+      }
+    }
+
+    .date-picker {
+      width: 100%;
+      justify-content: center;
+
+      mat-form-field {
+        width: 92%;
+      }
+    }
+
+    .finish-tab {
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-top: pixel-to-rem(25);
+      text-align: center;
+
+      .button-section {
+        display: flex;
+        justify-content: start;
+      }
+    }
+  }
+}
+
+mat-stepper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix Material wrapper containers */
+:host ::ng-deep .mat-horizontal-stepper-wrapper,
+:host ::ng-deep .mat-horizontal-content-container,
+:host ::ng-deep .mat-horizontal-stepper-content.mat-horizontal-stepper-content-current {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
