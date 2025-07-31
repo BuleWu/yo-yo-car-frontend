@@ -66,18 +66,12 @@ export const routes: Routes = [
         component: PostRideComponent,
         canActivate: [authGuard]
       }
-     /* {
-        path: ROUTES.POST,
-        /!*component:*!/
-        canActivate: [authGuard]
-      }*/
     ]
   },
   {
     path: ROUTES.PROFILE,
     component: UserProfileComponent,
     canActivate: [authGuard],
-    /*children: []*/
   },
   {
     path:'**',

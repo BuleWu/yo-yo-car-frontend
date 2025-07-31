@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserProviderService} from '../../user-provider-service/user-provider.service';
 import {ActivatedRoute} from '@angular/router';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
-import {pipe} from 'rxjs';
 import {NavbarComponent} from '../../../../shared/components/navbar/navbar.component';
 import {User} from '../../../../shared/models/user/user-models';
 import {MatIcon} from '@angular/material/icon';
