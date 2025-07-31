@@ -54,9 +54,8 @@ export class PostRideComponent {
     this.firstFormGroup = this._fb.group({
       startingPoint: ['', Validators.required],
       destination: ['', Validators.required],
-      price: ['', Validators.required],
-      maxPassengers: ['', Validators.required],
-      date: ['', Validators.required],
+      maxPassengers: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
+      price: ['', [Validators.required, Validators.min(1), Validators.max(999)]],
     });
     this.secondFormGroup = this._fb.group({
       date: [new Date(), Validators.required],
