@@ -31,7 +31,11 @@
         </div>
       </div>
       <div class="driver-info">
-        <a class="user-link" [routerLink]="['/users', ride?.driver?.id]">
+        <a
+          class="user-link"
+          [routerLink]="['/profile']"
+          [queryParams]="{ id: ride?.driver?.id }"
+        >
           <div class="start">
             <img [src]="ride?.driver?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
             <div class="name">
@@ -57,7 +61,11 @@
         } @else {
           <p>Passengers</p>
           @for (passenger of ride?.passengers; track passenger.id) {
-            <a class="user-link" [routerLink]="['/users', passenger.id]">
+            <a
+              class="user-link"
+              [routerLink]="['/profile']"
+              [queryParams]="{ id: passenger.id }"
+            >
           <div class="start">
                 <img [src]="passenger.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
                 <p>{{passenger.firstName}}</p>
