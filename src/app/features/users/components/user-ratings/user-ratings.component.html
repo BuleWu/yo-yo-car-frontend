@@ -2,7 +2,7 @@
 <div class="ratings-container">
   <h2 class="title">Ratings</h2>
   <div class="ratings-wrapper">
-    <p class="paragraph-text">{{userRating}}/5</p>
+    <p class="paragraph-text user-rating">{{userRating}}/5</p>
     <p class="paragraph-text">{{noOfRatings}} ratings</p>
     <mat-divider></mat-divider>
     <div class="ratings">
@@ -17,7 +17,10 @@
             {{ rating.rater?.firstName }}
             <mat-icon>arrow_forward_ios</mat-icon>
           </a>
-          <p class="description-text">{{rating.comment}}</p>
+          <div class="rating-item__content">
+            <p class="description-text">{{rating.comment}}</p>
+            <p class="description-text">{{rating.createdAt | date: 'MMMM y' }}</p>
+          </div>
         </div>
       }
     </div>

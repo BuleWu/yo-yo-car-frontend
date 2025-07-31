@@ -6,6 +6,7 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
 import {MatDivider} from '@angular/material/divider';
 import {Rating} from '../../../../shared/models/rating/rating-models';
 import {MatIcon} from '@angular/material/icon';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-user-ratings',
@@ -14,6 +15,7 @@ import {MatIcon} from '@angular/material/icon';
     MatDivider,
     MatIcon,
     RouterLink,
+    DatePipe,
   ],
   templateUrl: './user-ratings.component.html',
   styleUrl: './user-ratings.component.scss'
