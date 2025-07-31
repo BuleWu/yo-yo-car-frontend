@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserProviderService} from '../../user-provider-service/user-provider.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {NavbarComponent} from '../../../../shared/components/navbar/navbar.component';
 import {User} from '../../../../shared/models/user/user-models';
@@ -18,6 +18,7 @@ import {AuthenticationService} from '../../../auth/services/authentication.servi
     NavbarComponent,
     MatIcon,
     MatButton,
+    RouterLink,
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
