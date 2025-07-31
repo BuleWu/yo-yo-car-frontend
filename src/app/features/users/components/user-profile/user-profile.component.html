@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="profile-container">
+  <div class="profile-wrapper">
+    <div class="profile-name-picture">
+      <img [src]="user?.profilePicture" alt="User profile picture" height="120" width="120" class="profile-picture">
+      <div class="name">
+        <p>{{user?.firstName}} {{user?.lastName}}</p>
+        @if (currentUserId === user?.id) {
+          <button matButton (click)="openEditProfileDialog()">
+            <span>Edit profile</span>
+            <mat-icon iconPositionEnd>edit</mat-icon>
+          </button>
+        }
+      </div>
+    </div>
+    @if (userRating) {
+      <a class="link" href="">
+        <div class="user-rating">
+          <mat-icon>star</mat-icon>
+          <p>{{userRating.toFixed(1)}}/5 - {{noOfRatings}} ratings</p>
+        </div>
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </a>
+    }
+    <a [href]=`mailto:${user?.email}` class="user-email">
+      <span>{{user?.email}}</span>
+      <mat-icon>mail</mat-icon>
+    </a>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import {FindRidePageComponent} from './find-ride-page/find-ride-page.component';
 import {RideSearchPageComponent} from './ride-search-page/ride-search-page.component';
 import {RideInfoComponent} from './ride-info/ride-info.component';
 import {PostRideComponent} from './features/rides/components/post-ride/post-ride.component';
+import {UserProfileComponent} from './features/users/components/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -65,16 +66,12 @@ export const routes: Routes = [
         component: PostRideComponent,
         canActivate: [authGuard]
       }
-     /* {
-        path: ROUTES.POST,
-        /!*component:*!/
-        canActivate: [authGuard]
-      }*/
     ]
   },
   {
     path: ROUTES.PROFILE,
-    children: []
+    component: UserProfileComponent,
+    canActivate: [authGuard],
   },
   {
     path:'**',
