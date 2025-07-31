@@ -121,10 +121,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #61bb97;
 }
 
+.error-snackbar {
+  background-color: #f6695e;
+}
+
 // TODO: overwrite action color, this doesn't work
 
 .success-snackbar.mat-simple-snackbar-action {
   color: white !important;
 }
+.error-snackbar.mat-simple-snackbar-action {
+  color: white !important;
+}
+
 
 .mat-simple-snackbar-action > button { color: white !important;}
+
+.mat-simple-snackbar {
+  color: white;
+
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}

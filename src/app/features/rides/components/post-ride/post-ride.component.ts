@@ -85,12 +85,21 @@ export class PostRideComponent {
       date: new Date(date).toISOString(),
     })
       .pipe(untilDestroyed(this))
-      .subscribe(() => {
-        this._snackbar.open('Ride posted successfully!', 'Close', {
-          duration: 5000,
-          panelClass: ['success-snackbar']
-        });
-        this._router.navigateByUrl('/find-ride');
-      })
+      .subscribe({
+        next: () => {
+          this._snackbar.open('Ride posted successfully!', 'Close', {
+            duration: 5000,
+            panelClass: ['success-snackbar']
+          });
+          this._router.navigateByUrl('/find-ride');
+        },
+        error: (err) => {
+          console.error('Error posting ride:', err);
+          this._snackbar.open('Failed to post ride. Please try again.', 'Close', {
+            duration: 5000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
   }
 }
