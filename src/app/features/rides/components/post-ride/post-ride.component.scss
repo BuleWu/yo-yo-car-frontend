@@ -21,11 +21,10 @@
       }
     }
 
-    mat-stepper {
-    }
-
     .form {
       display: flex;
+      height: 100%;
+      justify-content: space-between;
       flex-direction: column;
       margin-top: pixel-to-rem(25);
     }
@@ -43,7 +42,31 @@
     .date-picker {
       width: 100%;
       justify-content: left;
-      padding-left: pixel-to-rem(40);
+      padding-left: pixel-to-rem(25);
+    }
+
+    .finish-tab {
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-top: pixel-to-rem(25);
     }
   }
+}
+
+mat-stepper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix Material wrapper containers */
+:host ::ng-deep .mat-horizontal-stepper-wrapper,
+:host ::ng-deep .mat-horizontal-content-container,
+:host ::ng-deep .mat-horizontal-stepper-content.mat-horizontal-stepper-content-current {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure they stretch */
 }

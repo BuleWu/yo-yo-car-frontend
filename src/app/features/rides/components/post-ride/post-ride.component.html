@@ -4,25 +4,28 @@
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" class="form">
           <ng-template matStepLabel>Fill in the ride details</ng-template>
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <mat-label>Starting point</mat-label>
-              <input matInput placeholder="e.g. Rijeka" formControlName="startingPoint" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Destination</mat-label>
-              <input matInput placeholder="e.g. Split" formControlName="destination" required>
-            </mat-form-field>
-          </div>
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <mat-label>Max passengers</mat-label>
-              <input matInput type="number" min="1" max="10" placeholder="4" formControlName="maxPassengers" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Price</mat-label>
-              <input matInput type="number" min="1" max="999" step="0.01" placeholder="10€" formControlName="price" required>
-            </mat-form-field>
+          <div>
+
+            <div class="row">
+              <mat-form-field appearance="outline">
+                <mat-label>Starting point</mat-label>
+                <input matInput placeholder="e.g. Rijeka" formControlName="startingPoint" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Destination</mat-label>
+                <input matInput placeholder="e.g. Split" formControlName="destination" required>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field appearance="outline">
+                <mat-label>Max passengers</mat-label>
+                <input matInput type="number" min="1" max="10" placeholder="4" formControlName="maxPassengers" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" min="1" max="999" step="0.01" placeholder="10€" formControlName="price" required>
+              </mat-form-field>
+            </div>
           </div>
           <div>
             <button matButton matStepperNext>Next</button>
@@ -31,39 +34,42 @@
       </mat-step>
       <mat-step [stepControl]="secondFormGroup" label="When do you want to go?">
         <form [formGroup]="secondFormGroup" class="form">
-          <div class="row date-picker">
-            <mat-form-field appearance="outline">
-              <mat-label>Choose a date</mat-label>
-              <input id="date" matInput [matDatepicker]="picker" [min]="minDate" formControlName="date">
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <mat-label>Start time</mat-label>
-              <input
-                matInput
-                placeholder="11:00"
-                formControlName="startTime"
-                [matTimepicker]="starttimepicker"
-                required
-              >
-              <mat-timepicker #starttimepicker/>
-              <mat-timepicker-toggle [for]="starttimepicker" matSuffix/>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>End time</mat-label>
-              <input
-                matInput
-                placeholder="15:00"
-                formControlName="endTime"
-                [matTimepicker]="endtimepicker"
-                required
-              >
-              <mat-timepicker #endtimepicker/>
-              <mat-timepicker-toggle [for]="endtimepicker" matSuffix/>
-            </mat-form-field>
+          <div>
+
+            <div class="row date-picker">
+              <mat-form-field appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input id="date" matInput [matDatepicker]="picker" [min]="minDate" formControlName="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field appearance="outline">
+                <mat-label>Start time</mat-label>
+                <input
+                  matInput
+                  placeholder="11:00"
+                  formControlName="startTime"
+                  [matTimepicker]="starttimepicker"
+                  required
+                >
+                <mat-timepicker #starttimepicker/>
+                <mat-timepicker-toggle [for]="starttimepicker" matSuffix/>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>End time</mat-label>
+                <input
+                  matInput
+                  placeholder="15:00"
+                  formControlName="endTime"
+                  [matTimepicker]="endtimepicker"
+                  required
+                >
+                <mat-timepicker #endtimepicker/>
+                <mat-timepicker-toggle [for]="endtimepicker" matSuffix/>
+              </mat-form-field>
+            </div>
           </div>
           <div>
             <button matButton matStepperPrevious>Back</button>
@@ -73,10 +79,12 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button matButton matStepperPrevious>Back</button>
-          <button matButton (click)="onFinish($event)">Finish</button>
+        <div class="finish-tab">
+          <p>Congrats! You are ready to start your journey!</p>
+          <div>
+            <button matButton matStepperPrevious>Back</button>
+            <button matButton (click)="onFinish($event)">Finish</button>
+          </div>
         </div>
       </mat-step>
     </mat-stepper>
