@@ -14,7 +14,10 @@
       </div>
     </div>
     @if (userRating) {
-      <a class="link" href="">
+      <a
+        [routerLink]="['/user', user?.id, 'ratings']"
+        class="link"
+      >
         <div class="user-rating">
           <mat-icon>star</mat-icon>
           <p>{{userRating.toFixed(1)}}/5 - {{noOfRatings}} ratings</p>

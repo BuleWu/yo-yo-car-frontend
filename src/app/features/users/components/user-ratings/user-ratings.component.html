@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="ratings-container">
+  <h2 class="title">Ratings</h2>
+  <div class="ratings-wrapper">
+    <p class="paragraph-text user-rating">{{userRating}}/5</p>
+    <p class="paragraph-text">{{noOfRatings}} ratings</p>
+    <mat-divider></mat-divider>
+    <div class="ratings">
+      @for (rating of ratings; track rating.id) {
+        <div class="rating-item">
+          <a
+            class="user-link"
+            [routerLink]="['/user']"
+            [queryParams]="{ id: rating.rater?.id }"
+          >
+            <img [src]="rating.rater?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+            {{ rating.rater?.firstName }}
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </a>
+          <div class="rating-item__content">
+            <p class="description-text">{{rating.comment}}</p>
+            <p class="description-text">{{rating.createdAt | date: 'MMMM y' }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

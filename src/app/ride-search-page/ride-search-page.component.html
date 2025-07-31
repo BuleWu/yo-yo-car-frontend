@@ -2,6 +2,7 @@
 <div class="main-container">
   <app-ride-search class="ride-search slight-shadow"></app-ride-search>
   @if (rides$ | async; as rides) {
+    @if (rides.length !== 0) {
       <div class="search-results__header">
         <p class="secondary-text">{{ startingPoint }} → {{ destination }}</p>
         <p>{{rides.length}} transports available</p>
@@ -14,14 +15,15 @@
           ></app-ride-card>
         }
       </div>
-  } @else {
-    <div class="not-found">
-      <div class="text">
-        <p>No rides found</p>
-        <p class="description-text">Try again or check if you entered your trip details correctly</p>
+    } @else {
+      <div class="not-found">
+        <div class="text">
+          <p>No rides found</p>
+          <p class="description-text">Try again or check if you entered your trip details correctly</p>
+        </div>
+        <img src="assets/images/not_found.svg" alt="Image of an unhappy face alongside a person" height="300" width="300">
       </div>
-      <img src="assets/images/not_found.svg" alt="Image of an unhappy face alongside a person" height="300" width="300">
-    </div>
+    }
   }
 </div>
 <app-footer></app-footer>

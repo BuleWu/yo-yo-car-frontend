@@ -33,7 +33,7 @@
       <div class="driver-info">
         <a
           class="user-link"
-          [routerLink]="['/profile']"
+          [routerLink]="['/user']"
           [queryParams]="{ id: ride?.driver?.id }"
         >
           <div class="start">
@@ -63,7 +63,7 @@
           @for (passenger of ride?.passengers; track passenger.id) {
             <a
               class="user-link"
-              [routerLink]="['/profile']"
+              [routerLink]="['/user']"
               [queryParams]="{ id: passenger.id }"
             >
           <div class="start">
