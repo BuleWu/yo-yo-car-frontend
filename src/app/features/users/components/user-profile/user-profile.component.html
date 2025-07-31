@@ -22,5 +22,9 @@
         <mat-icon>arrow_forward_ios</mat-icon>
       </a>
     }
+    <a [href]=`mailto:${user?.email}` class="user-email">
+      <span>{{user?.email}}</span>
+      <mat-icon>mail</mat-icon>
+    </a>
   </div>
 </div>
