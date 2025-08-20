@@ -1,0 +1,35 @@
+<app-navbar></app-navbar> <!--TODO: use router outlet instead of instantiating navbar in multiple components-->
+<div class="ratings-container">
+  <h2 class="title">Chats</h2>
+  <div class="ratings-wrapper">
+    <mat-divider></mat-divider>
+    <div class="ratings">
+      @for (chat of chats; track chat.id) {
+        @if(chat.user1Id !== myUserId ? chat.user1 : chat.user2; as otherUser) {
+          <div class="rating-item">
+          <a
+            class="user-link"
+            [routerLink]="['/', ROUTES.CHATS, chat.id]"
+          >
+            <div class="start">
+              <div class="user-info">
+                <span class="text-emphasize">{{ otherUser.firstName }}</span>
+                <span class="text-emphasize">{{chat.ride.startingPoint}} → {{chat.ride.destination}}</span>
+                <span>{{chat.lastMessageAt | timeAgo }}</span>
+              </div>
+            </div>
+            <div class="end">
+              <img [src]="otherUser.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
+              <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+          </a>
+          <div class="rating-item__content">
+           <!-- <p class="description-text">{{rating.comment}}</p>
+            <p class="description-text">{{rating.createdAt | date: 'MMMM y' }}</p>-->
+          </div>
+        </div>
+        }
+      }
+    </div>
+  </div>
+</div>

@@ -8,19 +8,15 @@ import {UserProviderService} from '../../../features/users/user-provider-service
 import {NgStyle} from '@angular/common';
 import {Router} from '@angular/router';
 import {
-  MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog';
 import {User} from '../../models/user/user-models';
 import {
   EditProfileDialogComponent
 } from '../../../features/users/components/edit-profile-dialog/edit-profile-dialog.component';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import {take} from 'rxjs';
+import {ROUTES} from '../../enums/router.enum';
 
 @UntilDestroy()
 @Component({
@@ -58,7 +54,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this._userProviderService.getUserById(this._authenticationService.getUserId())
-      .pipe(untilDestroyed(this))
+      .pipe(
+        take(1),
+        untilDestroyed(this)
+      )
       .subscribe((user) => {
         this.user = user
       })
@@ -79,4 +78,6 @@ export class NavbarComponent implements OnInit {
       }
     })
   }
+
+  protected readonly ROUTES = ROUTES;
 }

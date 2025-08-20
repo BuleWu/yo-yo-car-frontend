@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import {Reservation} from '../../../../shared/models/reservation/reservation-models';
 import {deepObjSnakeToCamelCase} from '../../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
 import {ReservationStatusesEnum} from '../../enums/enum';
+import {environment} from '../../../../../environments/environment.development';
 
 export interface createReservationData {
   userId: string;
@@ -19,7 +20,7 @@ export interface updateReservationData {
 })
 export class ReservationProviderService {
 
-  private readonly apiUrl = 'http://localhost:8080/api/reservations';
+  private readonly apiUrl = `${environment.baseUrl}/api/reservations`;
 
   constructor(
     private _http: HttpClient

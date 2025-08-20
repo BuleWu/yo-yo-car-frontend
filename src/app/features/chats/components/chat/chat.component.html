@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="chat-container">
+  <div class="chat-wrapper">
+    <!-- Chat header -->
+    <div class="chat-header">
+      <a
+        class="back-link"
+        [routerLink]="['/', ROUTES.USER, myUserId, ROUTES.CHATS]"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+      <a
+        [routerLink]="['/user']"
+        [queryParams]="{ id: otherUser?.id }"
+        class="user-link"
+      >
+        <img [src]="otherUser?.profilePicture" alt="User avatar" class="chat-avatar"/>
+        <div class="chat-user-info">
+          <h2>{{ otherUser?.firstName }} {{ otherUser?.lastName }}</h2>
+          <span class="chat-status">Active now</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" #messagesContainer>
+      @for (msg of messages; track msg.id) {
+        <div [ngClass]="{'message-self': msg.senderId === myUserId, 'message-other': msg.senderId !== myUserId}">
+          <p class="message-content">{{ msg.content }}</p>
+          <span class="message-time">{{ msg.createdAt | date:'shortTime' }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Input box -->
+    <div class="chat-input">
+      <input
+        matInput
+        [(ngModel)]="newMessage"
+        placeholder="Type a message..."
+        (keyup.enter)="sendMessage()"
+        class="input-box"
+      />
+
+      <button matIconButton class="send-btn" (click)="sendMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

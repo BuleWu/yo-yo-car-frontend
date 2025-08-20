@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../auth/services/authentication.service'
 import {map, Observable} from 'rxjs';
 import {Rating} from '../../../shared/models/rating/rating-models';
 import {deepObjSnakeToCamelCase} from '../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
+import {environment} from '../../../../environments/environment.development';
 
 export interface createRatingFormData { // TODO: move this somewhere else
   value: number;
@@ -17,28 +18,27 @@ export class RatingProviderService {
 
   constructor(
     private _httpClient: HttpClient,
-    private _authenticationService: AuthenticationService
   ) { }
 
-  baseUrl = "http://localhost:8080";
+  private readonly apiUrl = `${environment}/api/ratings`;
 
   public getAllRatings(): Observable<Rating[]> {
-    return this._httpClient.get(`${this.baseUrl}/api/ratings`)
+    return this._httpClient.get(`${this.apiUrl}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public getRatingById(id: string): Observable<Rating> {
-    return this._httpClient.get<Rating>(`${this.baseUrl}/api/ratings/${id}`)
+    return this._httpClient.get<Rating>(`${this.apiUrl}/${id}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public getRatingsByUserId(userId: string): Observable<Rating[]> {
-    return this._httpClient.get<Rating[]>(`${this.baseUrl}/api/ratings/users/${userId}`)
+    return this._httpClient.get<Rating[]>(`${this.apiUrl}/users/${userId}`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public createRating(formData: createRatingFormData, raterId: string, ratedUserId: string, rideId: string): Observable<Rating> {
-    return this._httpClient.post<Rating>(`${this.baseUrl}/api/ratings`, {
+    return this._httpClient.post<Rating>(`${this.apiUrl}`, {
       ...formData,
       rater_id: raterId,
       rated_user_id: ratedUserId,
@@ -48,13 +48,13 @@ export class RatingProviderService {
   }
 
   public updateRating(id: string, formData: createRatingFormData): Observable<Rating> {
-    return this._httpClient.put<Rating>(`${this.baseUrl}/api/ratings/${id}`, {
+    return this._httpClient.put<Rating>(`${this.apiUrl}/${id}`, {
       ...formData,
     })
       .pipe(map(deepObjSnakeToCamelCase));
   }
 
   public deleteRating(id: string): Observable<void> {
-    return this._httpClient.delete<void>(`${this.baseUrl}/api/ratings/${id}`);
+    return this._httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

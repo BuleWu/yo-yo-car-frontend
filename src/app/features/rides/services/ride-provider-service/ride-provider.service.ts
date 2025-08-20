@@ -6,6 +6,7 @@ import {AuthenticationService} from '../../../auth/services/authentication.servi
 import {deepObjSnakeToCamelCase} from '../../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
 import {RideSearchFilter} from '../../../../ride-search-page/enums/enum';
 import {Reservation} from '../../../../shared/models/reservation/reservation-models';
+import {environment} from '../../../../../environments/environment.development';
 
 export interface SearchQuery { // TODO: move somewhere else
   filter: RideSearchFilter;
@@ -43,8 +44,7 @@ export class RideProviderService {
     private _http: HttpClient,
     private _authenticationService: AuthenticationService
   ) { }
-
-  private readonly apiUrl = "http://localhost:8080/api/rides";
+  private readonly apiUrl = `${environment}/api/rides`;
 
   public getAllRides(): Observable<Ride[]> {
     return this._http.get<Ride[]>(`${this.apiUrl}`)

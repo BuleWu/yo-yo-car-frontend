@@ -23,6 +23,10 @@
             <span>Edit profile</span>
             <mat-icon iconPositionEnd>edit</mat-icon>
           </button>
+          <a [href]="`${ROUTES.USER}/${user?.id}/${ROUTES.CHATS}`" matButton>
+            <span>Chats</span>
+            <mat-icon iconPositionEnd>chat</mat-icon>
+          </a>
           <button matButton="filled" (click)="logOutHandler()">
             <span>Log out</span>
             <mat-icon iconPositionEnd>logout</mat-icon>
