@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import {User} from '../../../shared/models/user/user-models';
 import {deepObjSnakeToCamelCase} from '../../../common/generic/utils/data-manipulation/deep-obj-snake-to-camel-case';
 import {Reservation} from '../../../shared/models/reservation/reservation-models';
+import {environment} from '../../../../environments/environment.development';
 
 export interface UpdateUserData {
   firstName: string;
@@ -16,7 +17,7 @@ export interface UpdateUserData {
 })
 export class UserProviderService {
 
-  private readonly apiUrl = 'http://localhost:8080/api/users';
+  private readonly apiUrl = `${environment.baseUrl}/api/users`;
 
   constructor(
     private _http: HttpClient

@@ -15,5 +15,6 @@ export enum ROUTES {
   SEARCH = 'search',
   EDIT = 'edit',
   USER = 'user',
-  RATINGS = 'ratings'
+  RATINGS = 'ratings',
+  CHATS = 'chats'
 }

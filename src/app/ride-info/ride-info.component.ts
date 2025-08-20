@@ -4,7 +4,7 @@ import {RideProviderService} from '../features/rides/services/ride-provider-serv
 import {FooterComponent} from '../shared/components/footer/footer.component';
 import {Ride} from '../shared/models/ride/ride-models';
 import {DatePipe} from '@angular/common';
-import {DurationPipe} from '../shared/pipes/duration.pipe';
+import {DurationPipe} from '../shared/pipes/duration-pipe/duration.pipe';
 import {RatingProviderService} from '../features/ratings/services/rating-provider.service';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
@@ -18,7 +18,9 @@ import {AuthenticationService} from '../features/auth/services/authentication.se
 import {Reservation} from '../shared/models/reservation/reservation-models';
 import {ReservationIconsMapping, ReservationStatusesEnum} from '../features/reservations/enums/enum';
 import {UserProviderService} from '../features/users/user-provider-service/user-provider.service';
-import {filter, from, map, mergeMap, switchMap, toArray} from 'rxjs';
+import {debounceTime, filter, from, map, mergeMap, switchMap, take, toArray} from 'rxjs';
+import {ROUTES} from '../shared/enums/router.enum';
+import {ChatProviderService} from '../features/chats/services/chat-provider-service/chat-provider.service';
 
 @UntilDestroy()
 @Component({
@@ -52,7 +54,8 @@ export class RideInfoComponent implements OnInit {
     private _ratingProviderService: RatingProviderService,
     private _reservationProviderService: ReservationProviderService,
     private _authenticationService: AuthenticationService,
-    private _userProviderService: UserProviderService
+    private _userProviderService: UserProviderService,
+    private _chatProviderService: ChatProviderService
   ) {
   }
 
@@ -121,7 +124,14 @@ export class RideInfoComponent implements OnInit {
   }
 
   public startChat(): void {
-
+    this._chatProviderService.createChat(this._authenticationService.getUserId(), this.ride?.driverId as string, this.rideId)
+      .pipe(
+        take(1),
+        debounceTime(1000)
+      )
+      .subscribe((chat) => {
+        this._router.navigateByUrl(`${ROUTES.CHATS}/${chat.id}`)
+      })
   }
 
   public reservationHandler() {

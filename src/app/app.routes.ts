@@ -12,6 +12,8 @@ import {RideInfoComponent} from './ride-info/ride-info.component';
 import {PostRideComponent} from './features/rides/components/post-ride/post-ride.component';
 import {UserRatingsComponent} from './features/users/components/user-ratings/user-ratings.component';
 import {UserProfileComponent} from './features/users/components/user-profile/user-profile.component';
+import {ChatComponent} from './features/chats/components/chat/chat.component';
+import {UserChatsComponent} from './features/chats/components/user-chats/user-chats.component';
 
 export const routes: Routes = [
   {
@@ -75,9 +77,19 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'user/:id/ratings',
+    path: `${ROUTES.USER}/:id/${ROUTES.RATINGS}`,
     component: UserRatingsComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: `${ROUTES.USER}/:id/${ROUTES.CHATS}`,
+    component: UserChatsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: `${ROUTES.CHATS}/:id`,
+    component: ChatComponent,
+    canActivate: [authGuard]
   },
   {
     path:'**',
