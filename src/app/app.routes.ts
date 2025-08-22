@@ -14,6 +14,7 @@ import {UserRatingsComponent} from './features/users/components/user-ratings/use
 import {UserProfileComponent} from './features/users/components/user-profile/user-profile.component';
 import {ChatComponent} from './features/chats/components/chat/chat.component';
 import {UserChatsComponent} from './features/chats/components/user-chats/user-chats.component';
+import {UserRidesComponent} from './features/rides/components/user-rides/user-rides.component';
 
 export const routes: Routes = [
   {
@@ -77,13 +78,28 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: `${ROUTES.USER}/:id/${ROUTES.RATINGS}`,
-    component: UserRatingsComponent,
-    canActivate: [authGuard],
+    path: `${ROUTES.USER}/:id`,
+    children: [
+      {
+        path: ROUTES.RATINGS,
+        component: UserRatingsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: ROUTES.CHATS,
+        component: UserChatsComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: ROUTES.RIDES,
+        component: UserRidesComponent,
+        canActivate: [authGuard],
+      }
+    ]
   },
   {
-    path: `${ROUTES.USER}/:id/${ROUTES.CHATS}`,
-    component: UserChatsComponent,
+    path: `${ROUTES.USER}/:id/${ROUTES.RIDES}`,
+    component: UserRidesComponent,
     canActivate: [authGuard],
   },
   {

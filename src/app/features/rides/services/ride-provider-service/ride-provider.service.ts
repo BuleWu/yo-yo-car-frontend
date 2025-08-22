@@ -42,12 +42,11 @@ export class RideProviderService {
 
   constructor(
     private _http: HttpClient,
-    private _authenticationService: AuthenticationService
   ) { }
-  private readonly apiUrl = `${environment}/api/rides`;
+  private readonly apiUrl = `${environment.baseUrl}/api/rides`;
 
-  public getAllRides(): Observable<Ride[]> {
-    return this._http.get<Ride[]>(`${this.apiUrl}`)
+  public getUserRides(userId: string): Observable<Ride[]> {
+    return this._http.get<Ride[]>(`${environment.baseUrl}/api/user/${userId}/rides`)
       .pipe(map(deepObjSnakeToCamelCase));
   }
 

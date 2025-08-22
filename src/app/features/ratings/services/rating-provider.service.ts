@@ -20,7 +20,7 @@ export class RatingProviderService {
     private _httpClient: HttpClient,
   ) { }
 
-  private readonly apiUrl = `${environment}/api/ratings`;
+  private readonly apiUrl = `${environment.baseUrl}/api/ratings`;
 
   public getAllRatings(): Observable<Rating[]> {
     return this._httpClient.get(`${this.apiUrl}`)

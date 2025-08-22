@@ -1,0 +1,28 @@
+@import "helpers";
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-ride-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: pixel-to-rem(10);
+
+  .row {
+    display: flex;
+    width: 70%;
+    gap: pixel-to-rem(10);
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+.button-section {
+  width: 70%;
+}

@@ -1,12 +1,12 @@
 <app-navbar></app-navbar> <!--TODO: use router outlet instead of instantiating navbar in multiple components-->
-<div class="ratings-container">
+<div class="chats-container">
   <h2 class="title">Chats</h2>
-  <div class="ratings-wrapper">
+  <div class="chats-wrapper">
     <mat-divider></mat-divider>
-    <div class="ratings">
+    <div class="chats">
       @for (chat of chats; track chat.id) {
         @if(chat.user1Id !== myUserId ? chat.user1 : chat.user2; as otherUser) {
-          <div class="rating-item">
+          <div class="chat-item">
           <a
             class="user-link"
             [routerLink]="['/', ROUTES.CHATS, chat.id]"

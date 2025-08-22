@@ -23,6 +23,10 @@
             <span>Edit profile</span>
             <mat-icon iconPositionEnd>edit</mat-icon>
           </button>
+          <a [href]="`${ROUTES.USER}/${user?.id}/${ROUTES.RIDES}`" matButton>
+            <span>Rides</span>
+            <mat-icon iconPositionEnd>directions_car</mat-icon>
+          </a>
           <a [href]="`${ROUTES.USER}/${user?.id}/${ROUTES.CHATS}`" matButton>
             <span>Chats</span>
             <mat-icon iconPositionEnd>chat</mat-icon>

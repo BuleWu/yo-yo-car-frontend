@@ -50,10 +50,12 @@
           </div>
           <mat-icon>arrow_forward_ios</mat-icon>
         </a>
-        <button matButton (click)="startChat()" class="chat-btn">
-          <span>Start a chat with {{ride?.driver?.firstName}}</span>
-          <mat-icon iconPositionEnd>chat_bubble</mat-icon>
-        </button>
+        @if(!isMyRide) {
+          <button matButton (click)="startChat()" class="chat-btn">
+            <span>Start a chat with {{ride?.driver?.firstName}}</span>
+            <mat-icon iconPositionEnd>chat_bubble</mat-icon>
+          </button>
+        }
       </div>
       <div class="passenger-info">
         @if(!ride?.passengers || !ride?.passengers?.length) {
@@ -129,24 +131,30 @@
         <p>{{ride?.price}}€</p>
       </div>
 
-      <button matButton="filled" class="reservation-btn" (click)="reservationHandler()" [disabled]="isReservationLocked()">
-        @if(hasReservation) {
-          <span>You have another reservation on this date</span>
-        } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
-          <span>Reservation pending</span>
-        } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.CONFIRMED) {
-          <span>Cancel reservation</span>
-        } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.CANCELLED) {
-          <span>Reservation cancelled</span>
-        } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.COMPLETED) {
-          <span>Ride completed</span>
-        } @else {
-          <span>Send a reservation request</span>
-        }
+      @if (!isMyRide) {
+        <button matButton="filled" (click)="reservationHandler()" [disabled]="isReservationLocked()">
+          @if(hasReservation) {
+            <span>You have another reservation on this date</span>
+          } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.PENDING) {
+            <span>Reservation pending</span>
+          } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.CONFIRMED) {
+            <span>Cancel reservation</span>
+          } @else if(!!userReservation && userReservation.status === ReservationStatusesEnum.CANCELLED) {
+            <span>Reservation cancelled</span>
+          } @else if (!!userReservation && userReservation.status === ReservationStatusesEnum.COMPLETED) {
+            <span>Ride completed</span>
+          } @else {
+            <span>Send a reservation request</span>
+          }
 
-        <mat-icon iconPositionEnd>{{ reservationIcon }}</mat-icon>
-      </button>
-
+          <mat-icon iconPositionEnd>{{ reservationIcon }}</mat-icon>
+        </button>
+      } @else {
+        <button matButton="filled" (click)="onEditRide()">
+          <span>Edit ride</span>
+          <mat-icon iconPositionEnd>edit</mat-icon>
+        </button>
+      }
     </div>
   </div>
 </div>

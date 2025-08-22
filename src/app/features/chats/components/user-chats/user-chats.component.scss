@@ -1,7 +1,7 @@
 @import "main_palette";
 @import "helpers";
 
-.ratings-container {
+.chats-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,11 +17,6 @@
     margin: pixel-to-rem(10);
     color: $text-secondary;
     font-weight: bold;
-  }
-
-  .user-rating {
-    font-size: pixel-to-rem(50);
-    color: $text-tertiary;
   }
 
   .description-text {
@@ -72,19 +67,19 @@
     border-radius: pixel-to-rem(99);
   }
 
-  .ratings-wrapper {
+  .chats-wrapper {
     display: flex;
     width: 45%;
     flex-direction: column;
     font-size: pixel-to-rem(18);
 
-    .ratings {
+    .chats {
       display: flex;
       flex-direction: column;
       margin-top: pixel-to-rem(20);
       gap: pixel-to-rem(10);
 
-      .rating-item {
+      .chat-item {
         display: flex;
         flex-direction: column;
         width: 100%;

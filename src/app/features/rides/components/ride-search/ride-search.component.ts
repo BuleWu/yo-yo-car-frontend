@@ -48,7 +48,7 @@ export class RideSearchComponent implements OnInit {
       this.searchForm.setValue({
         startingPoint: startingPoint,
         destination: destination,
-        date: date,
+        date: new Date(date),
       });
     }
   }
