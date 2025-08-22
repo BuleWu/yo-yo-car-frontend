@@ -98,11 +98,6 @@ export const routes: Routes = [
     ]
   },
   {
-    path: `${ROUTES.USER}/:id/${ROUTES.RIDES}`,
-    component: UserRidesComponent,
-    canActivate: [authGuard],
-  },
-  {
     path: `${ROUTES.CHATS}/:id`,
     component: ChatComponent,
     canActivate: [authGuard]

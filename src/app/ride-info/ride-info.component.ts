@@ -183,7 +183,9 @@ export class RideInfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ride = result;
+      if(result.status === 'success') {
+        this.ride = result.updatedRide;
+      }
     })
   }
 

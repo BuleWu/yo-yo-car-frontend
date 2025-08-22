@@ -1,8 +1,5 @@
-import {Component, inject, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef, MatDialogTitle} from '@angular/material/dialog';
-import {
-  DialogData,
-} from '../../../users/components/edit-profile-dialog/edit-profile-dialog.component';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
@@ -53,7 +50,7 @@ export class EditRideDialogComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.initialFormValue = this.editRideForm.value;
+    this.initialFormValue = this.normalizeFormValue(this.editRideForm.value);
   }
 
   private initForm(): void{
@@ -68,8 +65,35 @@ export class EditRideDialogComponent implements OnInit {
     })
   }
 
+  private normalizeFormValue(value: any): any {
+    return {
+      startingPoint: value.startingPoint?.trim() || '',
+      destination: value.destination?.trim() || '',
+      startTime: value.startTime instanceof Date ? value.startTime.toISOString() : value.startTime,
+      endTime: value.endTime instanceof Date ? value.endTime.toISOString() : value.endTime,
+      maxPassengers: Number(value.maxPassengers),
+      date: value.date instanceof Date ? value.date.toISOString() : value.date,
+      price: Number(value.price),
+    };
+  }
+
   get hasFormChanged(): boolean {
-    return JSON.stringify(this.editRideForm.value) !== JSON.stringify(this.initialFormValue);
+    if (!this.initialFormValue) {
+      return false;
+    }
+
+    const currentValue = this.normalizeFormValue(this.editRideForm.value);
+
+    // Compare each field
+    return (
+      currentValue.startingPoint !== this.initialFormValue.startingPoint ||
+      currentValue.destination !== this.initialFormValue.destination ||
+      currentValue.startTime !== this.initialFormValue.startTime ||
+      currentValue.endTime !== this.initialFormValue.endTime ||
+      currentValue.maxPassengers !== this.initialFormValue.maxPassengers ||
+      currentValue.date !== this.initialFormValue.date ||
+      currentValue.price !== this.initialFormValue.price
+    );
   }
 
   onSubmit() {
@@ -93,7 +117,8 @@ export class EditRideDialogComponent implements OnInit {
           panelClass: ['success-snackbar']
         });
         this.dialogRef.close({
-          ...updatedRide,
+          status: 'success',
+          updatedRide: updatedRide,
         });
       },
       error: err => {
