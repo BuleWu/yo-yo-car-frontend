@@ -1,0 +1,50 @@
+<app-navbar></app-navbar> <!--TODO: use router outlet-->
+<div class="rides-container">
+  <h2 class="title">Rides</h2>
+  <div class="rides-wrapper">
+    <mat-divider></mat-divider>
+    <div class="rides">
+      @if (!rides.length) {
+        <div class="no-rides">
+          <div class="text">
+            <p>No rides yet</p>
+            <p class="description-text">You haven't posted any rides yet. <br>Click the "Post a ride button" to get started!</p>
+          </div>
+          <img src="assets/images/not_found.svg" alt="Image of an unhappy face alongside a person" height="300" width="300">
+        </div>
+      } @else {
+        @for (ride of rides; track ride.id) {
+          <a
+            class="user-link"
+            [routerLink]="['/', ROUTES.RIDES, ROUTES.RIDE]"
+            [queryParams]="{id: ride.id}"
+          >
+            <div class="start">
+              <div class="ride-info">
+                <span>{{ride.finished ? 'Finished' : ''}}</span>
+                <div class="from-to">
+                  <div class="point">
+                    <p>{{ride.startingPoint}}</p>
+                    <p>{{ride.startTime | date: 'HH:mm'}}</p>
+                  </div>
+                  <span>→</span>
+                  <div class="point">
+                    <p>{{ride.destination}}</p>
+                    <p>{{ride.endTime | date: 'HH:mm'}}</p>
+                  </div>
+                </div>
+                <span>{{ride.date | date: 'EEEE, d MMMM'}}</span>
+              </div>
+            </div>
+            <div class="end">
+              @if(ride.passengers?.length) {
+                <span>No. of passengers: {{ride.passengers?.length}}</span>
+              }
+              <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+          </a>
+      }
+      }
+    </div>
+  </div>
+</div>

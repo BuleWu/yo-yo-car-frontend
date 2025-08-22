@@ -21,6 +21,8 @@ import {UserProviderService} from '../features/users/user-provider-service/user-
 import {debounceTime, filter, from, map, mergeMap, switchMap, take, toArray} from 'rxjs';
 import {ROUTES} from '../shared/enums/router.enum';
 import {ChatProviderService} from '../features/chats/services/chat-provider-service/chat-provider.service';
+import {MatDialog} from '@angular/material/dialog';
+import {EditRideDialogComponent} from '../features/rides/dialogs/edit-ride-dialog/edit-ride-dialog.component';
 
 @UntilDestroy()
 @Component({
@@ -46,6 +48,8 @@ export class RideInfoComponent implements OnInit {
   public rideId!: string;
   public reservationIcon: string = ReservationIconsMapping[ReservationStatusesEnum.INITIAL];
   public hasReservation = false;
+  public myUserId!: string;
+  public isMyRide = false;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -55,26 +59,30 @@ export class RideInfoComponent implements OnInit {
     private _reservationProviderService: ReservationProviderService,
     private _authenticationService: AuthenticationService,
     private _userProviderService: UserProviderService,
-    private _chatProviderService: ChatProviderService
+    private _chatProviderService: ChatProviderService,
+    private _dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
+    this.myUserId = this._authenticationService.getUserId();
     this.rideId = this._activatedRoute.snapshot.queryParamMap.get('id') as string;
 
     // get ride data
     this._rideProviderService.getRideById(this.rideId)
-      .pipe(untilDestroyed(this))
-      .subscribe({
-        next: (ride) => {
+      .pipe(
+        untilDestroyed(this),
+        switchMap((ride) => {
           this.ride = ride;
-          this._ratingProviderService.getRatingsByUserId(this.ride.driverId as string)
-            .pipe(untilDestroyed(this))
-            .subscribe((ratings) => {
-              const sum = ratings.reduce((acc, curr) => acc + curr.value, 0)
-              this.noOfRatings = ratings.length;
-              this.userRating = ratings.length ? sum / this.noOfRatings : 0;
-            })
+          this.isMyRide = this.myUserId === this.ride?.driverId;
+          return this._ratingProviderService.getRatingsByUserId(this.ride.driverId as string);
+        })
+      )
+      .subscribe({
+        next: (ratings) => {
+          const sum = ratings.reduce((acc, curr) => acc + curr.value, 0)
+          this.noOfRatings = ratings.length;
+          this.userRating = ratings.length ? sum / this.noOfRatings : 0;
         },
         error: (err) => {
           console.error(err);
@@ -88,7 +96,7 @@ export class RideInfoComponent implements OnInit {
       .subscribe((reservations) => {
         if(reservations) {
           reservations.map((reservation) => {
-            if(reservation.userId === this._authenticationService.getUserId()) {
+            if(reservation.userId === this.myUserId) {
               this.userReservation = reservation;
               if(this.userReservation) {
                 this.reservationIcon = ReservationIconsMapping[this.userReservation?.status ?? ReservationStatusesEnum.INITIAL];
@@ -99,7 +107,7 @@ export class RideInfoComponent implements OnInit {
       })
 
     // check if user already has a reservation on another ride
-    this._userProviderService.getUserReservations(this._authenticationService.getUserId())
+    this._userProviderService.getUserReservations(this.myUserId)
       .pipe(
         map((reservations) => reservations.filter(reservation => reservation.rideId !== this.rideId)),
         switchMap((reservations) => from(reservations)),
@@ -124,7 +132,7 @@ export class RideInfoComponent implements OnInit {
   }
 
   public startChat(): void {
-    this._chatProviderService.createChat(this._authenticationService.getUserId(), this.ride?.driverId as string, this.rideId)
+    this._chatProviderService.createChat(this.myUserId, this.ride?.driverId as string, this.rideId)
       .pipe(
         take(1),
         debounceTime(1000)
@@ -140,7 +148,7 @@ export class RideInfoComponent implements OnInit {
     if(!this.userReservation) {
       this._reservationProviderService.createReservation(
         {
-          userId: this._authenticationService.getUserId(),
+          userId: this.myUserId,
           rideId: this.rideId
         }
       )
@@ -164,6 +172,21 @@ export class RideInfoComponent implements OnInit {
     return this.hasReservation  || (status === ReservationStatusesEnum.PENDING ||
       status === ReservationStatusesEnum.CANCELLED ||
       status === ReservationStatusesEnum.COMPLETED);
+  }
+
+  public onEditRide(): void {
+    const dialogRef = this._dialog.open(EditRideDialogComponent, {
+      minHeight: '70vh',
+      maxWidth: 'none',
+      width: '60vw',
+      data: this.ride
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status === 'success') {
+        this.ride = result.updatedRide;
+      }
+    })
   }
 
   protected readonly ReservationStatusesEnum = ReservationStatusesEnum;

@@ -1,7 +1,7 @@
 @import "main_palette";
 @import "helpers";
 
-.chats-container {
+.rides-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,8 @@
     text-decoration: none;
     color: $text-primary;
     border-radius: pixel-to-rem(99);
-    padding: pixel-to-rem(15) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
+    margin-bottom: pixel-to-rem(10);
+    padding: pixel-to-rem(10) pixel-to-rem(40) pixel-to-rem(10) pixel-to-rem(50);
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
@@ -48,16 +49,31 @@
     .end {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: pixel-to-rem(20);
     }
 
-    .user-info {
+    .ride-info {
       display: flex;
       flex-direction: column;
       align-items: start;
+      gap: pixel-to-rem(5);
 
-      .first-name {
-        margin-bottom: pixel-to-rem(5);
+      .from-to {
+        display: flex;
+        align-items: center;
+        gap: pixel-to-rem(10);
+        font-weight: 600;
+
+        .point {
+          display: flex;
+          flex-direction: column;
+          gap: pixel-to-rem(5);
+        }
+
+        p {
+          margin: 0;
+        }
       }
     }
 
@@ -67,34 +83,41 @@
     border-radius: pixel-to-rem(99);
   }
 
-  .chats-wrapper {
+  .rides-wrapper {
     display: flex;
     width: 45%;
     flex-direction: column;
     font-size: pixel-to-rem(18);
 
-    .chats {
+    .rides {
       display: flex;
       flex-direction: column;
+      align-items: center;
       margin-top: pixel-to-rem(20);
       gap: pixel-to-rem(10);
-
-      .chat-item {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-
-        &__content {
-          display: flex;
-          flex-direction: column;
-          margin-top: pixel-to-rem(15);
-          gap: pixel-to-rem(5);
-        }
-      }
     }
   }
 }
 
 .text-emphasize {
   font-weight: 600;
+}
+
+.no-rides {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: pixel-to-rem(30);
+
+  .text {
+    width: 35%;
+    .description-text {
+      color: $text-primary;
+      font-size: pixel-to-rem(18);
+    }
+  }
 }

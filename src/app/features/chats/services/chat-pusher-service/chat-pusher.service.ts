@@ -38,6 +38,7 @@ export class ChatPusherService {
   subscribeToChat(chatId: string): void {
     if (!this.pusher) return;
 
+
     const channel = this.pusher.subscribe(`chat-${chatId}`);
 
     channel.bind('send-message', (data: any) => {
@@ -59,7 +60,6 @@ export class ChatPusherService {
       .pipe(map(deepObjSnakeToCamelCase))
       .subscribe((msgs) => {
         // If offset is 0, replace; otherwise append for infinite scroll
-        console.log('Messagees: ', msgs);
         if (offset === 0) {
           this.messagesSubject.next(msgs);
         } else {
@@ -74,7 +74,6 @@ export class ChatPusherService {
     const current = this.messagesSubject.value;
     this.messagesSubject.next([...current, message]);
     if(message.senderId === this._authenticationService.getUserId()) {
-      console.log('Scroll to bottom...');
       this.scrollToBottomSubject.next(null);
     }
   }
