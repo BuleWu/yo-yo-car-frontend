@@ -1,7 +1,7 @@
 @import "main_palette";
 @import "helpers";
 
-.chats-container {
+.ratings-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,19 +56,19 @@
     border-radius: pixel-to-rem(99);
   }
 
-  .chats-wrapper {
+  .ratings-wrapper {
     display: flex;
     width: 45%;
     flex-direction: column;
     font-size: pixel-to-rem(18);
 
-    .chats {
+    .ratings {
       display: flex;
       flex-direction: column;
       margin-top: pixel-to-rem(20);
       gap: pixel-to-rem(10);
 
-      .chat-item {
+      .rating-item {
         display: flex;
         flex-direction: column;
         width: 100%;

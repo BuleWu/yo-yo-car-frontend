@@ -38,8 +38,10 @@ export class ChatPusherService {
   subscribeToChat(chatId: string): void {
     if (!this.pusher) return;
 
-
-    const channel = this.pusher.subscribe(`chat-${chatId}`);
+    let channel = this.pusher.channel(`chat-${chatId}`);
+    if (!channel) {
+      channel = this.pusher.subscribe(`chat-${chatId}`);
+    }
 
     channel.bind('send-message', (data: any) => {
       const newMsg: Message = {
