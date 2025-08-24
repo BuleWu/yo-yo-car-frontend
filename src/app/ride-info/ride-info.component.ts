@@ -23,6 +23,7 @@ import {ROUTES} from '../shared/enums/router.enum';
 import {ChatProviderService} from '../features/chats/services/chat-provider-service/chat-provider.service';
 import {MatDialog} from '@angular/material/dialog';
 import {EditRideDialogComponent} from '../features/rides/dialogs/edit-ride-dialog/edit-ride-dialog.component';
+import {RideStatusesEnum} from '../features/rides/enums/enum';
 
 @UntilDestroy()
 @Component({
@@ -191,4 +192,5 @@ export class RideInfoComponent implements OnInit {
 
   protected readonly ReservationStatusesEnum = ReservationStatusesEnum;
   protected readonly ReservationIconsMapping = ReservationIconsMapping;
+  protected readonly RideStatusesEnum = RideStatusesEnum;
 }

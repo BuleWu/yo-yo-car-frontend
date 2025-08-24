@@ -10,6 +10,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {Ride} from '../../../../shared/models/ride/ride-models';
 import {DatePipe} from '@angular/common';
 import {AuthenticationService} from '../../../auth/services/authentication.service';
+import {RideStatusesEnum} from "../../enums/enum";
 
 @UntilDestroy()
 @Component({
@@ -43,4 +44,6 @@ export class UserRidesComponent implements OnInit {
       )
       .subscribe((rides) => this.rides = rides)
   }
+
+    protected readonly RideStatusesEnum = RideStatusesEnum;
 }

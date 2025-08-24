@@ -9,6 +9,7 @@ import {Ride} from '../../../../shared/models/ride/ride-models';
 import {MatTimepicker, MatTimepickerInput, MatTimepickerToggle} from '@angular/material/timepicker';
 import {RideProviderService} from '../../services/ride-provider-service/ride-provider.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {RideStatusesEnum} from "../../enums/enum";
 
 @Component({
   selector: 'app-edit-ride-dialog',
@@ -140,5 +141,21 @@ export class EditRideDialogComponent implements OnInit {
     const timeObj = new Date(time);
     combined.setHours(timeObj.getHours(), timeObj.getMinutes(), 0, 0);
     return combined;
+  }
+
+  public onFinish() {
+    this._rideProviderService.finishRide(this.data.id)
+      .subscribe({
+        next: () => {
+
+          this.dialogRef.close({
+            status: 'success',
+            updatedRide: {
+              ...this.data,
+              status: RideStatusesEnum.FINISHED
+            }
+          });
+        }
+      })
   }
 }

@@ -24,5 +24,7 @@
 }
 
 .button-section {
+  display: flex;
+  gap: pixel-to-rem(10);
   width: 70%;
 }

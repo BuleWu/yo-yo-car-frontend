@@ -15,6 +15,7 @@ import {UserProfileComponent} from './features/users/components/user-profile/use
 import {ChatComponent} from './features/chats/components/chat/chat.component';
 import {UserChatsComponent} from './features/chats/components/user-chats/user-chats.component';
 import {UserRidesComponent} from './features/rides/components/user-rides/user-rides.component';
+import {LeaveRatingComponent} from './features/ratings/components/leave-rating/leave-rating.component';
 
 export const routes: Routes = [
   {
@@ -94,12 +95,17 @@ export const routes: Routes = [
         path: ROUTES.RIDES,
         component: UserRidesComponent,
         canActivate: [authGuard],
-      }
+      },
     ]
   },
   {
     path: `${ROUTES.CHATS}/:id`,
     component: ChatComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: `${ROUTES.USERS}/${ROUTES.LEAVE_RATING}`,
+    loadComponent: () => import('./features/ratings/components/leave-rating/leave-rating.component').then(m => m.LeaveRatingComponent),
     canActivate: [authGuard]
   },
   {
