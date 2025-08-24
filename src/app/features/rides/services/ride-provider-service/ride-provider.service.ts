@@ -91,4 +91,8 @@ export class RideProviderService {
     return this._http.get<Reservation[]>(`${this.apiUrl}/${id}/reservations`)
       .pipe(map((res) => deepObjSnakeToCamelCase(res)));
   }
+
+  public finishRide(rideId: string): Observable<any> {
+    return this._http.patch(`${this.apiUrl}/${rideId}/finish`, null);
+  }
 }

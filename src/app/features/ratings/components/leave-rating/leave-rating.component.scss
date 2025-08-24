@@ -1,0 +1,50 @@
+@import "helpers";
+@import "main_palette";
+
+.leave-rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    flex-direction: column;
+    width: 70%;
+    border-radius: $border-radius;
+    box-shadow: 0 pixel-to-rem(0) pixel-to-rem(6) pixel-to-rem(0) rgba(0, 0, 0, 0.1);
+
+    .title {
+      font-size: pixel-to-rem(30);
+      color: $text-primary;
+    }
+  }
+
+  .rating-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    flex-direction: column;
+    width: 70%;
+    gap: pixel-to-rem(40);
+
+    mat-form-field {
+      width: 80%;
+    }
+
+    .star-container {
+      display: flex;
+      height: 10%;
+    }
+    .button-section {
+      display: flex;
+      width: 80%;
+      align-items: start;
+      justify-content: start;
+    }
+  }
+}

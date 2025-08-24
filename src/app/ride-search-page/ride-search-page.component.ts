@@ -63,7 +63,7 @@ export class RideSearchPageComponent implements OnInit {
         ])
           .pipe(
             map((rides) =>
-              rides?.filter((ride) => ride.driverId !== this._authenticationService.getUserId()) ?? []
+              rides?.filter((ride) => ((ride.driverId !== this._authenticationService.getUserId())) && (new Date(ride.startTime) > new Date())) ?? []
             )
           )
     })

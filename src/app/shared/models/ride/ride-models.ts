@@ -11,6 +11,6 @@ export interface Ride {
   driver: User;
   date: string;
   passengers: User[];
-  finished: boolean;
+  status: string;
   maxPassengers: number;
 }

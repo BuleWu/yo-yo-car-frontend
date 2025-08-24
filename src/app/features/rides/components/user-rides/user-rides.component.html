@@ -21,7 +21,7 @@
           >
             <div class="start">
               <div class="ride-info">
-                <span>{{ride.finished ? 'Finished' : ''}}</span>
+                <span>{{ride.status === RideStatusesEnum.FINISHED ? 'Finished' : ''}}</span>
                 <div class="from-to">
                   <div class="point">
                     <p>{{ride.startingPoint}}</p>

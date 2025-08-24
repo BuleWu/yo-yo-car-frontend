@@ -149,6 +149,10 @@
 
           <mat-icon iconPositionEnd>{{ reservationIcon }}</mat-icon>
         </button>
+      } @else if(ride?.status === RideStatusesEnum.FINISHED) {
+        <button matButton="filled" disabled>
+          This ride finished
+        </button>
       } @else {
         <button matButton="filled" (click)="onEditRide()">
           <span>Edit ride</span>
