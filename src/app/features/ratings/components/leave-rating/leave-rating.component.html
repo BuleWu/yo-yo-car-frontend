@@ -2,12 +2,9 @@
   <div class="wrapper">
     <h2 class="title">Leave a rating</h2>
     <form class="rating-form" [formGroup]="ratingForm" (ngSubmit)="onSubmit()">
-     <!-- <mat-form-field appearance="outline">
-        <mat-label>Rating</mat-label>
-        <input matInput type="number" min="1" max="5" formControlName="value" required>
-      </mat-form-field>-->
       <div class="star-container">
         @for (star of stars; track star) {
+          <!--TODO: add keyboard/screen reader accessibility-->
           <svg
             (click)="setRating(star)"
             xmlns="http://www.w3.org/2000/svg"

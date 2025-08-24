@@ -39,7 +39,7 @@ export class LeaveRatingComponent implements OnInit {
     private _snackbar: MatSnackBar,
   ) {
     this.ratingForm = this._fb.group({
-      value: [0],
+      value: [0, Validators.min(1)],
       comment: ['']
     });
   }
@@ -68,7 +68,6 @@ export class LeaveRatingComponent implements OnInit {
           this._router.navigateByUrl(`/${ROUTES.FIND_RIDE}`);
         },
         error: err => {
-          console.log('Error: ', err)
           this._snackbar.open(`There was an error posting the rating: ${err.error.message}` , 'Close', {
             duration: 5000,
             panelClass: ['error-snackbar']

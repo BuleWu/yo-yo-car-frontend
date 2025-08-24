@@ -147,7 +147,6 @@ export class EditRideDialogComponent implements OnInit {
     this._rideProviderService.finishRide(this.data.id)
       .subscribe({
         next: () => {
-
           this.dialogRef.close({
             status: 'success',
             updatedRide: {
