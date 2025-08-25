@@ -1,7 +1,4 @@
-import {
-  Component,
-  inject,
-} from '@angular/core';
+import {Component, inject,} from '@angular/core';
 import {User} from '../../../../shared/models/user/user-models';
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef, MatDialogTitle} from '@angular/material/dialog';
 import {MatIcon} from '@angular/material/icon';
@@ -41,7 +38,7 @@ export class EditProfileDialogComponent {
   userProfileForm: FormGroup;
   initialFormValue: any;
 
-  public selectedTab: 'personalInfo' | 'security' = 'personalInfo';
+  public selectedTab: UserProfileTabsEnum = UserProfileTabsEnum.PERSONAL_INFO;
   public hovering = false;
   public editableUser = {...this.data.user}
 
