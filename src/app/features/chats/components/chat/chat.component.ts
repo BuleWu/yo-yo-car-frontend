@@ -64,7 +64,6 @@ export class ChatComponent implements OnInit {
     this._chatPusherService.loadMessages(this.chatId, 100); /*TODO: change to dynamically loading*/
     this._chatPusherService.messages$
       .subscribe((messages) => {
-        console.log('Messages: ', messages)
         this.messages = messages;
       });
 

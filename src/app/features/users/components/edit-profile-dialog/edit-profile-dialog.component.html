@@ -7,11 +7,11 @@
 <mat-dialog-content>
   <div class="profile-tabs">
     <div class="tabs">
-      <button #personalInfo (click)="selectTab('personalInfo')" [class.active]="selectedTab === 'personalInfo'">
+      <button (click)="selectTab(UserProfileTabsEnum.PERSONAL_INFO)" [class.active]="selectedTab === UserProfileTabsEnum.PERSONAL_INFO">
         <span>Personal info</span>
         <mat-icon>account_circle</mat-icon>
       </button>
-      <button #securityBtn (click)="selectTab('security')" [class.active]="selectedTab === 'security'">
+      <button (click)="selectTab(UserProfileTabsEnum.SECURITY)" [class.active]="selectedTab === UserProfileTabsEnum.SECURITY">
         <span>Security</span>
         <mat-icon>security</mat-icon>
       </button>
@@ -30,23 +30,22 @@
             <input type="file" #fileInput hidden (change)="onProfilePictureSelected($event)" />
           </div>
 
-          <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
               <mat-label>First Name</mat-label>
-              <input matInput [(ngModel)]="editableUser.firstName" name="firstName" required />
+              <input matInput formControlName="firstName" name="firstName" required />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Last Name</mat-label>
-              <input matInput [(ngModel)]="editableUser.lastName" name="lastName" required />
+              <input matInput formControlName="lastName" name="lastName" required />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Vehicle</mat-label>
-              <input matInput [(ngModel)]="editableUser.vehicle" name="vehicle" />
+              <input matInput formControlName="vehicle" name="vehicle" />
             </mat-form-field>
-
-            <button mat-raised-button color="primary" type="submit">Save Changes</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!hasFormChanged">Save Changes</button>
           </form>
         </div>
       } @else if(selectedTab === 'security') {
