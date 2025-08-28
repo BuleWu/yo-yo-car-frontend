@@ -42,7 +42,7 @@ import {RideStatusesEnum} from '../features/rides/enums/enum';
   styleUrl: './ride-info.component.scss'
 })
 export class RideInfoComponent implements OnInit {
-  public ride: Ride | undefined;
+  public ride!: Ride;
   public userRating: number = 0;
   public noOfRatings: number = 0;
   public userReservation: Reservation | undefined;
@@ -173,6 +173,13 @@ export class RideInfoComponent implements OnInit {
     return this.hasReservation  || (status === ReservationStatusesEnum.PENDING ||
       status === ReservationStatusesEnum.CANCELLED ||
       status === ReservationStatusesEnum.COMPLETED);
+  }
+
+  public onStartRide(): void {
+    this._rideProviderService.startRide(this.rideId)
+      .subscribe()
+
+    this.ride.status = RideStatusesEnum.ONGOING;
   }
 
   public onEditRide(): void {

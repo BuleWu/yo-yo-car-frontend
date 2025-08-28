@@ -27,6 +27,7 @@ export class LeaveRatingComponent implements OnInit {
   passengerId!: string;
   token!: string;
   ratingForm: FormGroup;
+  hoverRating = 0;
 
   stars = [1, 2, 3, 4, 5];
 

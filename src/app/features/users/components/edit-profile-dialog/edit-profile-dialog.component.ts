@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserProfileTabsEnum} from '../../enums/edit-user-profile-enum';
 
 export interface DialogData {
-  user: User
+  user: User;
+  onProfilePictureChange: (newProfilePicture: string) => void;
 }
 
 @Component({
@@ -80,18 +81,38 @@ export class EditProfileDialogComponent {
       const formData = new FormData();
       formData.append('file', file);
 
+      console.log('Form data: ', formData.get('file'))
+
       this._userProviderService.uploadProfilePicture(this.data.user.id, formData)
-        .subscribe((url) => {
-          this.editableUser.profilePicture = url;
-        });
+        .subscribe({
+          next: url => {
+            this.editableUser.profilePicture = url;
+            this.data.onProfilePictureChange(url);
+            this._snackbar.open('Profile picture successfully!', 'Close', {
+              duration: 5000,
+              panelClass: ['success-snackbar']
+            });
+          },
+          error: err => {
+            this._snackbar.open('An error has occurred while trying to update your profile picture.', 'Close', {
+              duration: 5000,
+              panelClass: ['error-snackbar']
+            });
+          }
+        })
     }
   }
 
   onSubmit() {
-    this._userProviderService.updateUser(this.data.user.id, this.editableUser)
+    this._userProviderService.updateUser(this.data.user.id, this.userProfileForm.value)
       .subscribe({
         next: (updatedUser) => {
           this.data.user = updatedUser;
+          this.initialFormValue = {
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            vehicle: updatedUser.vehicle,
+          };
           this._snackbar.open('Profile updated successfully!', 'Close', {
             duration: 5000,
             panelClass: ['success-snackbar']

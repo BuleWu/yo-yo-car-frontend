@@ -19,7 +19,7 @@ export class AuthenticationService {
   public loginUser(
     email: string,
     password: string,
-  ): Observable<string> { // TODO: change the type to token
+  ): Observable<string> {
     return this._httpClient.post<string>(`${environment.baseUrl}/auth/login`,
       {
         email: email,
@@ -32,7 +32,7 @@ export class AuthenticationService {
     lastName: string,
     email: string,
     password: string
-  ): Observable<string> { // TODO: change the type to token
+  ): Observable<string> {
     return this._httpClient.post<string>(`${environment.baseUrl}/auth/register`,
       {
         first_name: firstName,

@@ -21,7 +21,7 @@
           >
             <div class="start">
               <div class="ride-info">
-                <span>{{ride.status === RideStatusesEnum.FINISHED ? 'Finished' : ''}}</span>
+                <span>{{ride.status === RideStatusesEnum.FINISHED || ride.status === RideStatusesEnum.CANCELLED ? capitalizeFirstLetter(ride.status) : ''}}</span>
                 <div class="from-to">
                   <div class="point">
                     <p>{{ride.startingPoint}}</p>
@@ -43,7 +43,7 @@
               <mat-icon>arrow_forward_ios</mat-icon>
             </div>
           </a>
-      }
+        }
       }
     </div>
   </div>

@@ -92,7 +92,15 @@ export class RideProviderService {
       .pipe(map((res) => deepObjSnakeToCamelCase(res)));
   }
 
+  public startRide(rideId: string): Observable<any> {
+    return this._http.patch(`${this.apiUrl}/${rideId}/start`, null);
+  }
+
   public finishRide(rideId: string): Observable<any> {
     return this._http.patch(`${this.apiUrl}/${rideId}/finish`, null);
+  }
+
+  public cancelRide(rideId: string): Observable<any> {
+    return this._http.patch(`${this.apiUrl}/${rideId}/cancel`, null);
   }
 }

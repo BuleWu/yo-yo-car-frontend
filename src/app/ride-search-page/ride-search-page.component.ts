@@ -11,6 +11,7 @@ import {FooterComponent} from '../shared/components/footer/footer.component';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {RideSearchFilter} from './enums/enum';
 import {AuthenticationService} from '../features/auth/services/authentication.service';
+import {RideStatusesEnum} from '../features/rides/enums/enum';
 
 @UntilDestroy()
 @Component({
@@ -63,7 +64,9 @@ export class RideSearchPageComponent implements OnInit {
         ])
           .pipe(
             map((rides) =>
-              rides?.filter((ride) => ((ride.driverId !== this._authenticationService.getUserId())) && (new Date(ride.startTime) > new Date())) ?? []
+              rides?.filter((ride) => {
+                return ((ride.driverId !== this._authenticationService.getUserId()) && (new Date(ride.startTime).toISOString() > new Date().toISOString()) && (ride.status !== RideStatusesEnum.CANCELLED))
+              }) ?? []
             )
           )
     })

@@ -73,7 +73,9 @@ export class ChatComponent implements OnInit {
   }
   private scrollToBottom(): void {
     try {
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      if(this.messagesContainer?.nativeElement) {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      }
     } catch (err) {
       console.error('Scroll to bottom failed:', err);
     }

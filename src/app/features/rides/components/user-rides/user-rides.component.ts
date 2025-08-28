@@ -11,6 +11,7 @@ import {Ride} from '../../../../shared/models/ride/ride-models';
 import {DatePipe} from '@angular/common';
 import {AuthenticationService} from '../../../auth/services/authentication.service';
 import {RideStatusesEnum} from "../../enums/enum";
+import {capitalizeFirstLetter} from '../../../../common/generic/utils/string-manipulation/to-upper-case';
 
 @UntilDestroy()
 @Component({
@@ -19,7 +20,6 @@ import {RideStatusesEnum} from "../../enums/enum";
     NavbarComponent,
     MatDivider,
     MatIcon,
-    TimeAgoPipe,
     RouterLink,
     DatePipe
   ],
@@ -46,4 +46,5 @@ export class UserRidesComponent implements OnInit {
   }
 
     protected readonly RideStatusesEnum = RideStatusesEnum;
+  protected readonly capitalizeFirstLetter = capitalizeFirstLetter;
 }

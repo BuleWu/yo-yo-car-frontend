@@ -50,8 +50,8 @@ export class UserProviderService {
   }
 
   /** POST /users/:id/profile-picture */
-  uploadProfilePicture(id: string, file: FormData): Observable<string> {
-    return this._http.post<string>(`${this.apiUrl}/${id}/profile-picture`, file);
+  uploadProfilePicture(id: string, formData: FormData): Observable<string> {
+    return this._http.post<string>(`${this.apiUrl}/${id}/profile-picture`, formData);
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<void> {

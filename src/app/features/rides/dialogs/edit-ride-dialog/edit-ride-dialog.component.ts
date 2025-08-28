@@ -104,6 +104,8 @@ export class EditRideDialogComponent implements OnInit {
     const startDateTime = this.combineDateAndTime(selectedDate, new Date(startTime));
     const endDateTime = this.combineDateAndTime(selectedDate, new Date(endTime));
 
+    console.log('Form data: ', this.editRideForm.value);
+
     this._rideProviderService.updateRide(this.data.id,
       {
         ...this.editRideForm.value,
@@ -143,7 +145,7 @@ export class EditRideDialogComponent implements OnInit {
     return combined;
   }
 
-  public onFinish() {
+  public onFinishRide() {
     this._rideProviderService.finishRide(this.data.id)
       .subscribe({
         next: () => {
@@ -157,4 +159,21 @@ export class EditRideDialogComponent implements OnInit {
         }
       })
   }
+
+  public onCancelRide() {
+    this._rideProviderService.cancelRide(this.data.id)
+      .subscribe({
+        next: () => {
+          this.dialogRef.close({
+            status: 'success',
+            updatedRide: {
+              ...this.data,
+              status: RideStatusesEnum.CANCELLED
+            }
+          });
+        }
+      })
+  }
+
+  protected readonly RideStatusesEnum = RideStatusesEnum;
 }

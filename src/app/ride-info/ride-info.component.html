@@ -153,7 +153,16 @@
         <button matButton="filled" disabled>
           This ride finished
         </button>
+      } @else if(ride?.status === RideStatusesEnum.CANCELLED) {
+        <button matButton="filled" disabled>
+          This ride was cancelled
+        </button>
       } @else {
+        @if (ride?.status === RideStatusesEnum.PLANNED) {
+          <button matButton="filled" (click)="onStartRide()">
+            <span>Start ride</span>
+          </button>
+        }
         <button matButton="filled" (click)="onEditRide()">
           <span>Edit ride</span>
           <mat-icon iconPositionEnd>edit</mat-icon>

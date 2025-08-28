@@ -74,11 +74,42 @@ export class PostRideComponent {
 
     const {startingPoint, destination, startTime, endTime, price, maxPassengers, date} = formData;
 
+    const selectedDate = new Date(date);
+    selectedDate.setHours(0, 0, 0, 0);
+    const startTimeObj = new Date(startTime);
+    const endTimeObj = new Date(endTime);
+
+    // Set startTime to be on the same day as the selected date
+    const rideStartTime = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate(),
+      startTimeObj.getHours(),
+      startTimeObj.getMinutes(),
+      startTimeObj.getSeconds(),
+      startTimeObj.getMilliseconds()
+    );
+
+    // Set endTime to be on the same day as startTime initially
+    const rideEndTime = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate(),
+      endTimeObj.getHours(),
+      endTimeObj.getMinutes(),
+      endTimeObj.getSeconds(),
+      endTimeObj.getMilliseconds()
+    );
+
+    if (rideEndTime <= rideStartTime) {
+      rideEndTime.setDate(rideEndTime.getDate() + 1);
+    }
+
     this._rideProviderService.createRide({
       startingPoint: startingPoint,
       destination: destination,
-      startTime: new Date(startTime).toISOString(),
-      endTime: new Date(endTime).toISOString(),
+      startTime: rideStartTime.toISOString(),
+      endTime: rideEndTime.toISOString(),
       price: price,
       driverId: this._authenticationService.getUserId(),
       maxPassengers: maxPassengers,

@@ -62,7 +62,12 @@ export class UserProfileComponent implements OnInit {
     maxWidth: 'none',
     width: '60vw',
     data: {
-      user: this.user
+      user: this.user,
+      onProfilePictureChange: (newProfilePicture: string)=> {
+        if(this.user) {
+          this.user.profilePicture = newProfilePicture;
+        }
+      }
     }
   })
   }

@@ -16,7 +16,7 @@ export class ChatPusherService {
   private messagesSubject = new BehaviorSubject<Message[]>([]);
   public messages$ = this.messagesSubject.asObservable();
 
-  private scrollToBottomSubject = new BehaviorSubject<any>([]);
+  private scrollToBottomSubject = new BehaviorSubject<any>(null);
   public scrollToBottom$ = this.messagesSubject.asObservable();
 
   private pusher: Pusher | null = null;

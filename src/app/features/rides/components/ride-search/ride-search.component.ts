@@ -57,11 +57,13 @@ export class RideSearchComponent implements OnInit {
     const { startingPoint, destination, date } = this.searchForm.value;
     const normalizedDate = new Date(date);
     normalizedDate.setHours(0, 0, 0, 0);
+
     const queryParams = {
       starting_point: startingPoint,
       destination: destination,
       date: normalizedDate
     }
+    console.log('Query params: ', queryParams);
     this._router.navigate(['/rides/search'], { queryParams });
   }
 }

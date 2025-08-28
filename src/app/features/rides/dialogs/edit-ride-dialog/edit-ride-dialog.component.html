@@ -66,9 +66,13 @@
       <button mat-raised-button type="submit" [disabled]="!editRideForm.valid || !hasFormChanged">
         Save
       </button>
-      <button mat-raised-button type="button" (click)="onFinish()">
-        <span>Mark as finished</span>
+      <button mat-raised-button type="button" (click)="onFinishRide()" [disabled]="data.status === RideStatusesEnum.PLANNED">
+        <span>Finish ride</span>
         <mat-icon iconPositionEnd>sports_score</mat-icon>
+      </button>
+      <button mat-raised-button type="button" (click)="onCancelRide()">
+        <span>Cancel ride</span>
+        <mat-icon iconPositionEnd>no_transfer</mat-icon>
       </button>
     </div>
   </form>
