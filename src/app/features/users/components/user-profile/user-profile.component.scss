@@ -68,3 +68,9 @@
 
   }
 }
+
+.text-emphasize {
+  font-size: pixel-to-rem(20);
+  font-weight: 600;
+  color: $text-tertiary;
+}

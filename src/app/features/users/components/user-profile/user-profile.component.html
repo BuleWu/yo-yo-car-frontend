@@ -4,7 +4,7 @@
     <div class="profile-name-picture">
       <img [src]="user?.profilePicture" alt="User profile picture" height="120" width="120" class="profile-picture">
       <div class="name">
-        <p>{{user?.firstName}} {{user?.lastName}}</p>
+        <p class="text-emphasize">{{user?.firstName}} {{user?.lastName}}</p>
         @if (currentUserId === user?.id) {
           <button matButton (click)="openEditProfileDialog()">
             <span>Edit profile</span>
@@ -25,9 +25,5 @@
         <mat-icon>arrow_forward_ios</mat-icon>
       </a>
     }
-    <a [href]=`mailto:${user?.email}` class="user-email">
-      <span>{{user?.email}}</span>
-      <mat-icon>mail</mat-icon>
-    </a>
   </div>
 </div>
