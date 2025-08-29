@@ -4,7 +4,7 @@ import {deepObjCamelToSnakeCase} from '../common/generic/utils/data-manipulation
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   let body = req.body;
 
-  if(body && typeof body === 'object') {
+  if (body && typeof body === 'object' && !(body instanceof FormData)) {
     body = deepObjCamelToSnakeCase(body);
   }
 

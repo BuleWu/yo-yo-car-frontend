@@ -5,7 +5,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatLabel} from '@angular/material/form-field';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserProviderService} from '../../user-provider-service/user-provider.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserProfileTabsEnum} from '../../enums/edit-user-profile-enum';
@@ -13,6 +13,7 @@ import {UserProfileTabsEnum} from '../../enums/edit-user-profile-enum';
 export interface DialogData {
   user: User;
   onProfilePictureChange: (newProfilePicture: string) => void;
+  onUserUpdated: (updatedUser: User) => void;
 }
 
 @Component({
@@ -33,7 +34,6 @@ export interface DialogData {
   styleUrl: './edit-profile-dialog.component.scss'
 })
 export class EditProfileDialogComponent {
-  readonly dialogRef = inject(MatDialogRef<EditProfileDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
   userProfileForm: FormGroup;
@@ -55,6 +55,7 @@ export class EditProfileDialogComponent {
     private _userProviderService: UserProviderService,
     private _snackbar: MatSnackBar,
     private _fb: FormBuilder,
+    private dialogRef: MatDialogRef<EditProfileDialogComponent>,
   ) {
     this.userProfileForm = this._fb.group({
       firstName: [this.editableUser.firstName, Validators.required],
@@ -81,8 +82,6 @@ export class EditProfileDialogComponent {
       const formData = new FormData();
       formData.append('file', file);
 
-      console.log('Form data: ', formData.get('file'))
-
       this._userProviderService.uploadProfilePicture(this.data.user.id, formData)
         .subscribe({
           next: url => {
@@ -108,6 +107,7 @@ export class EditProfileDialogComponent {
       .subscribe({
         next: (updatedUser) => {
           this.data.user = updatedUser;
+          this.data.onUserUpdated(updatedUser);
           this.initialFormValue = {
             firstName: updatedUser.firstName,
             lastName: updatedUser.lastName,
@@ -127,7 +127,7 @@ export class EditProfileDialogComponent {
       })
   }
 
-  onPasswordChange() {
+  onPasswordChange(passwordForm: NgForm) {
     const { currentPassword, newPassword, confirmPassword } = this.passwordData;
 
     if (newPassword !== confirmPassword) {
@@ -142,6 +142,8 @@ export class EditProfileDialogComponent {
           panelClass: ['success-snackbar']
         });
         this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
+        passwordForm.resetForm();
+
       },
       error: (err) => {
         this.errorMessage = 'Failed to change password: ' + (err.error?.message || 'Unknown error');

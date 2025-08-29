@@ -131,7 +131,7 @@
         <p>{{ride?.price}}€</p>
       </div>
 
-      @if (!isMyRide) {
+      @if (!isMyRide && ride.status !== RideStatusesEnum.FINISHED) {
         <button matButton="filled" (click)="reservationHandler()" [disabled]="isReservationLocked()">
           @if(hasReservation) {
             <span>You have another reservation on this date</span>

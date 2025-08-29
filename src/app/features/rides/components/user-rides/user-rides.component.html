@@ -24,13 +24,13 @@
                 <span>{{ride.status === RideStatusesEnum.FINISHED || ride.status === RideStatusesEnum.CANCELLED ? capitalizeFirstLetter(ride.status) : ''}}</span>
                 <div class="from-to">
                   <div class="point">
-                    <p>{{ride.startingPoint}}</p>
-                    <p>{{ride.startTime | date: 'HH:mm'}}</p>
+                    <p class="text-emphasize">{{ride.startingPoint}}</p>
+                    <p class="text-emphasize">{{ride.startTime | date: 'HH:mm'}}</p>
                   </div>
                   <span>→</span>
                   <div class="point">
-                    <p>{{ride.destination}}</p>
-                    <p>{{ride.endTime | date: 'HH:mm'}}</p>
+                    <p class="text-emphasize">{{ride.destination}}</p>
+                    <p class="text-emphasize">{{ride.endTime | date: 'HH:mm'}}</p>
                   </div>
                 </div>
                 <span>{{ride.date | date: 'EEEE, d MMMM'}}</span>

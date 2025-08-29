@@ -7,6 +7,7 @@ import {MatDivider} from '@angular/material/divider';
 import {Rating} from '../../../../shared/models/rating/rating-models';
 import {MatIcon} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
+import {RatingValueToWordMapping} from '../../enums/mappers';
 
 @Component({
   selector: 'app-user-ratings',
@@ -24,6 +25,7 @@ export class UserRatingsComponent implements OnInit {
   public noOfRatings: number = 0;
   public userRating: number = 0;
   public ratings: Rating[] = [];
+  public RatingValueToWordMapping = RatingValueToWordMapping;
 
   constructor(
     private _userProviderService: UserProviderService,

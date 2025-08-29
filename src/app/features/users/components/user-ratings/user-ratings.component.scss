@@ -61,6 +61,7 @@
     width: 45%;
     flex-direction: column;
     font-size: pixel-to-rem(18);
+    padding-bottom: pixel-to-rem(10);
 
     .ratings {
       display: flex;
@@ -82,4 +83,11 @@
       }
     }
   }
+}
+
+.text-emphasize {
+  font-size: pixel-to-rem(20);
+  font-weight: 600;
+  color: $text-tertiary;
+  margin: pixel-to-rem(0);
 }

@@ -14,10 +14,11 @@
             [queryParams]="{ id: rating.rater?.id }"
           >
             <img [src]="rating.rater?.profilePicture" alt="User profile picture" height="60" width="60" class="profile-picture">
-            {{ rating.rater?.firstName }}
+            <p class="text-emphasize">{{ rating.rater?.firstName }}</p>
             <mat-icon>arrow_forward_ios</mat-icon>
           </a>
           <div class="rating-item__content">
+            <p class="text-emphasize">{{ RatingValueToWordMapping[rating.value] }}</p>
             <p class="description-text">{{rating.comment}}</p>
             <p class="description-text">{{rating.createdAt | date: 'MMMM y' }}</p>
           </div>

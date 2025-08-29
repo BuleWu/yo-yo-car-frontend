@@ -69,14 +69,24 @@ export class NavbarComponent implements OnInit {
   }
 
   public openEditProfileDialog(): void {
-    const dialogRef = this._dialog.open(EditProfileDialogComponent, {
+    this._dialog.open(EditProfileDialogComponent, {
       minHeight: '70vh',
       maxWidth: 'none',
       width: '60vw',
       data: {
-        user: this.user
+        user: this.user,
+        onProfilePictureChange: (newProfilePicture: string)=> {
+           if(this.user) {
+             this.user.profilePicture = newProfilePicture;
+           }
+        },
+        onUserUpdated: (updatedUser: User) => {
+          this.user = updatedUser;
+        }
       }
     })
+
+
   }
 
   protected readonly ROUTES = ROUTES;

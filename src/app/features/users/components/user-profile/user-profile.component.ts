@@ -57,18 +57,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   public openEditProfileDialog() {
-   this._dialog.open(EditProfileDialogComponent, {
-    minHeight: '70vh',
-    maxWidth: 'none',
-    width: '60vw',
-    data: {
-      user: this.user,
-      onProfilePictureChange: (newProfilePicture: string)=> {
-        if(this.user) {
-          this.user.profilePicture = newProfilePicture;
+    this._dialog.open(EditProfileDialogComponent, {
+      minHeight: '70vh',
+      maxWidth: 'none',
+      width: '60vw',
+      data: {
+        user: this.user,
+        onProfilePictureChange: (newProfilePicture: string)=> {
+          if(this.user) {
+            this.user.profilePicture = newProfilePicture;
+          }
+        },
+        onUserUpdated: (updatedUser: User) => {
+          this.user = updatedUser;
         }
       }
-    }
-  })
+    })
   }
 }

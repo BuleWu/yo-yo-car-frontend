@@ -21,7 +21,7 @@
       @if (selectedTab === 'personalInfo') {
         <div class="personal-info">
           <div class="profile-picture-container" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
-            <img [src]="data.user.profilePicture" alt="User profile picture" height="85" width="85" class="profile-picture">
+            <img [src]="editableUser.profilePicture" alt="User profile picture" height="85" width="85" class="profile-picture">
             @if(hovering) {
               <button mat-icon-button class="edit-icon" (click)="fileInput.click()">
                 <mat-icon>edit</mat-icon>
@@ -49,7 +49,7 @@
           </form>
         </div>
       } @else if(selectedTab === 'security') {
-        <form #passwordForm="ngForm" (ngSubmit)="onPasswordChange()" class="change-password-form">
+        <form #passwordForm="ngForm" (ngSubmit)="onPasswordChange(passwordForm)" class="change-password-form">
           <mat-form-field appearance="outline">
             <mat-label>Current Password</mat-label>
             <input matInput type="password" [(ngModel)]="passwordData.currentPassword" name="currentPassword" required />

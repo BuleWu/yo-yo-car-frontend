@@ -33,7 +33,7 @@
     text-decoration: none;
     color: $text-primary;
     border-radius: pixel-to-rem(99);
-    padding: pixel-to-rem(15) pixel-to-rem(15) pixel-to-rem(10) pixel-to-rem(15);
+    padding: pixel-to-rem(15) pixel-to-rem(25) pixel-to-rem(15) pixel-to-rem(25);
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
